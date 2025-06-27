@@ -1,6 +1,7 @@
 import { memo, PropsWithChildren, ReactNode } from 'react';
 import {
   ActivityIndicator,
+  GestureResponderEvent,
   Pressable,
   PressableProps,
   StyleProp,
@@ -29,6 +30,7 @@ export type ButtonProps = PropsWithChildren<PressableProps> & {
   disabled?: boolean;
   icon?: ReactNode;
   style?: StyleProp<ViewStyle>;
+  onPress?: (event: GestureResponderEvent) => void;
 };
 
 const variantStyles = {
@@ -108,6 +110,7 @@ const Button = ({
   disabled = false,
   icon,
   style,
+  onPress,
 }: ButtonProps) => {
   const variantStyle = variantStyles[variant];
   const buttonSize = buttonSizes[size];
@@ -126,6 +129,7 @@ const Button = ({
         disabled && styles.disabled,
         style,
       ]}
+      onPress={onPress}
       disabled={disabled || isLoading}>
       {isLoading && <ActivityIndicator color={variantStyle.textColor} />}
       {icon}
