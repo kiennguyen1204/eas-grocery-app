@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component should render properly with label and error message 1`] = `
+<View>
+  <Text
+    style={
+      [
+        {
+          "color": "#13B58C",
+          "fontFamily": "Montserrat",
+          "fontSize": 14,
+        },
+        {
+          "opacity": 0.5,
+        },
+      ]
+    }
+  >
+    Email
+  </Text>
+  <TextInput
+    editable={true}
+    placeholder="Enter your email"
+    placeholderTextColor="#DCDDDF"
+    secureTextEntry={false}
+    style={
+      [
+        {
+          "paddingVertical": 16,
+        },
+        {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 24,
+          "color": "#4F4F4F",
+          "fontFamily": "Montserrat",
+          "fontSize": 18,
+          "paddingLeft": 40,
+        },
+        undefined,
+      ]
+    }
+    value="test.com"
+  />
+  <View
+    style={
+      {
+        "left": 12,
+        "position": "absolute",
+        "top": 20,
+      }
+    }
+  >
+    <Text>
+      LeftIcon
+    </Text>
+  </View>
+  <Text
+    style={
+      [
+        {
+          "color": "#13B58C",
+          "fontFamily": "Montserrat",
+          "fontSize": 14,
+        },
+        {
+          "bottom": 20,
+          "color": "#FF7272",
+          "position": "absolute",
+        },
+      ]
+    }
+  >
+    Email is invalid.
+  </Text>
+</View>
+`;
