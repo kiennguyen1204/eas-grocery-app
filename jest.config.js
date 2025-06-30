@@ -1,5 +1,5 @@
 module.exports = {
-  preset: 'react-native',
+  preset: 'jest-expo',
   coverageThreshold: {
     global: {
       statements: 80,
