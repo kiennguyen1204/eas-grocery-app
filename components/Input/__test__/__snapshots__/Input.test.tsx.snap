@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input component should render properly with label and error message 1`] = `
-<View>
+<View
+  style={
+    [
+      {
+        "marginBottom": 15,
+      },
+      undefined,
+    ]
+  }
+>
   <Text
     style={
       [
@@ -11,6 +20,7 @@ exports[`Input component should render properly with label and error message 1`]
           "fontSize": 14,
         },
         {
+          "marginBottom": 5,
           "opacity": 0.5,
         },
       ]
@@ -26,6 +36,7 @@ exports[`Input component should render properly with label and error message 1`]
     style={
       [
         {
+          "paddingHorizontal": 16,
           "paddingVertical": 16,
         },
         {
@@ -46,7 +57,7 @@ exports[`Input component should render properly with label and error message 1`]
       {
         "left": 12,
         "position": "absolute",
-        "top": 20,
+        "top": 18,
       }
     }
   >
@@ -63,9 +74,10 @@ exports[`Input component should render properly with label and error message 1`]
           "fontSize": 14,
         },
         {
-          "bottom": 20,
           "color": "#FF7272",
-          "position": "absolute",
+          "marginLeft": 16,
+          "marginTop": 10,
+          "textAlign": "left",
         },
       ]
     }

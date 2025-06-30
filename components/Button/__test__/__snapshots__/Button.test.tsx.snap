@@ -60,6 +60,7 @@ exports[`Button should render correctly 1`] = `
         {
           "textAlign": "center",
         },
+        undefined,
         {
           "color": "#FFFFFF",
           "fontFamily": "Montserrat-Medium",

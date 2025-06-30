@@ -7,6 +7,7 @@ import {
   StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   ViewStyle,
 } from 'react-native';
 
@@ -31,6 +32,7 @@ export type ButtonProps = PropsWithChildren<PressableProps> & {
   icon?: ReactNode;
   style?: StyleProp<ViewStyle>;
   onPress?: (event: GestureResponderEvent) => void;
+  titleStyle?: StyleProp<TextStyle>;
 };
 
 const variantStyles = {
@@ -39,8 +41,8 @@ const variantStyles = {
     textColor: baseColors.whitePure,
   },
   secondary: {
-    backgroundColor: baseColors.grayLight,
-    textColor: baseColors.grayDark,
+    backgroundColor: baseColors.whitePure,
+    textColor: baseColors.greenLight,
   },
   danger: {
     backgroundColor: baseColors.redPrimary,
@@ -110,6 +112,7 @@ const Button = ({
   disabled = false,
   icon,
   style,
+  titleStyle,
   onPress,
 }: ButtonProps) => {
   const variantStyle = variantStyles[variant];
@@ -136,6 +139,7 @@ const Button = ({
       <Text
         style={[
           styles.text,
+          titleStyle,
           {
             ...buttonTextSizes[size],
             ...textStyle,
