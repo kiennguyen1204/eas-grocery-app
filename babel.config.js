@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['module:@react-native/babel-preset'],
+  presets: ['babel-preset-expo', '@babel/preset-typescript'],
   plugins: [
     'react-native-reanimated/plugin',
     [
