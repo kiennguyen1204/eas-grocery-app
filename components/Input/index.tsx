@@ -55,9 +55,9 @@ const Input = forwardRef(
     ref?: Ref<TextInput>,
   ) => {
     return (
-      <View style={style}>
+      <View style={[styles.container, style]}>
         {label && (
-          <Text size="base" style={{ opacity: 0.5 }}>
+          <Text size="base" style={styles.label}>
             {label}
           </Text>
         )}
@@ -89,7 +89,6 @@ const Input = forwardRef(
           ) : (
             <View style={styles.rightIcon}>{rightIcon}</View>
           ))}
-
         {errorMessage && (
           <Text size="base" style={styles.errorMessage}>
             {errorMessage}
@@ -105,23 +104,32 @@ Input.displayName = 'Input';
 export default Input;
 
 export const styles = StyleSheet.create({
+  container: {
+    marginBottom: 15,
+  },
+  label: {
+    opacity: 0.5,
+    marginBottom: 5,
+  },
   inputBase: {
     paddingVertical: 16,
+    paddingHorizontal: 16,
   },
   leftIcon: {
     position: 'absolute',
     left: 12,
-    top: 20,
+    top: 18,
   },
   rightIcon: {
     position: 'absolute',
     right: 12,
-    top: 16,
+    top: 20,
   },
   errorMessage: {
     color: baseColors.redPrimary,
-    position: 'absolute',
-    bottom: 20,
+    marginTop: 10,
+    marginLeft: 16,
+    textAlign: 'left',
   },
   disabled: {
     opacity: 0.7,
@@ -143,9 +151,9 @@ export const inputVariants = StyleSheet.create({
     backgroundColor: baseColors.transparent,
     borderWidth: 1,
     borderColor: baseColors.whitePure,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
     color: baseColors.whiteSoft,
-    borderRadius: borderRadius.sm,
+    borderRadius: borderRadius.xl,
   },
   flushed: {
     fontSize: fontSizes.sm,
