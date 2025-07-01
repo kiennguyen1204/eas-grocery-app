@@ -24,7 +24,6 @@ import {
 
 interface SignUpFormProps {
   onSubmit: (data: ISignUpFormData) => void;
-  onLoginScreen: () => void;
   errorMessage?: string | null;
   isLoading?: boolean;
 }
@@ -107,10 +106,6 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
   const enableButton =
     dirtyItems.length === REQUIRE_FIELDS.length && !Object.keys(errors).length;
   const isDisableSubmit = !enableButton;
-
-  const handleLogin = (data: ISignUpFormData) => {
-    onSubmit(data);
-  };
 
   return (
     <View style={styles.container}>
@@ -269,7 +264,7 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
         title="Create"
         isLoading={isLoading}
         disabled={isDisableSubmit}
-        onPress={handleSubmit(handleLogin)}
+        onPress={handleSubmit(onSubmit)}
       />
 
       <View style={styles.signUpContainer}>

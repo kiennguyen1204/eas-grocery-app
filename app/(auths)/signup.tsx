@@ -9,25 +9,49 @@ import {
 // Components
 import { SignUpForm } from '@/components';
 
+// Constants
+import { ERROR_MESSAGES, ROUTES, SUCCESS_MESSAGES } from '@/constants';
+
+// Interfaces
+import { ISignUpFormData, SignUpPayload } from '@/interfaces';
+import { useAuthSignUp } from '@/services/auth';
+import { router } from 'expo-router';
+import Toast from 'react-native-toast-message';
+
 const SignupScreen = () => {
-  const handleSubmit = async () => {
-    // Handle form submission logic here
-  };
+  const { mutateAsync: signUp, isPending } = useAuthSignUp();
 
-  const handleLoginScreen = () => {
-    // Navigate to login screen
-  };
+  const handleSubmit = (values: ISignUpFormData) => {
+    const payload: SignUpPayload = {
+      email: values.email,
+      password: values.password,
+      name: `${values.firstName} ${values.lastName}`,
+      avatar: values.avatar,
+    };
 
-  const isPending = false;
+    signUp(payload, {
+      onSuccess: () => {
+        Toast.show({
+          type: 'success',
+          text1: SUCCESS_MESSAGES.REGISTER_SUCCESS,
+        });
+        router.replace(ROUTES.HOME);
+      },
+      onError: (error: any) => {
+        const errorMessage =
+          error?.response?.data?.message || ERROR_MESSAGES.SIGNUP_FAILED;
+        Toast.show({
+          type: 'error',
+          text1: errorMessage,
+        });
+      },
+    });
+  };
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <SignUpForm
-          onSubmit={handleSubmit}
-          isLoading={isPending}
-          onLoginScreen={handleLoginScreen}
-        />
+        <SignUpForm onSubmit={handleSubmit} isLoading={isPending} />
       </View>
     </TouchableWithoutFeedback>
   );

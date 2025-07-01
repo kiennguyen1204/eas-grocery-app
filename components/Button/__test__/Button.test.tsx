@@ -24,14 +24,19 @@ describe('Button', () => {
       isLoading: true,
     });
 
-    expect(screen.getByText('Mock title')).toBeTruthy();
+    expect(screen.getByTestId('activity-indicator')).toBeTruthy();
+
+    expect(screen.queryByText('Mock title')).toBeNull();
 
     setup({
       title: 'Mock secondary',
       variant: 'secondary',
+      isLoading: false,
     });
 
     expect(screen.getByText('Mock secondary')).toBeTruthy();
+
+    expect(screen.queryByTestId('activity-indicator')).toBeNull();
   });
 
   it('calls onPress when button is pressed', () => {
