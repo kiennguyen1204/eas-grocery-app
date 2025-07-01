@@ -134,19 +134,26 @@ const Button = ({
       ]}
       onPress={onPress}
       disabled={disabled || isLoading}>
-      {isLoading && <ActivityIndicator color={variantStyle.textColor} />}
       {icon}
-      <Text
-        style={[
-          styles.text,
-          titleStyle,
-          {
-            ...buttonTextSizes[size],
-            ...textStyle,
-          },
-        ]}>
-        {title}
-      </Text>
+      {isLoading ? (
+        <ActivityIndicator
+          testID="activity-indicator"
+          style={styles.loadingIndicator}
+          color={variantStyle.textColor}
+        />
+      ) : (
+        <Text
+          style={[
+            styles.text,
+            titleStyle,
+            {
+              ...buttonTextSizes[size],
+              ...textStyle,
+            },
+          ]}>
+          {title}
+        </Text>
+      )}
     </Pressable>
   );
 };
@@ -164,6 +171,9 @@ const styles = StyleSheet.create({
   },
   disabled: {
     backgroundColor: baseColors.grayMedium,
+  },
+  loadingIndicator: {
+    paddingVertical: 10,
   },
 });
 

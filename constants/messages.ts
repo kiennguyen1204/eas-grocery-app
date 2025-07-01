@@ -14,3 +14,16 @@ export const ERROR_MESSAGES = {
   AUTHENTICATION_FAILED: 'Authentication failed. Please try again.',
   PRODUCT_NOT_FOUND: 'Product not found. Please check the product ID.',
 };
+
+export const SERVER_ERROR_MESSAGES: Record<number, string> = {
+  400: 'Bad Request: Please check your input.',
+  401: 'Unauthorized: Please log in again.',
+  403: "Forbidden: You don't have permission to perform this action.",
+  404: 'Not Found: The requested resource does not exist.',
+  500: 'Internal Server Error: Something went wrong on our end.',
+};
+
+export const SUCCESS_MESSAGES = {
+  LOGIN_SUCCESS: 'Login Successful! Welcome back!',
+  REGISTER_SUCCESS: 'Registration Successful! Welcome to the community!',
+};

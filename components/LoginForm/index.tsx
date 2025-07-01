@@ -25,7 +25,6 @@ interface SignInPayload {
 
 interface LoginFormProps {
   onSubmit: (data: SignInPayload) => void;
-  onSignUpScreen: () => void;
   isLoading?: boolean;
 }
 
@@ -49,7 +48,7 @@ const SIGN_IN_VALIDATION_RULES = {
   },
 };
 
-const LoginForm = ({ onSubmit, onSignUpScreen, isLoading }: LoginFormProps) => {
+const LoginForm = ({ onSubmit, isLoading }: LoginFormProps) => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   const {
@@ -84,10 +83,6 @@ const LoginForm = ({ onSubmit, onSignUpScreen, isLoading }: LoginFormProps) => {
   const isDisableSubmit = !enableButton;
 
   const emailInputRef = useRef(null);
-
-  const handleLogin = (data: SignInPayload) => {
-    onSubmit(data);
-  };
 
   return (
     <View style={styles.container}>
@@ -163,7 +158,7 @@ const LoginForm = ({ onSubmit, onSignUpScreen, isLoading }: LoginFormProps) => {
         title="Login"
         isLoading={isLoading}
         disabled={isDisableSubmit}
-        onPress={handleSubmit(handleLogin)}
+        onPress={handleSubmit(onSubmit)}
       />
       <Link style={styles.forgotPassword} href="/login">
         Forgot your password?
