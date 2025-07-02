@@ -51,6 +51,8 @@ const CategoryList = ({ data, onPress }: CategoryListProps) => {
 
   return (
     <FlatList
+      nestedScrollEnabled={true}
+      scrollEnabled={false}
       data={data}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString()}

@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import {
   Banner,
@@ -9,11 +9,12 @@ import {
   Input,
   ProductList,
   SearchIcon,
+  StoreList,
   Text,
 } from '@/components';
 
 // Mocks
-import { CATEGORIES, PRODUCTS } from '@/mocks';
+import { CATEGORIES, PRODUCTS, STORE_CARDS } from '@/mocks';
 
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
@@ -38,20 +39,35 @@ const HomeScreen = () => {
           placeholder="Search Product"
         />
       </View>
-      <View style={styles.banner}>
-        <Banner />
-      </View>
-      <CategoryList data={CATEGORIES} onPress={id => console.log(id)} />
-      <View style={styles.product}>
-        <View style={styles.productHeading}>
-          <Text color={baseColors.grayMedium} style={styles.productTitle}>
-            New Product
-          </Text>
-          <Button title="See All" size="small" style={styles.button} />
+      <ScrollView>
+        <View style={styles.banner}>
+          <Banner />
+        </View>
+        <CategoryList data={CATEGORIES} onPress={id => console.log(id)} />
+        <View style={styles.product}>
+          <View style={styles.productHeading}>
+            <Text color={baseColors.grayMedium} style={styles.productTitle}>
+              New Product
+            </Text>
+            <Button title="See All" size="small" style={styles.button} />
+          </View>
+
+          <ProductList products={PRODUCTS} />
         </View>
 
-        <ProductList products={PRODUCTS} />
-      </View>
+        <View style={styles.storesHeading}>
+          <Text style={styles.storesTitle}>Store to follow</Text>
+          <Button
+            title="View All"
+            size="small"
+            variant="secondary"
+            style={styles.btnViewAll}
+          />
+        </View>
+        <View style={styles.storeList}>
+          <StoreList stores={STORE_CARDS} />
+        </View>
+      </ScrollView>
     </View>
   );
 };
@@ -97,6 +113,29 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 16,
     backgroundColor: baseColors.greenDark,
+  },
+  btnViewAll: {
+    paddingVertical: 6,
+    borderRadius: 16,
+  },
+
+  storesHeading: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: 8,
+    backgroundColor: baseColors.greenDark,
+    paddingTop: 16,
+  },
+  storesTitle: {
+    color: baseColors.whitePure,
+    fontFamily: fontsFamily.bold,
+    fontWeight: fontWeights.bold,
+    height: 184,
+  },
+  storeList: {
+    bottom: 120,
+    paddingHorizontal: 20,
   },
 });
 
