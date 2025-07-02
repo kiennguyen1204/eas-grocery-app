@@ -27,3 +27,9 @@ export const SUCCESS_MESSAGES = {
   LOGIN_SUCCESS: 'Login Successful! Welcome back!',
   REGISTER_SUCCESS: 'Registration Successful! Welcome to the community!',
 };
+
+export const MESSAGES = {
+  EMPTY_PRODUCT_LIST: 'No products available at the moment.',
+  NOTIFICATION: 'Notification',
+  NEW_NOTIFICATION_MESSAGE: 'You have a new notifications.',
+};

@@ -4,7 +4,7 @@ import React from 'react';
 export default function TabLayout() {
   return (
     <Tabs>
-      <Tabs.Screen name="index" />
+      <Tabs.Screen name="index" options={{ headerShown: false }} />
     </Tabs>
   );
 }

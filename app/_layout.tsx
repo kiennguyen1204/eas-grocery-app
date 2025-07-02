@@ -1,11 +1,15 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
+import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 // Constants
 import { STALE_TIME } from '@/constants';
-import { Slot } from 'expo-router';
+
+// Stores
+import { useAuthStore } from '@/stores';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +27,12 @@ export default function RootLayout() {
     'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
     'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
   });
+
+  const initializeAuth = useAuthStore(state => state.initializeAuth);
+
+  useEffect(() => {
+    initializeAuth();
+  }, [initializeAuth]);
 
   if (!loaded) {
     return null;
