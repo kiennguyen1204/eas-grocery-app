@@ -7,4 +7,6 @@ export { default as LoginForm } from './LoginForm';
 export { default as ProductCard } from './ProductCard';
 export { default as ProductList } from './ProductList';
 export { default as SignUpForm } from './SignUpForm';
+export { default as StoreCard } from './StoreCard';
+export { default as StoreList } from './StoreList';
 export { default as Text } from './Text';
