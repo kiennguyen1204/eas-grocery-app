@@ -3,6 +3,7 @@ export * from './dimensions';
 export * from './env';
 export * from './keychain';
 export * from './messages';
+export * from './pagination';
 export * from './regex';
 export * from './routes';
 export * from './slides';

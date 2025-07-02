@@ -90,9 +90,7 @@ const Onboarding = () => {
         <Button
           variant="primary"
           title={
-            activeSlide === SLIDES_ONBOARDING.length - 1
-              ? 'Get Started'
-              : 'Next'
+            activeSlide === SLIDES_ONBOARDING.length - 1 ? 'Finish' : 'Next'
           }
           onPress={goToNextSlide}
           style={styles.actionButton}
