@@ -1,6 +1,8 @@
 export { default as Banner } from './Banner';
 export { default as Button } from './Button';
 export { default as CategoryList } from './CategoryList';
+export { default as Dropdown } from './Dropdown';
+export { default as Header } from './Header';
 export * from './icons';
 export { default as Input } from './Input';
 export { default as LoginForm } from './LoginForm';

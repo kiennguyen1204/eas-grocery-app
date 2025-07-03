@@ -1,6 +1,7 @@
 export * from './api';
 export * from './dimensions';
 export * from './env';
+export * from './filter';
 export * from './keychain';
 export * from './messages';
 export * from './pagination';

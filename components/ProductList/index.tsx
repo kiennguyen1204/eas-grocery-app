@@ -26,6 +26,7 @@ export interface ProductListProps {
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
   isGridView?: boolean;
+  onPress: (id: string) => void;
 }
 
 const ProductList = ({
@@ -34,14 +35,13 @@ const ProductList = ({
   hasNextPage = false,
   isRefreshing = false,
   isGridView = false,
+  onPress,
   ...props
 }: ProductListProps) => {
+  const handlePress = useCallback((id: string) => onPress(id), [onPress]);
+
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<TProduct>) => {
-      const handlePress = () => {
-        // Navigate to product details screen
-      };
-
       return (
         <ProductCard
           id={item.id}
@@ -92,6 +92,8 @@ const ProductList = ({
 const styles = StyleSheet.create({
   columnWrapper: {
     marginBottom: 20,
+    justifyContent: 'center',
+    gap: 6,
   },
   wrapper: {
     flex: 1,
