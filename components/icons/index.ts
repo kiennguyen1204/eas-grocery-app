@@ -1,5 +1,12 @@
 export { default as CartIcon } from './Cart';
+export { default as CategoryIcon } from './Category';
+export { default as ChevronLeftIcon } from './ChevronLeft';
 export { default as HeartIcon } from './Heart';
+export { default as HeartOutlineIcon } from './HeartOutline';
 export { default as Hidden } from './Hidden';
+export { default as MapIcon } from './Map';
+export { default as MoreIcon } from './More';
 export { default as SearchIcon } from './Search';
+export { default as ShareIcon } from './Share';
 export { default as Show } from './Show';
+export { default as SortIcon } from './Sort';

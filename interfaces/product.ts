@@ -8,4 +8,9 @@ export interface TProduct {
   description: string;
   storeName: string;
   categoryId: number;
+  categoryName?: string;
+  condition?: string;
+  priceType?: string;
+  location?: string;
+  delivery?: string;
 }

@@ -1,4 +1,7 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { useCallback } from 'react';
+
+import { router } from 'expo-router';
+import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 
 import {
   Banner,
@@ -14,12 +17,32 @@ import {
 } from '@/components';
 
 // Mocks
-import { CATEGORIES, PRODUCTS, STORE_CARDS } from '@/mocks';
+import { CATEGORIES, STORE_CARDS } from '@/mocks';
 
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
 
+// Constants
+import { ROUTES } from '@/constants';
+
+// Hooks
+import { useGetProducts } from '@/hooks';
+
 const HomeScreen = () => {
+  const {
+    data: products,
+    isFetching: isFetchingProducts,
+    error: productsError,
+  } = useGetProducts();
+
+  const handlePressProduct = useCallback((id: string) => {
+    router.push(ROUTES.PRODUCT_DETAIL(id) as never);
+  }, []);
+
+  const handlePressSeeAll = () => {
+    router.push(ROUTES.BROWSE);
+  };
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.headerContainer}>
@@ -49,10 +72,23 @@ const HomeScreen = () => {
             <Text color={baseColors.grayMedium} style={styles.productTitle}>
               New Product
             </Text>
-            <Button title="See All" size="small" style={styles.button} />
+            <Button
+              title="See All"
+              size="small"
+              style={styles.button}
+              onPress={handlePressSeeAll}
+            />
           </View>
 
-          <ProductList products={PRODUCTS} />
+          {productsError && <Text>Error when load new products</Text>}
+          {isFetchingProducts ? (
+            <ActivityIndicator />
+          ) : (
+            <ProductList
+              products={products || []}
+              onPress={handlePressProduct}
+            />
+          )}
         </View>
 
         <View style={styles.storesHeading}>
