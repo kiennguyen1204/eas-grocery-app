@@ -1,4 +1,5 @@
 export * from './api';
+export * from './category';
 export * from './dimensions';
 export * from './env';
 export * from './filter';

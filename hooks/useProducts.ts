@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 // Constants
 import { ENDPOINTS } from '@/constants';
@@ -14,23 +14,24 @@ type GetProductParams = {
   query?: string;
   searchProducts?: string;
   order?: string;
-  limit: number;
+  limit?: number;
 };
 
-export const useGetProducts = (params: GetProductParams = { limit: 6 }) => {
+export const useGetProducts = (params: GetProductParams = {}) => {
   const { categoryName, searchProducts, order, limit, query } = params;
 
-  return useQuery<TProduct[], Error>({
+  return useInfiniteQuery<TProduct[], Error>({
     queryKey: [
       ENDPOINTS.PRODUCTS,
       { categoryName, searchProducts, order, limit, query },
     ],
-    queryFn: async () => {
+    queryFn: async ({ pageParam = 1 }) => {
       const queryParams = new URLSearchParams({
         ...(categoryName ? { categoryName } : {}),
         ...(query || searchProducts ? { q: query || searchProducts } : {}),
         ...(order ? { _sort: 'newPrice', _order: order } : {}),
         ...(limit ? { _limit: limit.toString() } : {}),
+        _page: (pageParam as number).toString(),
       }).toString();
 
       const url = `${ENDPOINTS.PRODUCTS}?${queryParams}`;
@@ -38,6 +39,14 @@ export const useGetProducts = (params: GetProductParams = { limit: 6 }) => {
       const response = await get<TProduct[]>(url);
       return response;
     },
+    getNextPageParam: (lastPage, allPages) => {
+      const pageLimit = limit ?? 10;
+      if (lastPage.length < pageLimit) {
+        return undefined;
+      }
+      return allPages.length + 1;
+    },
+    initialPageParam: 1,
   });
 };
 

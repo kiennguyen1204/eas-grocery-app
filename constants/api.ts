@@ -3,4 +3,5 @@ export const ENDPOINTS = {
   USERS: '/users',
   LOGIN: '/login',
   REGISTER: '/register',
+  CART: '/cart',
 };

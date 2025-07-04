@@ -1,7 +1,13 @@
 import { useCallback } from 'react';
 
 import { router } from 'expo-router';
-import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {
   Banner,
@@ -30,10 +36,10 @@ import { useGetProducts } from '@/hooks';
 
 const HomeScreen = () => {
   const {
-    data: products,
+    data,
     isFetching: isFetchingProducts,
     error: productsError,
-  } = useGetProducts();
+  } = useGetProducts({ limit: 10 });
 
   const handlePressProduct = useCallback((id: string) => {
     router.push(ROUTES.PRODUCT_DETAIL(id) as never);
@@ -41,6 +47,16 @@ const HomeScreen = () => {
 
   const handlePressSeeAll = () => {
     router.push(ROUTES.BROWSE);
+  };
+
+  const handlePressCategoryItem = useCallback((id: number) => {
+    router.push(ROUTES.CATEGORY(id) as never);
+  }, []);
+
+  const products = data?.pages.flatMap(page => page) || [];
+
+  const handleNavigateCartScreen = () => {
+    router.push(ROUTES.CART as never);
   };
 
   return (
@@ -52,7 +68,9 @@ const HomeScreen = () => {
           </Text>
           <View style={styles.icon}>
             <HeartIcon />
-            <CartIcon />
+            <TouchableOpacity onPress={handleNavigateCartScreen}>
+              <CartIcon />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -66,7 +84,7 @@ const HomeScreen = () => {
         <View style={styles.banner}>
           <Banner />
         </View>
-        <CategoryList data={CATEGORIES} onPress={id => console.log(id)} />
+        <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
         <View style={styles.product}>
           <View style={styles.productHeading}>
             <Text color={baseColors.grayMedium} style={styles.productTitle}>

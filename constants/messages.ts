@@ -13,6 +13,11 @@ export const ERROR_MESSAGES = {
     'Username or password is already taken. Please choose a different one.',
   AUTHENTICATION_FAILED: 'Authentication failed. Please try again.',
   PRODUCT_NOT_FOUND: 'Product not found. Please check the product ID.',
+  REMOVE_FROM_CART_FAILED:
+    'Failed to remove item from cart. Please try again later.',
+  UPDATE_CART_QUANTITY_FAILED:
+    'Failed to update cart quantity. Please try again later.',
+  ADD_TO_CART_FAILED: 'Failed to add item to cart. Please try again later.',
 };
 
 export const SERVER_ERROR_MESSAGES: Record<number, string> = {
@@ -24,12 +29,16 @@ export const SERVER_ERROR_MESSAGES: Record<number, string> = {
 };
 
 export const SUCCESS_MESSAGES = {
+  ADD_TO_CART: 'Item added to cart successfully.',
+  REMOVE_FROM_CART: 'Item removed from cart successfully.',
   LOGIN_SUCCESS: 'Login Successful! Welcome back!',
   REGISTER_SUCCESS: 'Registration Successful! Welcome to the community!',
 };
 
 export const MESSAGES = {
+  EMPTY_CART: 'Your cart is empty.',
   EMPTY_PRODUCT_LIST: 'No products available at the moment.',
   NOTIFICATION: 'Notification',
   NEW_NOTIFICATION_MESSAGE: 'You have a new notifications.',
+  ALREADY_IN_CART: 'This product is already in your cart.',
 };

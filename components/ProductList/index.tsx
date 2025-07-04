@@ -27,6 +27,7 @@ export interface ProductListProps {
   onDelete?: (id: string) => void;
   isGridView?: boolean;
   onPress: (id: string) => void;
+  onRefresh?: () => void;
 }
 
 const ProductList = ({
@@ -36,6 +37,7 @@ const ProductList = ({
   isRefreshing = false,
   isGridView = false,
   onPress,
+  onRefresh,
   ...props
 }: ProductListProps) => {
   const handlePress = useCallback((id: string) => onPress(id), [onPress]);
@@ -85,6 +87,8 @@ const ProductList = ({
       maxToRenderPerBatch={RENDER_PER_BATCH}
       removeClippedSubviews
       windowSize={5}
+      onRefresh={onRefresh}
+      refreshing={isRefreshing}
     />
   );
 };
