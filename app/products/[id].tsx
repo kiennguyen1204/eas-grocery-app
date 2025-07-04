@@ -19,7 +19,12 @@ import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 
 // Constants
-import { SCREEN_WIDTH } from '@/constants';
+import {
+  ERROR_MESSAGES,
+  MESSAGES,
+  SCREEN_WIDTH,
+  SUCCESS_MESSAGES,
+} from '@/constants';
 
 // Hooks
 import { useGetProductDetail } from '@/hooks';
@@ -36,11 +41,15 @@ import {
   ShareIcon,
   Text,
 } from '@/components';
+import { useAddToCart, useGetCart } from '@/hooks/useCart';
+import Toast from 'react-native-toast-message';
 
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+  const { mutate: addToCart, isPending: isAdding } = useAddToCart();
+  const { data: cartItems = [] } = useGetCart();
 
   const productId = Array.isArray(id) ? id[0] : id;
   const { data, error } = useGetProductDetail(productId);
@@ -76,6 +85,43 @@ const ProductDetail = () => {
 
   const handleBack = () => {
     router.back();
+  };
+
+  const handleAddToCart = () => {
+    if (data) {
+      const isProductInCart = cartItems.some(item => item.title === name);
+      if (isProductInCart) {
+        Toast.show({
+          type: 'info',
+          text1: MESSAGES.ALREADY_IN_CART,
+        });
+      } else {
+        addToCart(
+          {
+            title: name,
+            image: images?.[0] || '',
+            newPrice,
+            oldPrice,
+            price: newPrice || oldPrice || 0,
+            quantity: 1,
+          },
+          {
+            onSuccess: () => {
+              Toast.show({
+                type: 'success',
+                text1: SUCCESS_MESSAGES.ADD_TO_CART,
+              });
+            },
+            onError: error => {
+              Toast.show({
+                type: 'error',
+                text1: ERROR_MESSAGES.ADD_TO_CART_FAILED,
+              });
+            },
+          },
+        );
+      }
+    }
   };
 
   return (
@@ -160,7 +206,12 @@ const ProductDetail = () => {
             </Text>
           </RNScrollView>
           <View style={styles.btnGroup}>
-            <Button style={styles.btnAddToCart} title="Add Product" />
+            <Button
+              style={styles.btnAddToCart}
+              title="Add Product"
+              onPress={handleAddToCart}
+              isLoading={isAdding}
+            />
           </View>
         </View>
 
