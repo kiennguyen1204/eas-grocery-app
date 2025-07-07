@@ -16,7 +16,7 @@ export interface TextCustomProps extends TextProps {
 }
 
 const TextCustom = ({
-  color = baseColors.greenLight,
+  color = baseColors.grayDark,
   fontFamily = 'regular',
   size = 'md',
   children,

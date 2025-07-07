@@ -18,7 +18,12 @@ import {
 } from '@/components';
 
 // Constants
-import { ERROR_MESSAGES, MESSAGES, SUCCESS_MESSAGES } from '@/constants';
+import {
+  ERROR_MESSAGES,
+  MESSAGES,
+  ROUTES,
+  SUCCESS_MESSAGES,
+} from '@/constants';
 
 // Hooks
 import { useGetCart, useRemoveFromCart, useUpdateCartQuantity } from '@/hooks';
@@ -71,7 +76,29 @@ export default function CartScreen() {
   };
 
   const handleCheckout = async () => {
-    // Handle checkout logic here
+    await Promise.all(
+      cartItems
+        .filter(item => typeof item.id === 'string')
+        .map(item =>
+          removeFromCart(item.id as string, {
+            onError: (error: Error) => {
+              const errorMessage =
+                error.message || ERROR_MESSAGES.REMOVE_FROM_CART_FAILED;
+              Toast.show({
+                type: 'error',
+                text1: errorMessage,
+              });
+            },
+          }),
+        ),
+    );
+
+    Toast.show({
+      type: 'success',
+      text1: SUCCESS_MESSAGES.CHECKOUT_SUCCESS,
+    });
+
+    router.push(ROUTES.HOME as never);
   };
 
   const handleNavigateBack = () => {

@@ -32,7 +32,7 @@ import { baseColors, fontsFamily, fontWeights } from '@/themes';
 import { ROUTES } from '@/constants';
 
 // Hooks
-import { useGetProducts } from '@/hooks';
+import { useGetCart, useGetProducts } from '@/hooks';
 
 const HomeScreen = () => {
   const {
@@ -40,6 +40,13 @@ const HomeScreen = () => {
     isFetching: isFetchingProducts,
     error: productsError,
   } = useGetProducts({ limit: 10 });
+
+  const { data: cartData } = useGetCart();
+
+  const totalQuantity = (cartData ?? []).reduce(
+    (total, item) => total + (item.quantity || 0),
+    0,
+  );
 
   const handlePressProduct = useCallback((id: string) => {
     router.push(ROUTES.PRODUCT_DETAIL(id) as never);
@@ -68,7 +75,19 @@ const HomeScreen = () => {
           </Text>
           <View style={styles.icon}>
             <HeartIcon />
-            <TouchableOpacity onPress={handleNavigateCartScreen}>
+            <CartIcon />
+            <TouchableOpacity
+              style={styles.navLink}
+              testID="cart-button"
+              onPress={handleNavigateCartScreen}>
+              <View style={styles.totalQuantity}>
+                <Text
+                  size="xs"
+                  color={baseColors.whitePure}
+                  style={styles.textQuantity}>
+                  {totalQuantity}
+                </Text>
+              </View>
               <CartIcon />
             </TouchableOpacity>
           </View>
@@ -190,6 +209,25 @@ const styles = StyleSheet.create({
   storeList: {
     bottom: 120,
     paddingHorizontal: 20,
+  },
+  navLink: {
+    width: 24,
+    height: 24,
+    position: 'relative',
+  },
+  totalQuantity: {
+    width: 14,
+    height: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    borderRadius: 150,
+    backgroundColor: baseColors.redPrimary,
+    zIndex: 1000,
+    left: 15,
+  },
+  textQuantity: {
+    bottom: 1,
   },
 });
 
