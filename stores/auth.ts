@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { createWithEqualityFn } from 'zustand/traditional';
 
 // Constants
-import { KEYCHAIN_SERVICE } from '@/constants';
+import { KEYCHAIN_SERVICE, KEYCHAIN_USER_SERVICE } from '@/constants';
 
 // Interfaces
 import { TUser } from '@/interfaces';
@@ -16,7 +16,7 @@ interface AuthState {
 
 interface AuthStore extends AuthState {
   setAuthenticated: (isAuthenticated: boolean) => void;
-  setAuth: (user: Omit<TUser, 'password'>) => void;
+  setAuth: (user: Omit<TUser, 'password'>) => Promise<void>;
   setAccessToken: (accessToken: string, userId: string) => Promise<void>;
   clearAuth: () => Promise<void>;
   initializeAuth: () => Promise<void>;
@@ -32,18 +32,18 @@ const INITIAL_AUTH_STATE: AuthState = {
 // Initialize store with data from SecureStore
 const initializeState = async (): Promise<Partial<AuthState>> => {
   try {
-    const savedData = await SecureStore.getItemAsync(KEYCHAIN_SERVICE);
-    if (savedData) {
-      const { accessToken, userId } = JSON.parse(savedData);
-      if (accessToken && userId) {
-        return {
-          accessToken,
-          userId,
-          isAuthenticated: true, // Assume authenticated if token and userId exist
-        };
-      }
-    }
-    return INITIAL_AUTH_STATE;
+    const savedAuthData = await SecureStore.getItemAsync(KEYCHAIN_SERVICE);
+    const savedUserData = await SecureStore.getItemAsync(KEYCHAIN_USER_SERVICE);
+
+    const authData = savedAuthData ? JSON.parse(savedAuthData) : {};
+    const userData = savedUserData ? JSON.parse(savedUserData) : {};
+
+    return {
+      accessToken: authData.accessToken || '',
+      userId: authData.userId || '',
+      user: userData || ({} as Omit<TUser, 'password'>),
+      isAuthenticated: !!(authData.accessToken && authData.userId),
+    };
   } catch (error) {
     console.error('Error initializing auth state:', error);
     return INITIAL_AUTH_STATE;
@@ -51,7 +51,7 @@ const initializeState = async (): Promise<Partial<AuthState>> => {
 };
 
 // Create the store
-export const useAuthStore = createWithEqualityFn<AuthStore>((set, get) => ({
+export const useAuthStore = createWithEqualityFn<AuthStore>(set => ({
   // Initialize with default state, will be updated by initializeAuth
   ...INITIAL_AUTH_STATE,
 
@@ -69,13 +69,22 @@ export const useAuthStore = createWithEqualityFn<AuthStore>((set, get) => ({
     }
   },
 
-  setAuth: user => {
-    set({ user });
+  setAuth: async user => {
+    try {
+      await SecureStore.setItemAsync(
+        KEYCHAIN_USER_SERVICE,
+        JSON.stringify(user),
+      );
+      set({ user });
+    } catch (error) {
+      console.error('Error saving user:', error);
+    }
   },
 
   clearAuth: async () => {
     try {
       await SecureStore.deleteItemAsync(KEYCHAIN_SERVICE);
+      await SecureStore.deleteItemAsync(KEYCHAIN_USER_SERVICE);
       set({ ...INITIAL_AUTH_STATE });
     } catch (error) {
       console.error('Error clearing auth:', error);

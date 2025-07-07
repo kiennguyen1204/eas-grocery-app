@@ -6,4 +6,6 @@ export const ROUTES = {
   PRODUCT_DETAIL: (id: string) => `/products/${id}` as const,
   BROWSE: '/(tabs)/browse',
   CART: '/cart',
+  EDIT_PROFILE: '/profile/edit-profile',
+  PROFILE: '/(tabs)/profile',
 } as const;

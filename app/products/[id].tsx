@@ -208,7 +208,8 @@ const ProductDetail = () => {
           <View style={styles.btnGroup}>
             <Button
               style={styles.btnAddToCart}
-              title="Add Product"
+              size="large"
+              title="Add To Cart"
               onPress={handleAddToCart}
               isLoading={isAdding}
             />
@@ -391,8 +392,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   btnAddToCart: {
-    width: '50%',
-    borderRadius: 16,
+    width: '70%',
+    borderRadius: 24,
+    paddingVertical: 15,
     backgroundColor: baseColors.greenDark,
   },
   descriptionGroup: {
