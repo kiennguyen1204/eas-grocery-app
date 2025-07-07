@@ -4,6 +4,7 @@ import { Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import Toast from 'react-native-toast-message';
 
 // Constants
 import { STALE_TIME } from '@/constants';
@@ -42,6 +43,7 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       <Slot />
       <StatusBar style="auto" />
+      <Toast />
     </QueryClientProvider>
   );
 }

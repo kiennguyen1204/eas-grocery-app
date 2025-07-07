@@ -4,6 +4,7 @@ export type TUser = {
   name: string;
   password: string;
   avatar?: string;
+  phone?: string;
 };
 
 export type SignInPayload = Pick<TUser, 'email' | 'password'>;

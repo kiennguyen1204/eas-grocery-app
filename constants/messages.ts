@@ -18,6 +18,7 @@ export const ERROR_MESSAGES = {
   UPDATE_CART_QUANTITY_FAILED:
     'Failed to update cart quantity. Please try again later.',
   ADD_TO_CART_FAILED: 'Failed to add item to cart. Please try again later.',
+  CHECKOUT_FAILED: 'Checkout failed. Please try again later.',
 };
 
 export const SERVER_ERROR_MESSAGES: Record<number, string> = {
@@ -29,6 +30,7 @@ export const SERVER_ERROR_MESSAGES: Record<number, string> = {
 };
 
 export const SUCCESS_MESSAGES = {
+  CHECKOUT_SUCCESS: 'Checkout completed successfully!',
   ADD_TO_CART: 'Item added to cart successfully.',
   REMOVE_FROM_CART: 'Item removed from cart successfully.',
   LOGIN_SUCCESS: 'Login Successful! Welcome back!',

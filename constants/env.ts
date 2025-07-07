@@ -1,3 +1,6 @@
 export const PROCESS_ENV = {
   EXPO_PUBLIC_API_URL: process.env.EXPO_PUBLIC_API_URL || '',
+  EXPO_PUBLIC_IMAGE_SERVICE_KEY:
+    process.env.EXPO_PUBLIC_IMAGE_SERVICE_KEY || '',
+  EXPO_PUBLIC_IMGBB_API: process.env.EXPO_PUBLIC_IMGBB_API || '',
 };
