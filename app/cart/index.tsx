@@ -76,11 +76,17 @@ export default function CartScreen() {
   };
 
   const handleCheckout = async () => {
-    await Promise.all(
-      cartItems
-        .filter(item => typeof item.id === 'string')
-        .map(item =>
-          removeFromCart(item.id as string, {
+    try {
+      await Promise.all(
+        cartItems.map(item =>
+          removeFromCart(item.id!, {
+            onSuccess: () => {
+              Toast.show({
+                type: 'success',
+                text1: SUCCESS_MESSAGES.REMOVE_FROM_CART,
+              });
+              router.push(ROUTES.HOME as never);
+            },
             onError: (error: Error) => {
               const errorMessage =
                 error.message || ERROR_MESSAGES.REMOVE_FROM_CART_FAILED;
@@ -91,14 +97,22 @@ export default function CartScreen() {
             },
           }),
         ),
-    );
+      );
 
-    Toast.show({
-      type: 'success',
-      text1: SUCCESS_MESSAGES.CHECKOUT_SUCCESS,
-    });
-
-    router.push(ROUTES.HOME as never);
+      Toast.show({
+        type: 'success',
+        text1: SUCCESS_MESSAGES.CHECKOUT_SUCCESS,
+      });
+    } catch (error) {
+      let errorMessage = ERROR_MESSAGES.CHECKOUT_FAILED;
+      if (error instanceof Error && error.message) {
+        errorMessage = error.message;
+      }
+      Toast.show({
+        type: 'error',
+        text1: errorMessage,
+      });
+    }
   };
 
   const handleNavigateBack = () => {
@@ -132,7 +146,7 @@ export default function CartScreen() {
     }
 
     if (cartItems.length === 0) {
-      return <Text>{MESSAGES.EMPTY_CART}</Text>;
+      return <Text style={styles.emptyCartText}>{MESSAGES.EMPTY_CART}</Text>;
     }
 
     return cartItems.map(item => {
@@ -227,5 +241,12 @@ const styles = StyleSheet.create({
     color: baseColors.whiteSoft,
     textAlign: 'center',
     flex: 1,
+  },
+  emptyCartText: {
+    fontFamily: fontsFamily.regular,
+    fontWeight: fontWeights.bold,
+    color: baseColors.greenDark,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
