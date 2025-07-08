@@ -76,43 +76,27 @@ export default function CartScreen() {
   };
 
   const handleCheckout = async () => {
-    try {
-      await Promise.all(
-        cartItems.map(item =>
-          removeFromCart(item.id!, {
-            onSuccess: () => {
-              Toast.show({
-                type: 'success',
-                text1: SUCCESS_MESSAGES.REMOVE_FROM_CART,
-              });
-              router.push(ROUTES.HOME as never);
-            },
-            onError: (error: Error) => {
-              const errorMessage =
-                error.message || ERROR_MESSAGES.REMOVE_FROM_CART_FAILED;
-              Toast.show({
-                type: 'error',
-                text1: errorMessage,
-              });
-            },
-          }),
-        ),
-      );
-
-      Toast.show({
-        type: 'success',
-        text1: SUCCESS_MESSAGES.CHECKOUT_SUCCESS,
-      });
-    } catch (error) {
-      let errorMessage = ERROR_MESSAGES.CHECKOUT_FAILED;
-      if (error instanceof Error && error.message) {
-        errorMessage = error.message;
-      }
-      Toast.show({
-        type: 'error',
-        text1: errorMessage,
-      });
-    }
+    await Promise.all(
+      cartItems.map(item =>
+        removeFromCart(item.id!, {
+          onSuccess: () => {
+            Toast.show({
+              type: 'success',
+              text1: SUCCESS_MESSAGES.CHECKOUT_SUCCESS,
+            });
+            router.push(ROUTES.HOME as never);
+          },
+          onError: (error: Error) => {
+            const errorMessage =
+              error.message || ERROR_MESSAGES.CHECKOUT_FAILED;
+            Toast.show({
+              type: 'error',
+              text1: errorMessage,
+            });
+          },
+        }),
+      ),
+    );
   };
 
   const handleNavigateBack = () => {

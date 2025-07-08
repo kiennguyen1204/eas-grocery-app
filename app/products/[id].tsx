@@ -1,4 +1,8 @@
 import { useRef, useState } from 'react';
+import Toast from 'react-native-toast-message';
+
+import { Image } from 'expo-image';
+import { router, useLocalSearchParams } from 'expo-router';
 
 import {
   NativeScrollEvent,
@@ -15,19 +19,17 @@ import {
   ScrollView,
 } from 'react-native-gesture-handler';
 
-import { Image } from 'expo-image';
-import { router, useLocalSearchParams } from 'expo-router';
-
 // Constants
 import {
   ERROR_MESSAGES,
   MESSAGES,
+  NOTIFICATION_ACTION_KEYS,
+  ROUTES,
   SCREEN_WIDTH,
-  SUCCESS_MESSAGES,
 } from '@/constants';
 
 // Hooks
-import { useGetProductDetail } from '@/hooks';
+import { useAddToCart, useGetCart, useGetProductDetail } from '@/hooks';
 
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
@@ -41,8 +43,12 @@ import {
   ShareIcon,
   Text,
 } from '@/components';
-import { useAddToCart, useGetCart } from '@/hooks/useCart';
-import Toast from 'react-native-toast-message';
+
+// Utils
+import {
+  checkAndRequestNotificationPermission,
+  scheduleNotification,
+} from '@/utils';
 
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
@@ -106,11 +112,15 @@ const ProductDetail = () => {
             quantity: 1,
           },
           {
-            onSuccess: () => {
-              Toast.show({
-                type: 'success',
-                text1: SUCCESS_MESSAGES.ADD_TO_CART,
-              });
+            onSuccess: async product => {
+              await checkAndRequestNotificationPermission();
+              scheduleNotification(
+                'Add product successfully',
+                `Click to see product details: ${product.title}`,
+                NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
+                { url: `products/${product.id}` },
+              );
+              router.push(ROUTES.CART);
             },
             onError: error => {
               Toast.show({
