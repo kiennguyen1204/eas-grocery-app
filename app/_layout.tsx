@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useFonts } from 'expo-font';
+import { loadAsync } from 'expo-font';
 import { Slot } from 'expo-router';
+import { hideAsync, preventAutoHideAsync } from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
 
@@ -11,6 +12,7 @@ import { STALE_TIME } from '@/constants';
 
 // Stores
 import { useAuthStore } from '@/stores';
+import { registerForPushNotifications } from '@/utils';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,23 +23,44 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function RootLayout() {
-  const [loaded] = useFonts({
-    'Montserrat-Regular': require('../assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
-    'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
-    'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
-  });
+preventAutoHideAsync();
 
-  const initializeAuth = useAuthStore(state => state.initializeAuth);
+export default function RootLayout() {
+  const [appIsReady, setAppIsReady] = useState(false);
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
 
   useEffect(() => {
-    initializeAuth();
-  }, [initializeAuth]);
+    async function prepare() {
+      try {
+        await loadAsync({
+          Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
+          'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
+          'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+          'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
+    }
 
-  if (!loaded) {
-    return null;
-  }
+    prepare();
+  }, [isAuthenticated]);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await hideAsync();
+    }
+  }, [appIsReady]);
+
+  useEffect(() => {
+    if (appIsReady) {
+      registerForPushNotifications();
+
+      onLayoutRootView();
+    }
+  }, [appIsReady, onLayoutRootView]);
 
   return (
     <QueryClientProvider client={queryClient}>

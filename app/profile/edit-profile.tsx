@@ -119,12 +119,13 @@ export default function EditProfileScreen() {
             onSuccess: () => {
               Toast.show({
                 type: 'success',
-                text1: SUCCESS_MESSAGES.LOGIN_SUCCESS,
+                text1: SUCCESS_MESSAGES.EDIT_PROFILE_SUCCESS,
               });
               router.replace(ROUTES.PROFILE);
             },
             onError: (error: string) => {
-              const errorMessage = error || ERROR_MESSAGES.LOGIN_FAILED;
+              const errorMessage =
+                error || ERROR_MESSAGES.UPDATE_PROFILE_FAILED;
               Toast.show({
                 type: 'error',
                 text1: errorMessage,
