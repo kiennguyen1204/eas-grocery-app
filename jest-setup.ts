@@ -3,22 +3,6 @@ jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
 
-jest.mock('react-native-bootsplash', () => {
-  return {
-    hide: jest.fn().mockResolvedValue(false),
-    isVisible: jest.fn().mockResolvedValue(false),
-    useHideAnimation: jest.fn().mockReturnValue({
-      container: {},
-      logo: { source: 0 },
-      brand: { source: 0 },
-    }),
-  };
-});
-
-jest.mock('@notifee/react-native', () =>
-  require('@notifee/react-native/jest-mock'),
-);
-
 jest.mock('@react-native-firebase/messaging', () => ({
   getMessaging: jest.fn().mockReturnValue({
     onMessage: jest.fn(),
@@ -51,8 +35,33 @@ jest.mock('react-native-reanimated', () => {
   return Reanimated;
 });
 
-jest.mock('react-native-keychain', () => ({
-  getGenericPassword: jest.fn(() => Promise.resolve(false)),
-  setGenericPassword: jest.fn(() => Promise.resolve(true)),
-  resetGenericPassword: jest.fn(() => Promise.resolve(true)),
+jest.mock('expo-linking', () => ({
+  openSettings: jest.fn(),
+}));
+
+jest.mock('expo-device', () => ({
+  __esModule: true, // This makes it work with import *
+  isDevice: jest.fn().mockImplementation(() => true), // Default implementation
+  // Add other exports if your component uses them
+  getDeviceTypeAsync: jest.fn(),
+  getManufacturerAsync: jest.fn(),
+}));
+
+jest.mock('expo-notifications', () => ({
+  __esModule: true,
+  AndroidImportance: {
+    MAX: 4,
+    HIGH: 3,
+    DEFAULT: 2,
+    LOW: 1,
+    MIN: 0,
+    NONE: -1000,
+    UNSPECIFIED: -1000,
+  },
+  getPermissionsAsync: jest.fn(),
+  requestPermissionsAsync: jest.fn(),
+  setNotificationChannelAsync: jest.fn(),
+  setNotificationHandler: jest.fn(),
+  scheduleNotificationAsync: jest.fn(),
+  // Add any other exports you use
 }));

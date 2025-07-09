@@ -32,4 +32,5 @@ module.exports = {
     '!hooks/index.ts',
     '!utils/index.ts',
   ],
+  setupFilesAfterEnv: ['./jest-setup.ts'],
 };

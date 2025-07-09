@@ -4,6 +4,7 @@ import { Slot } from 'expo-router';
 import { hideAsync, preventAutoHideAsync } from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useState } from 'react';
+import { DevSettings } from 'react-native';
 import 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
 
@@ -25,9 +26,22 @@ const queryClient = new QueryClient({
 
 preventAutoHideAsync();
 
+const storybookEnabled = process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true';
+const StorybookUIRoot = require('../.storybook').default;
+
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const [showStorybook, setShowStorybook] = useState(false);
   const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+
+  useEffect(() => {
+    if (__DEV__) {
+      // Toggle Storybook
+      DevSettings.addMenuItem('Toggle Storybook', () => {
+        setShowStorybook(prev => !prev);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     async function prepare() {
@@ -57,10 +71,14 @@ export default function RootLayout() {
   useEffect(() => {
     if (appIsReady) {
       registerForPushNotifications();
-
       onLayoutRootView();
     }
   }, [appIsReady, onLayoutRootView]);
+
+  // Render Storybook or the main app
+  if (showStorybook && storybookEnabled && __DEV__) {
+    return <StorybookUIRoot />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

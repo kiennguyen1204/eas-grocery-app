@@ -12,11 +12,15 @@
     "prepare": "husky install",
     "eslint:fix": "eslint --fix .",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "storybook-generate": "sb-rn-get-stories"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
+    "@gorhom/bottom-sheet": "5.1.4",
     "@react-native-async-storage/async-storage": "2.1.2",
+    "@react-native-community/datetimepicker": "^8.4.2",
+    "@react-native-community/slider": "^4.5.7",
     "@react-native-firebase/app": "^22.2.1",
     "@react-native-firebase/messaging": "^22.2.1",
     "@react-navigation/bottom-tabs": "^7.3.10",
@@ -59,17 +63,17 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-class-static-block": "^7.27.1",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
-    "@storybook/addon-ondevice-actions": "7.6.18",
-    "@storybook/addon-ondevice-backgrounds": "7.6.18",
-    "@storybook/addon-ondevice-controls": "7.6.18",
-    "@storybook/addon-ondevice-notes": "7.6.18",
-    "@storybook/react-native": "7.6.18",
+    "@storybook/addon-ondevice-actions": "8.6.2",
+    "@storybook/addon-ondevice-controls": "8.6.2",
+    "@storybook/react-native": "8.6.2",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.5.0",
     "@types/jest": "^29.5.14",
     "@types/react": "~19.0.10",
+    "babel-loader": "8.4.1",
     "babel-plugin-module-resolver": "5.0.2",
     "eslint": "8.57.0",
     "eslint-config-expo": "~9.2.0",
@@ -81,6 +85,7 @@
     "jest-expo": "~53.0.5",
     "lint-staged": "15.2.2",
     "prettier": "3.2.5",
+    "storybook": "9.0.15",
     "typescript": "~5.8.3"
   },
   "private": true

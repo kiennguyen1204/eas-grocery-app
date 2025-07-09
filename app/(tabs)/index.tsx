@@ -95,7 +95,6 @@ const HomeScreen = () => {
 
         <Input
           leftIcon={<SearchIcon color={baseColors.greenLight} />}
-          value=""
           placeholder="Search Product"
         />
       </View>
