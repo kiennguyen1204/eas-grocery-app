@@ -36,7 +36,7 @@ import { useGetCart, useGetProducts } from '@/hooks';
 
 const HomeScreen = () => {
   const {
-    data,
+    data: products,
     isFetching: isFetchingProducts,
     error: productsError,
   } = useGetProducts({ limit: 10 });
@@ -59,8 +59,6 @@ const HomeScreen = () => {
   const handlePressCategoryItem = useCallback((id: number) => {
     router.push(ROUTES.CATEGORY(id) as never);
   }, []);
-
-  const products = data?.pages.flatMap(page => page) || [];
 
   const handleNavigateCartScreen = () => {
     router.push(ROUTES.CART as never);

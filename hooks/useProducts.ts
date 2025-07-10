@@ -10,6 +10,7 @@ import { TProduct } from '@/interfaces';
 import { get } from '@/services';
 
 type GetProductParams = {
+  data?: TProduct[];
   categoryName?: string;
   query?: string;
   searchProducts?: string;
@@ -20,7 +21,7 @@ type GetProductParams = {
 export const useGetProducts = (params: GetProductParams = {}) => {
   const { categoryName, searchProducts, order, limit, query } = params;
 
-  return useInfiniteQuery<TProduct[], Error>({
+  const { data, ...rest } = useInfiniteQuery<TProduct[], Error>({
     queryKey: [
       ENDPOINTS.PRODUCTS,
       { categoryName, searchProducts, order, limit, query },
@@ -48,6 +49,13 @@ export const useGetProducts = (params: GetProductParams = {}) => {
     },
     initialPageParam: 1,
   });
+
+  const products = data?.pages ? data.pages?.flatMap(page => page) : [];
+
+  return {
+    data: products,
+    ...rest,
+  };
 };
 
 export const useGetProductDetail = (id: string) => {

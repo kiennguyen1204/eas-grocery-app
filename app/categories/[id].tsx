@@ -39,7 +39,7 @@ export default function ProductsByCategory() {
   });
 
   const {
-    data,
+    data: products,
     isLoading,
     hasNextPage,
     isRefetching,
@@ -60,8 +60,6 @@ export default function ProductsByCategory() {
   const handlePressBackIcon = () => {
     router.back();
   };
-
-  const products = data?.pages.flatMap(page => page) || [];
 
   const handleRefresh = useCallback(() => {
     refetch();
@@ -116,7 +114,7 @@ export default function ProductsByCategory() {
         <View style={styles.list}>
           {error && <Text>Error when load products</Text>}
           <ProductList
-            products={products}
+            products={products || []}
             onPress={handlePressProduct}
             hasNextPage={isFetchingNextPage}
             isGridView

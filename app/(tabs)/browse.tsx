@@ -23,12 +23,14 @@ export default function BrowseScreen() {
   });
 
   const {
-    data,
-    isFetching: isFetchingProducts,
+    data: products,
+    isLoading,
     error: productsError,
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isRefetching,
+    refetch,
   } = useGetProducts({
     searchProducts: searchQuery,
     categoryName: filter.categoryName,
@@ -52,13 +54,15 @@ export default function BrowseScreen() {
     setFilter(prev => ({ ...prev, categoryName }));
   }, []);
 
-  const products = data?.pages.flatMap(page => page) || [];
-
   const handleEndReached = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const handleRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <View style={styles.wrapper}>
@@ -76,13 +80,16 @@ export default function BrowseScreen() {
       />
       <View style={styles.productListWrapper}>
         {productsError && <Text>Error when load new products</Text>}
-        {isFetchingProducts ? (
+        {isLoading ? (
           <ActivityIndicator />
         ) : (
           <ProductList
             isGridView
-            products={products}
+            products={products || []}
             onPress={handlePressProduct}
+            hasNextPage={hasNextPage}
+            isRefreshing={isRefetching}
+            onRefresh={handleRefresh}
             fetchNextPage={handleEndReached}
           />
         )}
