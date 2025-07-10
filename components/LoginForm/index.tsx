@@ -159,6 +159,7 @@ const LoginForm = ({ onSubmit, isLoading }: LoginFormProps) => {
         isLoading={isLoading}
         disabled={isDisableSubmit}
         onPress={handleSubmit(onSubmit)}
+        testID="login-button"
       />
       <Link style={styles.forgotPassword} href="/login">
         Forgot your password?

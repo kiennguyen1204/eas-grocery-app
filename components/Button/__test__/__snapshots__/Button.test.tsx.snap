@@ -48,28 +48,11 @@ exports[`Button should render correctly 1`] = `
         "backgroundColor": "#13B58C",
         "opacity": 1,
       },
-      false,
-      undefined,
+      {
+        "opacity": 1,
+      },
     ]
   }
   testID="button-pressable"
->
-  <Text
-    style={
-      [
-        {
-          "textAlign": "center",
-        },
-        undefined,
-        {
-          "color": "#FFFFFF",
-          "fontFamily": "Montserrat-Medium",
-          "fontSize": 14,
-          "fontWeight": "500",
-          "lineHeight": 14,
-        },
-      ]
-    }
-  />
-</View>
+/>
 `;

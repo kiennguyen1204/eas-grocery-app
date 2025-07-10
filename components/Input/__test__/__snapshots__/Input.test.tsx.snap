@@ -15,7 +15,7 @@ exports[`Input component should render properly with label and error message 1`]
     style={
       [
         {
-          "color": "#13B58C",
+          "color": "#4A4A4A",
           "fontFamily": "Montserrat",
           "fontSize": 14,
         },
@@ -69,7 +69,7 @@ exports[`Input component should render properly with label and error message 1`]
     style={
       [
         {
-          "color": "#13B58C",
+          "color": "#4A4A4A",
           "fontFamily": "Montserrat",
           "fontSize": 14,
         },

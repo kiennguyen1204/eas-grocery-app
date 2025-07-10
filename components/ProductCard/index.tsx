@@ -25,7 +25,10 @@ const ProductCard = ({
 }: ProductCardProps) => {
   return (
     <View style={styles.card}>
-      <TouchableOpacity style={styles.cardContent} onPress={() => onPress(id)}>
+      <TouchableOpacity
+        testID="product-card"
+        style={styles.cardContent}
+        onPress={() => onPress(id)}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{name}</Text>

@@ -1,0 +1,961 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryList Component renders correctly with data 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "paddingBottom": 1,
+    }
+  }
+  data={
+    [
+      {
+        "id": 0,
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrbaT4VTupflQ-TDd667KxXOIsyIyiz-tsA&s",
+        "title": "Beverages",
+      },
+      {
+        "id": 1,
+        "imageUrl": "https://i.pinimg.com/474x/d8/31/e4/d831e48b174a6cf24c68c191c1e25dce.jpg",
+        "title": "Bread & Bakery",
+      },
+      {
+        "id": 2,
+        "imageUrl": "https://i.pinimg.com/474x/be/93/1b/be931b33e2eb94298174c9075e707f1b.jpg",
+        "title": "Vegetables",
+      },
+      {
+        "id": 3,
+        "imageUrl": "https://i.pinimg.com/474x/50/6f/dd/506fddecb4219e14400e0dc1e45ae382.jpg",
+        "title": "Fruit",
+      },
+      {
+        "id": 4,
+        "imageUrl": "https://i.pinimg.com/474x/47/fd/07/47fd0792432ca9f7d83764ce674276e2.jpg",
+        "title": "Egg",
+      },
+      {
+        "id": 5,
+        "imageUrl": "https://i.pinimg.com/474x/26/1e/78/261e786ef52e2e58276e479cd9e52998.jpg",
+        "title": "Frozen veg",
+      },
+      {
+        "id": 6,
+        "imageUrl": "https://i.pinimg.com/474x/51/29/c5/5129c5ee9035e1cbb142928d2be0abe5.jpg",
+        "title": "Home Care",
+      },
+      {
+        "id": 7,
+        "imageUrl": "https://i.pinimg.com/474x/36/a4/96/36a496409232c6d9365f4bb706828119.jpg",
+        "title": "Pet Care",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  keyExtractor={[Function]}
+  nestedScrollEnabled={true}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEnabled={false}
+  scrollEventThrottle={0.0001}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
+>
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          [
+            {
+              "flexDirection": "row",
+            },
+            {
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrbaT4VTupflQ-TDd667KxXOIsyIyiz-tsA&s",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Beverages
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/d8/31/e4/d831e48b174a6cf24c68c191c1e25dce.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Bread & Bakery
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/be/93/1b/be931b33e2eb94298174c9075e707f1b.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Vegetables
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/50/6f/dd/506fddecb4219e14400e0dc1e45ae382.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Fruit
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          [
+            {
+              "flexDirection": "row",
+            },
+            {
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/47/fd/07/47fd0792432ca9f7d83764ce674276e2.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Egg
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/26/1e/78/261e786ef52e2e58276e479cd9e52998.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Frozen veg
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/51/29/c5/5129c5ee9035e1cbb142928d2be0abe5.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Home Care
+            </Text>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "aspectRatio": 1,
+              "marginBottom": 1,
+              "opacity": 1,
+              "overflow": "hidden",
+              "width": 186.5,
+            }
+          }
+        >
+          <View
+            accessibilityIgnoresInvertColors={true}
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                {
+                  "uri": "https://i.pinimg.com/474x/36/a4/96/36a496409232c6d9365f4bb706828119.jpg",
+                }
+              }
+              style={
+                [
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  },
+                  {
+                    "height": undefined,
+                    "width": undefined,
+                  },
+                  undefined,
+                ]
+              }
+            />
+            <View
+              style={
+                {
+                  "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "Montserrat-SemiBold",
+                    "fontSize": 11,
+                    "fontWeight": "600",
+                    "textAlign": "center",
+                  },
+                ]
+              }
+            >
+              Pet Care
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

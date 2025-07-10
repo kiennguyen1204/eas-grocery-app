@@ -129,14 +129,13 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
             <Input
               {...rest}
               onChangeText={(value: string) => {
-                handleOnChange('email');
+                handleOnChange('firstName');
                 onChange(value);
               }}
               variant="outlined"
               placeholder="First Name"
               aria-label="First Name"
               value={value}
-              keyboardType="email-address"
               ref={emailInputRef}
               autoCapitalize="none"
               errorMessage={error?.message}
@@ -157,14 +156,13 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
             <Input
               {...rest}
               onChangeText={(value: string) => {
-                handleOnChange('email');
+                handleOnChange('lastName');
                 onChange(value);
               }}
               variant="outlined"
               placeholder="Last Name"
               aria-label="Last Name"
               value={value}
-              keyboardType="email-address"
               ref={emailInputRef}
               autoCapitalize="none"
               errorMessage={error?.message}

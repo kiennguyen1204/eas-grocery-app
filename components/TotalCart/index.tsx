@@ -5,9 +5,9 @@ import { Text } from '@/components';
 
 // Themes
 import { baseColors, fontsFamily } from '@/themes';
+import { formatAmountNumber } from '@/utils';
 
 // Utils
-import { formatAmountNumber } from '@/utils';
 
 export type TTotalCart = {
   totalPrice: number;
