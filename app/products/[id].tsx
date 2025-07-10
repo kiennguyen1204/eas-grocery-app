@@ -221,6 +221,7 @@ const ProductDetail = () => {
               size="large"
               title="Add To Cart"
               onPress={handleAddToCart}
+              disabled={isAdding}
               isLoading={isAdding}
             />
           </View>
@@ -401,12 +402,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  btnAddToCart: {
-    width: '70%',
-    borderRadius: 24,
-    paddingVertical: 15,
-    backgroundColor: baseColors.greenDark,
-  },
+
   descriptionGroup: {
     flexDirection: 'column',
     backgroundColor: baseColors.whitePure,
@@ -420,6 +416,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30,
     marginBottom: 6,
+  },
+  btnAddToCart: {
+    width: '70%',
+    height: 50,
+    borderRadius: 24,
   },
 });
 
