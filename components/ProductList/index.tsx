@@ -71,11 +71,7 @@ const ProductList = ({
       onEndReached={fetchNextPage}
       onEndReachedThreshold={0.5}
       ListFooterComponent={
-        hasNextPage && isRefreshing && products.length > 0 ? (
-          <View style={styles.footer}>
-            <ActivityIndicator size="large" color="black" />
-          </View>
-        ) : null
+        hasNextPage ? <ActivityIndicator size="small" /> : null
       }
       ListEmptyComponent={
         <View style={styles.wrapper}>

@@ -118,19 +118,36 @@ const Button = ({
   const variantStyle = variantStyles[variant];
   const buttonSize = buttonSizes[size];
   const textStyle = buttonTextStyles[variant];
+  const textSize = buttonTextSizes[size];
+
+  let buttonStyles: StyleProp<ViewStyle> = [
+    styles.button,
+    buttonSize,
+    {
+      backgroundColor: disabled
+        ? baseColors.grayMedium
+        : variantStyle.backgroundColor,
+      opacity: 1,
+    },
+  ];
+
+  if (style) {
+    buttonStyles = Array.isArray(style)
+      ? buttonStyles.concat(style)
+      : buttonStyles.concat([style]);
+  }
+
+  const textStyles = [styles.text, textSize, textStyle];
+  if (titleStyle) {
+    textStyles.push(titleStyle);
+  }
 
   return (
     <Pressable
       testID="button-pressable"
       style={({ pressed }) => [
-        styles.button,
-        buttonSize,
-        {
-          backgroundColor: variantStyle.backgroundColor,
-          opacity: pressed || disabled ? 0.6 : 1,
-        },
-        disabled && styles.disabled,
-        style,
+        ...buttonStyles,
+        { opacity: pressed || disabled ? 0.6 : 1 },
       ]}
       onPress={onPress}
       disabled={disabled || isLoading}>
@@ -142,17 +159,7 @@ const Button = ({
           color={variantStyle.textColor}
         />
       ) : (
-        <Text
-          style={[
-            styles.text,
-            titleStyle,
-            {
-              ...buttonTextSizes[size],
-              ...textStyle,
-            },
-          ]}>
-          {title}
-        </Text>
+        title && <Text style={textStyles}>{title}</Text>
       )}
     </Pressable>
   );

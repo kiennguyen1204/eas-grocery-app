@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TotalCart Component renders correctly with total price 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "marginBottom": 40,
+      "paddingHorizontal": 10,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "column",
+        "gap": 15,
+        "padding": 15,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          },
+          {
+            "fontFamily": "Montserrat-Bold",
+          },
+        ]
+      }
+    >
+      Price Details
+    </Text>
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          }
+        }
+      >
+        Price (
+        5
+         
+        items
+        )
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          }
+        }
+      >
+        $
+        100
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          }
+        }
+      >
+        Delivery fee
+      </Text>
+      <Text
+        style={
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          }
+        }
+      >
+        Info
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "borderColor": "#DCDDDF",
+        "borderTopWidth": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 15,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          },
+          {
+            "fontFamily": "Montserrat-Bold",
+          },
+        ]
+      }
+    >
+      Total Amount
+    </Text>
+    <Text
+      style={
+        [
+          {
+            "color": "#000",
+            "fontFamily": "Montserrat",
+            "fontSize": 18,
+          },
+          {
+            "fontFamily": "Montserrat-Bold",
+          },
+        ]
+      }
+    >
+      $
+      100
+    </Text>
+  </View>
+</View>
+`;

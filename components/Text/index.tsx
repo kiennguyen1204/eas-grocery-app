@@ -1,12 +1,10 @@
 import { memo } from 'react';
-
 import { ColorValue, Text, TextProps } from 'react-native';
 
 // Themes
 import { baseColors, fontsFamily, fontSizes } from '@/themes';
 
 type FontSize = keyof typeof fontSizes;
-
 type FontFamily = keyof typeof fontsFamily;
 
 export interface TextCustomProps extends TextProps {
@@ -23,17 +21,14 @@ const TextCustom = ({
   style,
   ...props
 }: TextCustomProps) => {
+  const textStyles = {
+    color,
+    fontSize: fontSizes[size] || fontSizes.md,
+    fontFamily: fontsFamily[fontFamily] || fontsFamily.regular,
+  };
+
   return (
-    <Text
-      style={[
-        {
-          color: color,
-          fontSize: fontSizes[`${size}`],
-          fontFamily: fontsFamily[`${fontFamily}`],
-        },
-        style,
-      ]}
-      {...props}>
+    <Text style={style ? [textStyles, style] : textStyles} {...props}>
       {children}
     </Text>
   );

@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard Component renders correctly with default props 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "white",
+      "borderRadius": 10,
+      "elevation": 5,
+      "marginBottom": 16,
+      "marginRight": 8,
+      "overflow": "hidden",
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.1,
+      "shadowRadius": 10,
+      "width": 160,
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "flexDirection": "column",
+        "opacity": 1,
+      }
+    }
+    testID="product-card"
+  >
+    <Image
+      source={
+        {
+          "uri": "https://example.com/image.jpg",
+        }
+      }
+      style={
+        {
+          "height": 160,
+          "width": "100%",
+        }
+      }
+    />
+    <View
+      style={
+        {
+          "padding": 12,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#333",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Product Name
+      </Text>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "marginTop": 4,
+          }
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            {
+              "fontSize": 14,
+              "lineHeight": 14,
+              "opacity": 0.5,
+              "overflow": "visible",
+              "width": 40,
+            }
+          }
+        >
+          Store Name
+        </Text>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "#4F4F4F",
+                "fontSize": 12,
+                "marginRight": 5,
+                "textDecorationLine": "line-through",
+              }
+            }
+          >
+            $
+            30
+          </Text>
+          <Text
+            style={
+              {
+                "color": "#33907C",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontWeight": "600",
+              }
+            }
+          >
+            $
+            20
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

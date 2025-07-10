@@ -19,7 +19,7 @@ type InputVariants = 'filled' | 'outlined' | 'flushed';
 interface InputProps
   extends Omit<TextInputProps, 'style'>,
     Pick<ViewProps, 'style'> {
-  value: string;
+  value?: string;
   placeholder?: string;
   variant?: InputVariants;
   label?: string;

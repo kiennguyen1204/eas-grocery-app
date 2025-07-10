@@ -1,0 +1,500 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoreList Component renders correctly with image and store name 1`] = `
+<RCTScrollView
+  data={
+    [
+      {
+        "id": "bn1",
+        "imageUrl": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        "logoLetter": "T",
+        "storeName": "Tradly Store",
+      },
+      {
+        "id": "bn2",
+        "imageUrl": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        "logoLetter": "T",
+        "storeName": "Tradly Store",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={true}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
+>
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "white",
+            "borderRadius": 10,
+            "elevation": 5,
+            "marginBottom": 16,
+            "marginRight": 10,
+            "overflow": "hidden",
+            "shadowColor": "#000",
+            "shadowOffset": {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1,
+            "shadowRadius": 10,
+            "width": 160,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "height": 100,
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            source={
+              {
+                "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+              }
+            }
+            style={
+              {
+                "borderRadius": 10,
+                "height": "100%",
+                "resizeMode": "cover",
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#33907C",
+                "borderColor": "#FFFFFF",
+                "borderRadius": "50%",
+                "borderWidth": 1,
+                "bottom": 0,
+                "height": 64,
+                "justifyContent": "center",
+                "left": "30%",
+                "position": "absolute",
+                "top": 60,
+                "width": 64,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 18,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontSize": 24,
+                    "fontWeight": "700",
+                  },
+                ]
+              }
+            >
+              T
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            [
+              {
+                "color": "#4F4F4F",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              },
+              {
+                "fontSize": 14,
+                "fontWeight": "700",
+                "marginTop": 35,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Tradly Store
+        </Text>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "borderRadius": 8,
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "justifyContent": "center",
+                },
+                {
+                  "paddingHorizontal": 32,
+                  "paddingVertical": 8,
+                },
+                {
+                  "backgroundColor": "#13B58C",
+                  "opacity": 1,
+                },
+                {
+                  "borderRadius": 16,
+                  "marginBottom": 20,
+                  "marginHorizontal": 20,
+                  "marginTop": 10,
+                  "paddingVertical": 6,
+                },
+                {
+                  "opacity": 1,
+                },
+              ]
+            }
+            testID="button-pressable"
+          >
+            <Text
+              style={
+                [
+                  {
+                    "textAlign": "center",
+                  },
+                  {
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+            >
+              Follow
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "white",
+            "borderRadius": 10,
+            "elevation": 5,
+            "marginBottom": 16,
+            "marginRight": 10,
+            "overflow": "hidden",
+            "shadowColor": "#000",
+            "shadowOffset": {
+              "height": 2,
+              "width": 0,
+            },
+            "shadowOpacity": 0.1,
+            "shadowRadius": 10,
+            "width": 160,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "height": 100,
+              "position": "relative",
+              "width": "100%",
+            }
+          }
+        >
+          <Image
+            source={
+              {
+                "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+              }
+            }
+            style={
+              {
+                "borderRadius": 10,
+                "height": "100%",
+                "resizeMode": "cover",
+                "width": "100%",
+              }
+            }
+          />
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "#33907C",
+                "borderColor": "#FFFFFF",
+                "borderRadius": "50%",
+                "borderWidth": 1,
+                "bottom": 0,
+                "height": 64,
+                "justifyContent": "center",
+                "left": "30%",
+                "position": "absolute",
+                "top": 60,
+                "width": 64,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat",
+                    "fontSize": 18,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontSize": 24,
+                    "fontWeight": "700",
+                  },
+                ]
+              }
+            >
+              T
+            </Text>
+          </View>
+        </View>
+        <Text
+          style={
+            [
+              {
+                "color": "#4F4F4F",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              },
+              {
+                "fontSize": 14,
+                "fontWeight": "700",
+                "marginTop": 35,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          Tradly Store
+        </Text>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "borderRadius": 8,
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "justifyContent": "center",
+                },
+                {
+                  "paddingHorizontal": 32,
+                  "paddingVertical": 8,
+                },
+                {
+                  "backgroundColor": "#13B58C",
+                  "opacity": 1,
+                },
+                {
+                  "borderRadius": 16,
+                  "marginBottom": 20,
+                  "marginHorizontal": 20,
+                  "marginTop": 10,
+                  "paddingVertical": 6,
+                },
+                {
+                  "opacity": 1,
+                },
+              ]
+            }
+            testID="button-pressable"
+          >
+            <Text
+              style={
+                [
+                  {
+                    "textAlign": "center",
+                  },
+                  {
+                    "fontSize": 12,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                  },
+                ]
+              }
+            >
+              Follow
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

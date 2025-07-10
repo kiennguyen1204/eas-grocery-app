@@ -82,7 +82,6 @@ const HeaderComponent = ({
       <View style={[styles.feature, { gap: isBrowse ? 32 : 0 }]}>
         {isSearch && (
           <Input
-            value=""
             leftIcon={<SearchIcon color={baseColors.greenLight} />}
             placeholder="Search Product"
             onChangeText={handleSearch}
