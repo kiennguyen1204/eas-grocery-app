@@ -17,3 +17,7 @@ export const formatAmountNumber = (value: string): string => {
 
   return newValueFormat;
 };
+
+export const roundToDecimal = (value: number, decimals: number = 2): string => {
+  return value.toFixed(decimals);
+};
