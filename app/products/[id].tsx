@@ -47,6 +47,7 @@ import {
 // Utils
 import {
   checkAndRequestNotificationPermission,
+  roundToDecimal,
   scheduleNotification,
 } from '@/utils';
 
@@ -185,10 +186,14 @@ const ProductDetail = () => {
             {name}
           </Text>
           <View style={styles.priceGroup}>
-            <Text style={styles.newPrice}>${newPrice}</Text>
+            <Text style={styles.newPrice}>
+              ${roundToDecimal(newPrice ?? 0)}
+            </Text>
             {oldPrice ? (
               <View style={styles.discountGroup}>
-                <Text style={styles.oldPrice}>${oldPrice}</Text>
+                <Text style={styles.oldPrice}>
+                  ${roundToDecimal(oldPrice ?? 0)}
+                </Text>
                 <Text style={styles.discountText}>
                   {newPrice
                     ? `${Math.round((1 - newPrice / oldPrice) * 100)}% off`

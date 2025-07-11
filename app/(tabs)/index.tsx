@@ -1,4 +1,8 @@
-import { useCallback } from 'react';
+import {
+  PerformanceMeasureView,
+  useStartProfiler,
+} from '@shopify/react-native-performance';
+import { useCallback, useEffect } from 'react';
 
 import { router } from 'expo-router';
 import {
@@ -39,7 +43,9 @@ const HomeScreen = () => {
     data: products,
     isFetching: isFetchingProducts,
     error: productsError,
+    isLoading,
   } = useGetProducts({ limit: 10 });
+  const startNavigationTTITimer = useStartProfiler();
 
   const { data: cartData } = useGetCart();
 
@@ -64,81 +70,86 @@ const HomeScreen = () => {
     router.push(ROUTES.CART as never);
   };
 
+  useEffect(() => {
+    startNavigationTTITimer({});
+  }, [startNavigationTTITimer]);
+
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.headerContainer}>
-        <View style={styles.header}>
-          <Text color={baseColors.whitePure} size="xl" fontFamily="bold">
-            Groceries
-          </Text>
-          <View style={styles.icon}>
-            <HeartIcon />
-            <CartIcon />
-            <TouchableOpacity
-              style={styles.navLink}
-              testID="cart-button"
-              onPress={handleNavigateCartScreen}>
-              <View style={styles.totalQuantity}>
-                <Text
-                  size="xs"
-                  color={baseColors.whitePure}
-                  style={styles.textQuantity}>
-                  {totalQuantity}
-                </Text>
-              </View>
-              <CartIcon />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <Input
-          leftIcon={<SearchIcon color={baseColors.greenLight} />}
-          placeholder="Search Product"
-        />
-      </View>
-      <ScrollView>
-        <View style={styles.banner}>
-          <Banner />
-        </View>
-        <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
-        <View style={styles.product}>
-          <View style={styles.productHeading}>
-            <Text color={baseColors.grayMedium} style={styles.productTitle}>
-              New Product
+    <PerformanceMeasureView interactive={!isLoading} screenName="HomeScreen">
+      <View style={styles.wrapper}>
+        <View style={styles.headerContainer}>
+          <View style={styles.header}>
+            <Text color={baseColors.whitePure} size="xl" fontFamily="bold">
+              Groceries
             </Text>
-            <Button
-              title="See All"
-              size="small"
-              style={styles.button}
-              onPress={handlePressSeeAll}
-            />
+            <View style={styles.icon}>
+              <HeartIcon />
+              <TouchableOpacity
+                style={styles.navLink}
+                testID="cart-button"
+                onPress={handleNavigateCartScreen}>
+                <View style={styles.totalQuantity}>
+                  <Text
+                    size="xs"
+                    color={baseColors.whitePure}
+                    style={styles.textQuantity}>
+                    {totalQuantity}
+                  </Text>
+                </View>
+                <CartIcon />
+              </TouchableOpacity>
+            </View>
           </View>
 
-          {productsError && <Text>Error when load new products</Text>}
-          {isFetchingProducts ? (
-            <ActivityIndicator />
-          ) : (
-            <ProductList
-              products={products || []}
-              onPress={handlePressProduct}
-            />
-          )}
-        </View>
-
-        <View style={styles.storesHeading}>
-          <Text style={styles.storesTitle}>Store to follow</Text>
-          <Button
-            title="View All"
-            size="small"
-            variant="secondary"
-            style={styles.btnViewAll}
+          <Input
+            leftIcon={<SearchIcon color={baseColors.greenLight} />}
+            placeholder="Search Product"
           />
         </View>
-        <View style={styles.storeList}>
-          <StoreList stores={STORE_CARDS} />
-        </View>
-      </ScrollView>
-    </View>
+        <ScrollView>
+          <View style={styles.banner}>
+            <Banner />
+          </View>
+          <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
+          <View style={styles.product}>
+            <View style={styles.productHeading}>
+              <Text color={baseColors.grayMedium} style={styles.productTitle}>
+                New Product
+              </Text>
+              <Button
+                title="See All"
+                size="small"
+                style={styles.button}
+                onPress={handlePressSeeAll}
+              />
+            </View>
+
+            {productsError && <Text>Error when load new products</Text>}
+            {isFetchingProducts ? (
+              <ActivityIndicator />
+            ) : (
+              <ProductList
+                products={products || []}
+                onPress={handlePressProduct}
+              />
+            )}
+          </View>
+
+          <View style={styles.storesHeading}>
+            <Text style={styles.storesTitle}>Store to follow</Text>
+            <Button
+              title="View All"
+              size="small"
+              variant="secondary"
+              style={styles.btnViewAll}
+            />
+          </View>
+          <View style={styles.storeList}>
+            <StoreList stores={STORE_CARDS} />
+          </View>
+        </ScrollView>
+      </View>
+    </PerformanceMeasureView>
   );
 };
 

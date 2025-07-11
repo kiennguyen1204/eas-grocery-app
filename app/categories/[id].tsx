@@ -31,6 +31,7 @@ import { useGetProducts } from '@/hooks';
 
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
+import { PerformanceMeasureView } from '@shopify/react-native-performance';
 
 export default function ProductsByCategory() {
   const { id } = useLocalSearchParams();
@@ -76,55 +77,57 @@ export default function ProductsByCategory() {
   }, []);
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.header}>
-        <View style={styles.titleGroup}>
+    <PerformanceMeasureView interactive={!isLoading} screenName="BrowseScreen">
+      <View style={styles.wrapper}>
+        <View style={styles.header}>
+          <View style={styles.titleGroup}>
+            <Text style={styles.textHeading} size="xl">
+              {CATEGORIES[Number(id)]}
+            </Text>
+            <TouchableOpacity onPress={handlePressBackIcon}>
+              <ChevronLeftIcon />
+            </TouchableOpacity>
+          </View>
           <Text style={styles.textHeading} size="xl">
             {CATEGORIES[Number(id)]}
           </Text>
-          <TouchableOpacity onPress={handlePressBackIcon}>
-            <ChevronLeftIcon />
-          </TouchableOpacity>
+          <View style={styles.groupDropdown}>
+            <Dropdown
+              defaultValue="Sort by price"
+              options={SORT_BY_PRICE}
+              onSelect={handleSelectSort}
+              rightIcon={<SortIcon />}
+            />
+            <Dropdown
+              defaultValue="location"
+              isDisabled
+              rightIcon={<MapIcon />}
+            />
+            <Dropdown
+              options={PRODUCT_CATEGORY}
+              defaultValue="Category"
+              rightIcon={<CategoryIcon />}
+            />
+          </View>
         </View>
-        <Text style={styles.textHeading} size="xl">
-          {CATEGORIES[Number(id)]}
-        </Text>
-        <View style={styles.groupDropdown}>
-          <Dropdown
-            defaultValue="Sort by price"
-            options={SORT_BY_PRICE}
-            onSelect={handleSelectSort}
-            rightIcon={<SortIcon />}
-          />
-          <Dropdown
-            defaultValue="location"
-            isDisabled
-            rightIcon={<MapIcon />}
-          />
-          <Dropdown
-            options={PRODUCT_CATEGORY}
-            defaultValue="Category"
-            rightIcon={<CategoryIcon />}
-          />
-        </View>
+        {isLoading && !isRefetching ? (
+          <ActivityIndicator />
+        ) : (
+          <View style={styles.list}>
+            {error && <Text>Error when load products</Text>}
+            <ProductList
+              products={products || []}
+              onPress={handlePressProduct}
+              hasNextPage={isFetchingNextPage}
+              isGridView
+              isRefreshing={isRefetching}
+              onRefresh={handleRefresh}
+              fetchNextPage={handleEndReached}
+            />
+          </View>
+        )}
       </View>
-      {isLoading && !isRefetching ? (
-        <ActivityIndicator />
-      ) : (
-        <View style={styles.list}>
-          {error && <Text>Error when load products</Text>}
-          <ProductList
-            products={products || []}
-            onPress={handlePressProduct}
-            hasNextPage={isFetchingNextPage}
-            isGridView
-            isRefreshing={isRefetching}
-            onRefresh={handleRefresh}
-            fetchNextPage={handleEndReached}
-          />
-        </View>
-      )}
-    </View>
+    </PerformanceMeasureView>
   );
 }
 

@@ -29,10 +29,16 @@ preventAutoHideAsync();
 const storybookEnabled = process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true';
 const StorybookUIRoot = require('../.storybook').default;
 
+const PerformanceProfiler = __DEV__
+  ? require('@shopify/react-native-performance').PerformanceProfiler
+  : null;
+
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [showStorybook, setShowStorybook] = useState(false);
-  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
+  const [authReady, setAuthReady] = useState(false);
+
+  const initializeAuth = useAuthStore(state => state.initializeAuth);
 
   useEffect(() => {
     if (__DEV__) {
@@ -52,6 +58,8 @@ export default function RootLayout() {
           'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
           'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
         });
+        await initializeAuth();
+        setAuthReady(true);
       } catch (e) {
         console.warn(e);
       } finally {
@@ -60,20 +68,30 @@ export default function RootLayout() {
     }
 
     prepare();
-  }, [isAuthenticated]);
+  }, [initializeAuth]);
 
   const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
+    if (appIsReady && authReady) {
       await hideAsync();
     }
-  }, [appIsReady]);
+  }, [appIsReady, authReady]);
+
+  const onReportPrepared = useCallback((report: any) => {
+    if (__DEV__) {
+      console.log(report);
+    }
+  }, []);
 
   useEffect(() => {
-    if (appIsReady) {
+    if (appIsReady && authReady) {
       registerForPushNotifications();
       onLayoutRootView();
     }
-  }, [appIsReady, onLayoutRootView]);
+  }, [appIsReady, authReady, onLayoutRootView]);
+
+  if (!appIsReady || !authReady) {
+    return null;
+  }
 
   // Render Storybook or the main app
   if (showStorybook && storybookEnabled && __DEV__) {
@@ -82,7 +100,13 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Slot />
+      {__DEV__ ? (
+        <PerformanceProfiler onReportPrepared={onReportPrepared}>
+          <Slot />
+        </PerformanceProfiler>
+      ) : (
+        <Slot />
+      )}
       <StatusBar style="auto" />
       <Toast />
     </QueryClientProvider>

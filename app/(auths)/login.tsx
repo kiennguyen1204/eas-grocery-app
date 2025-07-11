@@ -21,9 +21,18 @@ import { useAuthSignIn } from '@/services';
 
 // Themes
 import { baseColors } from '@/themes';
+import {
+  PerformanceMeasureView,
+  useStartProfiler,
+} from '@shopify/react-native-performance';
+import { useEffect } from 'react';
 
 const LoginScreen = () => {
   const { mutate: login, isPending } = useAuthSignIn();
+  const startNavigationTTITimer = useStartProfiler();
+  useEffect(() => {
+    startNavigationTTITimer({});
+  }, [startNavigationTTITimer]);
 
   const handleSubmit = (values: SignInPayload) => {
     login(values, {
@@ -45,11 +54,13 @@ const LoginScreen = () => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
-        <LoginForm onSubmit={handleSubmit} isLoading={isPending} />
-      </View>
-    </TouchableWithoutFeedback>
+    <PerformanceMeasureView interactive screenName="HomeScreen">
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <LoginForm onSubmit={handleSubmit} isLoading={isPending} />
+        </View>
+      </TouchableWithoutFeedback>
+    </PerformanceMeasureView>
   );
 };
 
