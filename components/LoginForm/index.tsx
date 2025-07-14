@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, View } from 'react-native';
 
@@ -232,4 +232,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginForm;
+export default memo(LoginForm);

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { Link } from 'expo-router';
@@ -325,4 +325,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpForm;
+export default memo(SignUpForm);

@@ -5,6 +5,7 @@ import { baseColors, fontWeights } from '@/themes';
 
 // Components
 import { Button, Text } from '@/components';
+import { memo } from 'react';
 
 type StoreCardProps = {
   id: string;
@@ -96,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StoreCard;
+export default memo(StoreCard);

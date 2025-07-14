@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref } from 'react';
+import React, { forwardRef, memo, Ref } from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -101,7 +101,7 @@ const Input = forwardRef(
 
 Input.displayName = 'Input';
 
-export default Input;
+export default memo(Input);
 
 export const styles = StyleSheet.create({
   container: {
