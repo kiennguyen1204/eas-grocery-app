@@ -4,7 +4,6 @@ import {
   ActivityIndicator,
   FlatList,
   ListRenderItemInfo,
-  StyleSheet,
   View,
 } from 'react-native';
 
@@ -14,8 +13,11 @@ import { ProductCard, Text } from '@/components';
 //  Constants
 import { MESSAGES, PAGINATION_LIMIT, RENDER_PER_BATCH } from '@/constants';
 
-//
+// Interfaces
 import { TProduct } from '@/interfaces';
+
+// Styles
+import { styles } from './styles';
 
 export interface ProductListProps {
   products: TProduct[];
@@ -43,15 +45,17 @@ const ProductList = ({
   const handlePress = useCallback((id: string) => onPress(id), [onPress]);
 
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<TProduct>) => {
+    ({
+      item: { id, images, name, discountPrice, storeName, price },
+    }: ListRenderItemInfo<TProduct>) => {
       return (
         <ProductCard
-          id={item.id}
-          imageUrl={item.images[0]}
-          name={item.name}
-          newPrice={item.newPrice}
-          storeName={item.storeName}
-          oldPrice={item.oldPrice}
+          id={id}
+          imageUrl={images[0]}
+          name={name}
+          discountPrice={discountPrice}
+          storeName={storeName}
+          price={price}
           onPress={handlePress}
         />
       );
@@ -88,21 +92,5 @@ const ProductList = ({
     />
   );
 };
-
-const styles = StyleSheet.create({
-  columnWrapper: {
-    marginBottom: 20,
-    justifyContent: 'center',
-    gap: 6,
-  },
-  wrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footer: {
-    paddingVertical: 20,
-  },
-});
 
 export default memo(ProductList, isEqual);

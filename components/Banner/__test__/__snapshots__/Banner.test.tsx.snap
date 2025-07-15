@@ -8,199 +8,199 @@ exports[`Banner Component renders correctly 1`] = `
       "gap": 10,
     }
   }
+  data={
+    [
+      {
+        "buttonText": "Start Shopping",
+        "id": "2",
+        "imageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1273516682.jpg?c=original",
+        "title": "READY TO DELIVER TO YOUR HOME",
+      },
+      {
+        "buttonText": "Start Shopping",
+        "id": "1",
+        "imageUrl": "",
+        "title": "READY TO DELIVER TO YOUR HOME",
+      },
+    ]
+  }
+  decelerationRate="fast"
+  getItem={[Function]}
+  getItemCount={[Function]}
   horizontal={true}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
   showsHorizontalScrollIndicator={false}
+  snapToAlignment="start"
+  snapToInterval={310}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
 >
   <View>
     <View
-      accessibilityIgnoresInvertColors={true}
-      style={
-        {
-          "alignItems": "flex-start",
-          "flex": 1,
-          "gap": 20,
-          "height": 165,
-          "justifyContent": "center",
-          "paddingHorizontal": 20,
-          "width": 300,
-        }
-      }
-    >
-      <Image
-        source={
-          {
-            "uri": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1273516682.jpg?c=original",
-          }
-        }
-        style={
-          [
-            {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
-            },
-            {
-              "height": 165,
-              "width": 300,
-            },
-            {
-              "resizeMode": "cover",
-            },
-          ]
-        }
-      />
-      <Text
-        style={
-          [
-            {
-              "color": "#4A4A4A",
-              "fontFamily": "Montserrat",
-              "fontSize": 18,
-            },
-            {
-              "color": "#FFFFFF",
-              "fontFamily": "Montserrat-Bold",
-              "fontWeight": "700",
-            },
-          ]
-        }
-      >
-        READY TO DELIVER TO YOUR HOME
-      </Text>
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "borderColor": "#FFFFFF",
-            "borderRadius": 20,
-            "borderWidth": 1,
-            "opacity": 1,
-            "paddingHorizontal": 20,
-            "paddingVertical": 8,
-          }
-        }
-      >
-        <Text
-          style={
-            [
-              {
-                "color": "#4A4A4A",
-                "fontFamily": "Montserrat",
-                "fontSize": 18,
-              },
-              {
-                "color": "#FFFFFF",
-                "fontSize": 14,
-                "fontWeight": "bold",
-              },
-            ]
-          }
-        >
-          Start Shopping
-        </Text>
-      </View>
-    </View>
-    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
       style={
         [
           {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          {
             "alignItems": "flex-start",
-            "flex": 1,
             "gap": 20,
             "height": 165,
             "justifyContent": "center",
             "paddingHorizontal": 20,
             "width": 300,
-          },
+          }
+        }
+      >
+        <Image
+          source={
+            {
+              "uri": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-1273516682.jpg?c=original",
+            }
+          }
+          style={
+            [
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              {
+                "height": 165,
+                "width": 300,
+              },
+              {
+                "resizeMode": "cover",
+              },
+            ]
+          }
+        />
+        <Text
+          style={
+            [
+              {
+                "color": "#4A4A4A",
+                "fontFamily": "Montserrat",
+                "fontSize": 18,
+              },
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "Montserrat-Bold",
+                "fontWeight": "700",
+              },
+            ]
+          }
+        >
+          READY TO DELIVER TO YOUR HOME
+        </Text>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "borderColor": "#FFFFFF",
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "opacity": 1,
+              "paddingHorizontal": 20,
+              "paddingVertical": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat",
+                  "fontSize": 18,
+                },
+                {
+                  "color": "#FFFFFF",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Start Shopping
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
           {
-            "backgroundColor": "black",
+            "flexDirection": "row",
           },
+          null,
         ]
       }
     >
-      <Text
+      <View
         style={
           [
             {
-              "color": "#4A4A4A",
-              "fontFamily": "Montserrat",
-              "fontSize": 18,
+              "alignItems": "flex-start",
+              "gap": 20,
+              "height": 165,
+              "justifyContent": "center",
+              "paddingHorizontal": 20,
+              "width": 300,
             },
             {
-              "color": "#FFFFFF",
-              "fontFamily": "Montserrat-Bold",
-              "fontWeight": "700",
+              "backgroundColor": "black",
             },
           ]
-        }
-      >
-        READY TO DELIVER TO YOUR HOME
-      </Text>
-      <View
-        accessibilityState={
-          {
-            "busy": undefined,
-            "checked": undefined,
-            "disabled": undefined,
-            "expanded": undefined,
-            "selected": undefined,
-          }
-        }
-        accessibilityValue={
-          {
-            "max": undefined,
-            "min": undefined,
-            "now": undefined,
-            "text": undefined,
-          }
-        }
-        accessible={true}
-        collapsable={false}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          {
-            "borderColor": "#FFFFFF",
-            "borderRadius": 20,
-            "borderWidth": 1,
-            "opacity": 1,
-            "paddingHorizontal": 20,
-            "paddingVertical": 8,
-          }
         }
       >
         <Text
@@ -213,14 +213,72 @@ exports[`Banner Component renders correctly 1`] = `
               },
               {
                 "color": "#FFFFFF",
-                "fontSize": 14,
-                "fontWeight": "bold",
+                "fontFamily": "Montserrat-Bold",
+                "fontWeight": "700",
               },
             ]
           }
         >
-          Start Shopping
+          READY TO DELIVER TO YOUR HOME
         </Text>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={false}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "borderColor": "#FFFFFF",
+              "borderRadius": 20,
+              "borderWidth": 1,
+              "opacity": 1,
+              "paddingHorizontal": 20,
+              "paddingVertical": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat",
+                  "fontSize": 18,
+                },
+                {
+                  "color": "#FFFFFF",
+                  "fontSize": 14,
+                  "fontWeight": "bold",
+                },
+              ]
+            }
+          >
+            Start Shopping
+          </Text>
+        </View>
       </View>
     </View>
   </View>

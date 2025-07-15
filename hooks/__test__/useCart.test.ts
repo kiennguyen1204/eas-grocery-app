@@ -22,10 +22,9 @@ const mockCartItem = {
   id: 'c1',
   title: 'Item 1',
   image: 'image.jpg',
-  price: 100,
+  price: 120,
   quantity: 2,
-  newPrice: 90,
-  oldPrice: 120,
+  discountPrice: 90,
 };
 
 jest.mock('@tanstack/react-query', () => {

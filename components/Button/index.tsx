@@ -5,20 +5,22 @@ import {
   Pressable,
   PressableProps,
   StyleProp,
-  StyleSheet,
   Text,
   TextStyle,
   ViewStyle,
 } from 'react-native';
 
 // Themes
+import { baseColors } from '@/themes';
+
+// Styles
 import {
-  baseColors,
-  fontsFamily,
-  fontSizes,
-  fontWeights,
-  lineHeights,
-} from '@/themes';
+  buttonSizes,
+  buttonTextSizes,
+  buttonTextStyles,
+  styles,
+  variantStyles,
+} from './styles';
 
 type ButtonVariants = 'primary' | 'secondary' | 'danger' | 'outlined';
 type ButtonSizes = 'small' | 'medium' | 'large';
@@ -33,75 +35,6 @@ export type ButtonProps = PropsWithChildren<PressableProps> & {
   style?: StyleProp<ViewStyle>;
   onPress?: (event: GestureResponderEvent) => void;
   titleStyle?: StyleProp<TextStyle>;
-};
-
-const variantStyles = {
-  primary: {
-    backgroundColor: baseColors.greenLight,
-    textColor: baseColors.whitePure,
-  },
-  secondary: {
-    backgroundColor: baseColors.whitePure,
-    textColor: baseColors.greenLight,
-  },
-  danger: {
-    backgroundColor: baseColors.redPrimary,
-    textColor: baseColors.whitePure,
-  },
-  outlined: {
-    backgroundColor: 'transparent',
-    textColor: baseColors.greenLight,
-  },
-};
-
-const buttonSizes: Record<
-  ButtonSizes,
-  { paddingHorizontal: number; paddingVertical: number }
-> = {
-  small: {
-    paddingHorizontal: 32,
-    paddingVertical: 8,
-  },
-  medium: {
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-  },
-  large: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-  },
-};
-
-const buttonTextStyles: Record<ButtonVariants, { color: string }> = {
-  primary: {
-    color: baseColors.whitePure,
-  },
-  secondary: {
-    color: baseColors.greenLight,
-  },
-  outlined: {
-    color: baseColors.whitePure,
-  },
-  danger: {
-    color: baseColors.whitePure,
-  },
-};
-
-const buttonTextSizes: Record<ButtonSizes, any> = {
-  small: {
-    fontSize: fontSizes.xs,
-  },
-  medium: {
-    fontSize: fontSizes.base,
-    lineHeight: lineHeights.base,
-    fontFamily: fontsFamily.medium,
-    fontWeight: fontWeights.medium,
-  },
-  large: {
-    fontSize: fontSizes.md,
-    fontFamily: fontsFamily.semiBold,
-    fontWeight: fontWeights.semiBold,
-  },
 };
 
 const Button = ({
@@ -120,7 +53,7 @@ const Button = ({
   const textStyle = buttonTextStyles[variant];
   const textSize = buttonTextSizes[size];
 
-  let buttonStyles: StyleProp<ViewStyle> = [
+  const buttonStyles: StyleProp<ViewStyle> = [
     styles.button,
     buttonSize,
     {
@@ -129,13 +62,8 @@ const Button = ({
         : variantStyle.backgroundColor,
       opacity: 1,
     },
+    ...(style ? [style] : []),
   ];
-
-  if (style) {
-    buttonStyles = Array.isArray(style)
-      ? buttonStyles.concat(style)
-      : buttonStyles.concat([style]);
-  }
 
   const textStyles = [styles.text, textSize, textStyle];
   if (titleStyle) {
@@ -164,24 +92,5 @@ const Button = ({
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    gap: 8,
-  },
-  text: {
-    textAlign: 'center',
-  },
-  disabled: {
-    backgroundColor: baseColors.grayMedium,
-  },
-  loadingIndicator: {
-    paddingVertical: 10,
-  },
-});
 
 export default memo(Button);

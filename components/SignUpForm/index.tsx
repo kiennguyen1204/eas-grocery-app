@@ -2,7 +2,7 @@ import React, { memo, useCallback, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { Link } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 // Constants
 import { ERROR_MESSAGES, REGEX } from '@/constants';
@@ -14,13 +14,10 @@ import { ISignUpFormData } from '@/interfaces';
 import { Button, Hidden, Input, Show, Text } from '@/components';
 
 // Themes
-import {
-  baseColors,
-  borderRadius,
-  fontSizes,
-  fontWeights,
-  fontsFamily,
-} from '@/themes';
+import { baseColors } from '@/themes';
+
+// Styles
+import { styles } from './styles';
 
 interface SignUpFormProps {
   onSubmit: (data: ISignUpFormData) => void;
@@ -274,55 +271,5 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 16,
-  },
-
-  title: {
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 56,
-    marginBottom: 45,
-  },
-
-  formContainer: {
-    width: '100%',
-    paddingHorizontal: 24,
-  },
-
-  buttonCreate: {
-    borderRadius: borderRadius.xl,
-    width: '90%',
-    paddingVertical: 5,
-  },
-
-  buttonText: {
-    width: '100%',
-    paddingVertical: 14,
-    fontSize: fontSizes.sm,
-    fontWeight: fontWeights.medium,
-  },
-
-  signUpContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  signUpAccount: {
-    color: baseColors.whitePure,
-  },
-  signUpLink: {
-    color: baseColors.whitePure,
-    fontWeight: fontWeights.bold,
-    fontFamily: fontsFamily.bold,
-    fontSize: fontSizes.md,
-  },
-});
 
 export default memo(SignUpForm);

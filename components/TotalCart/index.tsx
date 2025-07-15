@@ -1,13 +1,17 @@
-import { StyleSheet, View } from 'react-native';
+import { memo } from 'react';
+import { View } from 'react-native';
 
 // Components
 import { Text } from '@/components';
 
 // Themes
-import { baseColors, fontsFamily } from '@/themes';
-import { formatAmountNumber } from '@/utils';
+import { baseColors } from '@/themes';
 
 // Utils
+import { formatAmountNumber } from '@/utils';
+
+// Styles
+import { styles } from './styles';
 
 export type TTotalCart = {
   totalPrice: number;
@@ -44,31 +48,4 @@ const TotalCart = ({ totalPrice, totalQuantity }: TTotalCart) => (
   </View>
 );
 
-const styles = StyleSheet.create({
-  textHeading: {
-    fontFamily: fontsFamily.bold,
-  },
-  wrapper: {
-    backgroundColor: baseColors.whitePure,
-    paddingHorizontal: 10,
-    marginBottom: 40,
-  },
-  groupInfo: {
-    padding: 15,
-    flexDirection: 'column',
-    gap: 15,
-  },
-  infoItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  totalAmount: {
-    padding: 15,
-    flexDirection: 'row',
-    borderTopWidth: 1,
-    borderColor: baseColors.grayExtraLight,
-    justifyContent: 'space-between',
-  },
-});
-
-export default TotalCart;
+export default memo(TotalCart);

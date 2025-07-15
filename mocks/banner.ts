@@ -1,4 +1,6 @@
-export const BANNERS = [
+import { IBanner } from '@/interfaces';
+
+export const BANNERS: IBanner[] = [
   {
     id: '2',
     imageUrl:

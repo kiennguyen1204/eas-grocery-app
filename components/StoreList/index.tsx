@@ -1,3 +1,5 @@
+import { memo } from 'react';
+import isEqual from 'react-fast-compare';
 import { FlatList } from 'react-native';
 
 // Components
@@ -15,13 +17,17 @@ type StoreListProps = {
 };
 
 const StoreList = ({ stores }: StoreListProps) => {
-  const renderItem = ({ item }: { item: Store }) => (
+  const renderItem = ({
+    item: { id, imageUrl, storeName, logoLetter },
+  }: {
+    item: Store;
+  }) => (
     <StoreCard
-      key={item.id}
-      id={item.id}
-      imageUrl={item.imageUrl}
-      storeName={item.storeName}
-      logoLetter={item.logoLetter}
+      key={id}
+      id={id}
+      imageUrl={imageUrl}
+      storeName={storeName}
+      logoLetter={logoLetter}
     />
   );
 
@@ -36,4 +42,4 @@ const StoreList = ({ stores }: StoreListProps) => {
   );
 };
 
-export default StoreList;
+export default memo(StoreList, isEqual);

@@ -1,10 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { view } from './storybook.requires';
 
 const StorybookUIRoot = view.getStorybookUI({
   storage: {
-    getItem: AsyncStorage.getItem,
-    setItem: AsyncStorage.setItem,
+    getItem: SecureStore.getItemAsync,
+    setItem: SecureStore.setItemAsync,
   },
 });
 

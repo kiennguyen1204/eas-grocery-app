@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import {
   getCameraPermissionsAsync,
@@ -6,6 +5,7 @@ import {
   requestCameraPermissionsAsync,
   requestMediaLibraryPermissionsAsync,
 } from 'expo-image-picker';
+import * as SecureStore from 'expo-secure-store';
 import { Alert, Linking } from 'react-native';
 import Toast from 'react-native-toast-message';
 
@@ -27,23 +27,26 @@ export const requestCameraPermission = async (): Promise<boolean> => {
   const CAMERA_DENIAL_COUNT_KEY = 'CAMERA_DENIAL_COUNT';
   const { status: currentStatus } = await getCameraPermissionsAsync();
   if (currentStatus === 'granted') {
-    await AsyncStorage.removeItem(CAMERA_DENIAL_COUNT_KEY);
+    await SecureStore.deleteItemAsync(CAMERA_DENIAL_COUNT_KEY);
     return true;
   }
 
-  const storedCount = await AsyncStorage.getItem(CAMERA_DENIAL_COUNT_KEY);
+  const storedCount = await SecureStore.getItemAsync(CAMERA_DENIAL_COUNT_KEY);
   const denialCount = storedCount ? parseInt(storedCount, 10) : 0;
 
   const { status: requestStatus, canAskAgain } =
     await requestCameraPermissionsAsync();
 
   if (requestStatus === 'granted') {
-    await AsyncStorage.removeItem(CAMERA_DENIAL_COUNT_KEY);
+    await SecureStore.deleteItemAsync(CAMERA_DENIAL_COUNT_KEY);
     return true;
   }
 
   const newDenialCount = denialCount + 1;
-  await AsyncStorage.setItem(CAMERA_DENIAL_COUNT_KEY, String(newDenialCount));
+  await SecureStore.setItemAsync(
+    CAMERA_DENIAL_COUNT_KEY,
+    String(newDenialCount),
+  );
 
   if (!canAskAgain && newDenialCount >= 3) {
     showPermissionDeniedAlert(

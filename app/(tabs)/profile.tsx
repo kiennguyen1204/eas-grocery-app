@@ -6,10 +6,10 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { CartIcon, HeartIcon, Text } from '@/components';
 
 // Constants
-import { ROUTES } from '@/constants';
+import { ERROR_MESSAGES, ROUTES } from '@/constants';
 
 // Hooks
-import { useGetUser } from '@/hooks';
+import { useErrorToast, useGetUser } from '@/hooks';
 
 // Stores
 import { useAuthStore } from '@/stores';
@@ -17,9 +17,14 @@ import { useAuthStore } from '@/stores';
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
 
-export default function ProfileScreen() {
+const ProfileScreen = () => {
   const { clearAuth } = useAuthStore();
   const { user, error } = useGetUser();
+
+  useErrorToast({
+    error,
+    defaultMessage: ERROR_MESSAGES.LOAD_USER_FAILED,
+  });
 
   const handleLogout = () => {
     clearAuth();
@@ -60,10 +65,6 @@ export default function ProfileScreen() {
       onPress: handleLogout,
     },
   ];
-
-  if (error) {
-    return <Text>Error: {error.message || 'Unable to load user data'}</Text>;
-  }
 
   const userName = user?.name || 'User';
   const userInitial = userName.charAt(0).toUpperCase() || 'U';
@@ -106,9 +107,9 @@ export default function ProfileScreen() {
         </View>
       </View>
       <View style={styles.menuContainer}>
-        {menuItems.map((item, index) => (
+        {menuItems.map(item => (
           <TouchableOpacity
-            key={index}
+            key={item.id}
             style={[
               styles.menuItem,
               item.title !== 'Logout' && styles.borderStyle,
@@ -122,7 +123,7 @@ export default function ProfileScreen() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   avatar: {
@@ -200,3 +201,4 @@ const styles = StyleSheet.create({
     color: baseColors.whitePure,
   },
 });
+export default ProfileScreen;

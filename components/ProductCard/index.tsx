@@ -1,14 +1,19 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { memo } from 'react';
+
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 // Interfaces
 import { TProduct } from '@/interfaces';
 
-// Themes
-import { baseColors, fontsFamily, fontWeights } from '@/themes';
+// Utils
+import { roundToDecimal } from '@/utils';
+
+// Styles
+import { styles } from './styles';
 
 type ProductCardProps = Pick<
   TProduct,
-  'id' | 'name' | 'storeName' | 'oldPrice' | 'newPrice'
+  'id' | 'name' | 'storeName' | 'price' | 'discountPrice'
 > & {
   imageUrl: string;
   onPress: (id: string) => void;
@@ -18,9 +23,8 @@ const ProductCard = ({
   id,
   imageUrl,
   name,
-  newPrice,
+  discountPrice,
   storeName,
-  oldPrice,
   onPress,
 }: ProductCardProps) => {
   return (
@@ -37,8 +41,14 @@ const ProductCard = ({
               {storeName}
             </Text>
             <View style={styles.priceContainer}>
-              {oldPrice && <Text style={styles.oldPrice}>${oldPrice}</Text>}
-              <Text style={styles.newPrice}>${newPrice}</Text>
+              {discountPrice && (
+                <Text
+                  style={styles.discountPrice}
+                  numberOfLines={1}
+                  ellipsizeMode="tail">
+                  ${roundToDecimal(discountPrice)}
+                </Text>
+              )}
             </View>
           </View>
         </View>
@@ -47,64 +57,4 @@ const ProductCard = ({
   );
 };
 
-const styles = StyleSheet.create({
-  card: {
-    width: 160,
-    backgroundColor: 'white',
-    marginBottom: 16,
-    marginRight: 8,
-    borderRadius: 10,
-    overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 2 },
-    elevation: 5,
-  },
-  cardContent: {
-    flexDirection: 'column',
-  },
-  image: {
-    width: '100%',
-    height: 160,
-  },
-  infoContainer: {
-    padding: 12,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  storeName: {
-    opacity: 0.5,
-    width: 40,
-    overflow: 'visible',
-    fontSize: 14,
-    lineHeight: 14,
-  },
-  priceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  oldPrice: {
-    textDecorationLine: 'line-through',
-    color: baseColors.grayMedium,
-    fontSize: 12,
-    marginRight: 5,
-  },
-  newPrice: {
-    fontWeight: fontWeights.semiBold,
-    fontFamily: fontsFamily.semiBold,
-    color: baseColors.greenDark,
-  },
-
-  storeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 4,
-  },
-});
-
-export default ProductCard;
+export default memo(ProductCard);
