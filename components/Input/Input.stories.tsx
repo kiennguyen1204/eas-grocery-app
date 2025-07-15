@@ -1,13 +1,11 @@
-import { Ionicons } from '@expo/vector-icons'; // Assuming you're using Ionicons for icons
 import type { Meta, StoryObj } from '@storybook/react';
 import { View } from 'react-native';
 import Input from '.';
+import { CartIcon } from '../icons';
 
 // Mock data for icons
-const mockLeftIcon = <Ionicons name="person-outline" size={24} color="gray" />;
-const mockRightIcon = (
-  <Ionicons name="lock-closed-outline" size={24} color="gray" />
-);
+const mockLeftIcon = <CartIcon color="gray" />;
+const mockRightIcon = <CartIcon color="gray" />;
 
 const meta: Meta<typeof Input> = {
   title: 'components/Input',

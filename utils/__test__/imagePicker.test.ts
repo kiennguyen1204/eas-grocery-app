@@ -1,6 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act } from '@testing-library/react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as SecureStore from 'expo-secure-store';
 import { Alert, Linking } from 'react-native';
 import Toast from 'react-native-toast-message';
 import {
@@ -11,10 +11,10 @@ import {
 } from '../imagePicker'; // Adjust path to your file
 
 // Mock dependencies
-jest.mock('@react-native-async-storage/async-storage', () => ({
-  getItem: jest.fn(),
-  setItem: jest.fn(),
-  removeItem: jest.fn(),
+jest.mock('expo-secure-store', () => ({
+  getItemAsync: jest.fn(),
+  setItemAsync: jest.fn(),
+  deleteItemAsync: jest.fn(),
 }));
 
 jest.mock('expo-image-picker', () => ({
@@ -77,7 +77,7 @@ describe('Image Picker Utilities', () => {
       const result = await requestCameraPermission();
 
       expect(ImagePicker.getCameraPermissionsAsync).toHaveBeenCalled();
-      expect(AsyncStorage.removeItem).toHaveBeenCalledWith(
+      expect(SecureStore.deleteItemAsync).toHaveBeenCalledWith(
         CAMERA_DENIAL_COUNT_KEY,
       );
       expect(result).toBe(true);
@@ -87,7 +87,7 @@ describe('Image Picker Utilities', () => {
       (ImagePicker.getCameraPermissionsAsync as jest.Mock).mockResolvedValue({
         status: 'denied',
       });
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
+      (SecureStore.getItemAsync as jest.Mock).mockResolvedValue(null);
       (
         ImagePicker.requestCameraPermissionsAsync as jest.Mock
       ).mockResolvedValue({
@@ -98,7 +98,7 @@ describe('Image Picker Utilities', () => {
       const result = await requestCameraPermission();
 
       expect(ImagePicker.requestCameraPermissionsAsync).toHaveBeenCalled();
-      expect(AsyncStorage.removeItem).toHaveBeenCalledWith(
+      expect(SecureStore.deleteItemAsync).toHaveBeenCalledWith(
         CAMERA_DENIAL_COUNT_KEY,
       );
       expect(result).toBe(true);
@@ -233,7 +233,7 @@ describe('Image Picker Utilities', () => {
       (ImagePicker.getCameraPermissionsAsync as jest.Mock).mockResolvedValue({
         status: 'denied',
       });
-      (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
+      (SecureStore.getItemAsync as jest.Mock).mockResolvedValue(null);
       (
         ImagePicker.requestCameraPermissionsAsync as jest.Mock
       ).mockResolvedValue({

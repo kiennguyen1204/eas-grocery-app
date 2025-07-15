@@ -76,7 +76,7 @@ export default function RootLayout() {
     }
   }, [appIsReady, authReady]);
 
-  const onReportPrepared = useCallback((report: any) => {
+  const onReportPrepared = useCallback((report: string) => {
     if (__DEV__) {
       console.log(report);
     }

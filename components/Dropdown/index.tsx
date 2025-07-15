@@ -3,8 +3,6 @@ import {
   FlatList,
   GestureResponderEvent,
   Modal,
-  Platform,
-  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -16,7 +14,10 @@ import { Text } from '@/components';
 import { ICategory } from '@/interfaces';
 
 // Themes
-import { baseColors, fontsFamily } from '@/themes';
+import { baseColors } from '@/themes';
+
+// Styles
+import { styles } from './styles';
 
 export type DropdownProps = {
   defaultValue: string;
@@ -52,16 +53,16 @@ const Dropdown = ({
 
   const keyExtractor = (item: ICategory, index: number) => item.id.toString();
 
-  const renderItem = ({ item }: { item: ICategory }) => {
+  const renderItem = ({ item: { value, title } }: { item: ICategory }) => {
     return (
       <TouchableOpacity
         style={styles.dropdownItem}
-        onPress={handleSelect(item.value)}>
+        onPress={handleSelect(value)}>
         <Text
           color={baseColors.whitePure}
           size="xs"
           style={styles.dropdownItemText}>
-          {item.title}
+          {title}
         </Text>
       </TouchableOpacity>
     );
@@ -97,51 +98,5 @@ const Dropdown = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  dropdownButton: {
-    ...Platform.select({
-      ios: {
-        paddingHorizontal: 12,
-      },
-      android: {
-        paddingHorizontal: 20,
-      },
-    }),
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingVertical: 6,
-    borderWidth: 1,
-    borderColor: baseColors.whitePure,
-    borderRadius: 23,
-  },
-  dropdownButtonText: {
-    fontSize: 16,
-    color: baseColors.grayMedium,
-  },
-  overlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  dropdownList: {
-    backgroundColor: baseColors.whitePure,
-    borderRadius: 8,
-    width: '80%',
-    maxHeight: 200,
-    padding: 10,
-    elevation: 5,
-  },
-  dropdownItem: {
-    padding: 10,
-  },
-  dropdownItemText: {
-    fontSize: 16,
-    color: baseColors.grayMedium,
-    fontFamily: fontsFamily.medium,
-  },
-});
 
 export default memo(Dropdown);

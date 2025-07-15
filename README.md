@@ -1,50 +1,198 @@
-# Welcome to your Expo app 👋
+# Grocery App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Overview
 
-## Get started
+- This document will overview about estimation for [React Native Practice](https://docs.google.com/document/d/1JxuH8h03KAJ-Vp0vzPMV8D4UPx6jtk5F/edit?pli=1). This practice will build a Stylish app.
 
-1. Install dependencies
+### Design
+
+- [Stylish App](https://www.figma.com/design/cbyU4pamdddEA1uowX8Am8/grocery-marketplace-tradly.app?node-id=0-1&p=f&t=fc45hM4NYdeXadJl-0)
+
+### Editor
+
+- Visual Studio Code
+
+## Target
+
+- Handle platform differences between Android, iOS
+- Unit test coverage should be greater than 80%
+- Configure the app icon and splash screen that match the Expo app
+- Must have a form with multiple inputs
+- Must have a Home screen with a list greater than 1000 items
+- Must have a screen using Camera and Image Picker (We can use a free API to upload Photos or use a local URI)
+- Apply Linking and Deep Linking
+- Push Notifications: Alert users when tasks are near.
+
+## Features
+
+Build a Mobile application of Food Delivery with features below:
+
+- SignIn/SignUp
+- Get products, search, sort, filter
+- Get products by category
+- Add product to cart
+- Delete product
+- See product details
+- Checkout
+- Update profile
+
+## Getting Started
+
+To get started with this boilerplate, follow the instructions below.
+
+### Prerequisites
+
+Ensure sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/set-up-your-environment) instructions till "Creating a new application" step, before proceeding.
+
+### Installation
+
+1. **Clone the repository:**
 
    ```bash
-   npm install
+   git clone https://gitlab.asoft-python.com/kien.nguyen/react-native-expo-training.git
    ```
 
-2. Start the app
+2. **Checkout branch**
 
    ```bash
-   npx expo start
+   git checkout feat/grocery-app
    ```
 
-In the output, you'll find options to open the app in a
+3. **Install dependencies:**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   yarn install
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   **Additional step for iOS**
 
-## Get a fresh project
+   ```bash
+   npx pod-install
+   ```
 
-When you're ready, run:
+   - If you are having trouble with iOS, try to reinstall the dependencies by running:
 
-```bash
-npm run reset-project
+     1. `cd ios` to navigate to the `ios` folder.
+
+     2. `bundle install` to install **Bundler**
+     3. `bundle exec pod install` to install the iOS dependencies managed by CocoaPods.
+
+4. **Run the application:**
+
+   ```bash
+   yarn android
+   # or
+   yarn ios
+   ```
+
+## Features
+
+- **Linting & Formatting:** ESLint and Prettier for code quality.
+- **Testing:** Setup with Jest and React Native Testing Library.
+- **Storybook:** Storybook configured.
+
+## Folder Structure
+
+```
+react-native-expo-training
+├── android/               # Android-specific files
+│   ├── app/
+│   ├── build/
+│   └── gradle/
+├── app/                   # Expo Router app directory
+│   ├── (auths)/          # Authentication screens group
+│   ├── (tabs)/           # Tab navigation screens
+│   ├── cart/             # Cart related screens
+│   ├── categories/       # Category screens
+│   ├── products/         # Product screens
+│   ├── profile/          # Profile screens
+│   ├── _layout.tsx       # Root layout
+│   └── index.tsx         # Home screen
+├── assets/               # Static assets
+│   ├── fonts/           # Custom fonts
+│   └── images/          # Images and icons
+├── components/          # Reusable UI components
+│   ├── Banner/
+│   ├── Button/
+│   ├── CartItem/
+│   ├── CategoryList/
+│   ├── Dropdown/
+│   ├── Header/
+│   ├── icons/
+│   ├── Input/
+│   ├── LoginForm/
+│   ├── ProductCard/
+│   ├── ProductList/
+│   ├── SignUpForm/
+│   ├── StoreCard/
+│   ├── StoreList/
+│   ├── Text/
+│   └── TotalCart/
+├── constants/           # App constants and configuration
+├── hooks/              # Custom React hooks
+├── interfaces/         # TypeScript interfaces and types
+├── json-server-grocery/ # Local JSON server for development
+├── mocks/              # Mock data for testing
+├── patches/            # Package patches
+├── scripts/            # Build and utility scripts
+├── services/           # API services and HTTP clients
+├── stores/             # State management (Zustand stores)
+├── themes/             # Theme configuration (colors, typography, metrics)
+├── types/              # Additional TypeScript types
+├── utils/              # Utility functions
+├── app.json            # Expo app configuration
+├── babel.config.js     # Babel configuration
+├── eslint.config.js    # ESLint configuration
+├── expo-env.d.ts       # Expo TypeScript definitions
+├── index.js            # App entry point
+├── jest-setup.ts       # Jest setup
+├── jest.config.js      # Jest configuration
+├── lint-staged.config.js # Lint-staged configuration
+├── metro.config.js     # Metro bundler configuration
+├── package.json        # Project dependencies
+├── test-utils.tsx      # Testing library utilities
+└── tsconfig.json       # TypeScript configuration
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Usage
 
-## Learn more
+### Running on Android
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+react-native run-android
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Running on iOS
 
-## Join the community
+```bash
+react-native run-ios
+```
 
-Join our community of developers creating universal apps.
+To run on specific simulator
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+react-native run-ios --simulator "iPhone 15 Pro"
+```
+
+### Open Storybook
+
+- Open the Developer Menu: Once your app is running on the simulator or device, open the developer menu with following commands or shake on real device.
+  - iOS: Press `Cmd` + `D`
+  - Android: Press `Cmd` + `M` or `Ctrl` + `M`
+- Select `Toggle Storybook`
+
+### Environment
+
+- Create an `.env` file in the root directory with environment values.
+
+**Notes**: Run `npx pod-install` every when add/update new environment values to let iOS update the latest values.
+
+### Unit test
+
+- The project is configured with `@testing-library/react-native` for unit testing.
+- A custom render function is set up in the `test-utils.tsx` file.
+- If you add a new provider to the project, include it in the customRender function to make it available for unit tests.
+
+### Debugging
+
+- From React Native `v0.74.0` onwards, Flipper has been removed from the default React Native template. This change means that developers will need to adopt alternative tools for debugging and performance monitoring. Recommended alternatives include: [Reactotron](https://docs.infinite.red/reactotron/), [React Devtools](https://reactnative.dev/docs/react-devtools), [Native Debuggers](https://reactnative.dev/docs/native-debugging)

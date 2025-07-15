@@ -4,8 +4,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '1',
     name: 'Potato',
-    oldPrice: 35,
-    newPrice: 30,
+    price: 35,
+    discountPrice: 30,
     storeName: 'Fresh Market',
     categoryId: 1,
     images: [
@@ -16,8 +16,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '2',
     name: 'Duck Egg',
-    oldPrice: 32,
-    newPrice: 30,
+    price: 32,
+    discountPrice: 30,
     storeName: 'Egg Store',
     categoryId: 2,
     images: [
@@ -28,8 +28,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '3',
     name: 'Carrot',
-    oldPrice: 25,
-    newPrice: 20,
+    price: 25,
+    discountPrice: 20,
     storeName: 'Healthy Food',
     categoryId: 3,
     images: [
@@ -40,8 +40,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '4',
     name: 'Cucumber',
-    oldPrice: 18,
-    newPrice: 15,
+    price: 18,
+    discountPrice: 15,
     storeName: 'Green Vegetables',
     categoryId: 4,
     images: [
@@ -52,8 +52,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '5',
     name: 'Tomato',
-    oldPrice: 30,
-    newPrice: 25,
+    price: 30,
+    discountPrice: 25,
     storeName: 'Organic Farm',
     categoryId: 5,
     images: [
@@ -64,8 +64,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '6',
     name: 'Onion',
-    oldPrice: 15,
-    newPrice: 12,
+    price: 15,
+    discountPrice: 12,
     storeName: 'Spicy Foods',
     categoryId: 6,
     images: [
@@ -76,8 +76,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '7',
     name: 'Garlic',
-    oldPrice: 10,
-    newPrice: 8,
+    price: 10,
+    discountPrice: 8,
     storeName: 'Spices and Herbs',
     categoryId: 7,
     images: [
@@ -88,8 +88,8 @@ export const PRODUCTS: TProduct[] = [
   {
     id: '8',
     name: 'Lettuce',
-    oldPrice: 20,
-    newPrice: 18,
+    price: 20,
+    discountPrice: 18,
     storeName: 'Fresh Greens',
     categoryId: 8,
     images: [

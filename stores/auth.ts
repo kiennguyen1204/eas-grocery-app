@@ -31,23 +31,18 @@ const INITIAL_AUTH_STATE: AuthState = {
 
 // Initialize store with data from SecureStore
 const initializeState = async (): Promise<Partial<AuthState>> => {
-  try {
-    const savedAuthData = await SecureStore.getItemAsync(KEYCHAIN_SERVICE);
-    const savedUserData = await SecureStore.getItemAsync(KEYCHAIN_USER_SERVICE);
+  const savedAuthData = await SecureStore.getItemAsync(KEYCHAIN_SERVICE);
+  const savedUserData = await SecureStore.getItemAsync(KEYCHAIN_USER_SERVICE);
 
-    const authData = savedAuthData ? JSON.parse(savedAuthData) : {};
-    const userData = savedUserData ? JSON.parse(savedUserData) : {};
+  const authData = savedAuthData ? JSON.parse(savedAuthData) : {};
+  const userData = savedUserData ? JSON.parse(savedUserData) : {};
 
-    return {
-      accessToken: authData.accessToken || '',
-      userId: authData.userId || '',
-      user: userData || ({} as Omit<TUser, 'password'>),
-      isAuthenticated: !!(authData.accessToken && authData.userId),
-    };
-  } catch (error) {
-    console.error('Error initializing auth state:', error);
-    return INITIAL_AUTH_STATE;
-  }
+  return {
+    accessToken: authData.accessToken || '',
+    userId: authData.userId || '',
+    user: userData || ({} as Omit<TUser, 'password'>),
+    isAuthenticated: !!(authData.accessToken && authData.userId),
+  };
 };
 
 // Create the store
@@ -60,35 +55,20 @@ export const useAuthStore = createWithEqualityFn<AuthStore>(set => ({
   },
 
   setAccessToken: async (accessToken: string, userId: string) => {
-    try {
-      const data = JSON.stringify({ accessToken, userId });
-      await SecureStore.setItemAsync(KEYCHAIN_SERVICE, data);
-      set({ accessToken, userId, isAuthenticated: true });
-    } catch (error) {
-      console.error('Error saving access token:', error);
-    }
+    const data = JSON.stringify({ accessToken, userId });
+    await SecureStore.setItemAsync(KEYCHAIN_SERVICE, data);
+    set({ accessToken, userId, isAuthenticated: true });
   },
 
   setAuth: async user => {
-    try {
-      await SecureStore.setItemAsync(
-        KEYCHAIN_USER_SERVICE,
-        JSON.stringify(user),
-      );
-      set({ user });
-    } catch (error) {
-      console.error('Error saving user:', error);
-    }
+    await SecureStore.setItemAsync(KEYCHAIN_USER_SERVICE, JSON.stringify(user));
+    set({ user });
   },
 
   clearAuth: async () => {
-    try {
-      await SecureStore.deleteItemAsync(KEYCHAIN_SERVICE);
-      await SecureStore.deleteItemAsync(KEYCHAIN_USER_SERVICE);
-      set({ ...INITIAL_AUTH_STATE });
-    } catch (error) {
-      console.error('Error clearing auth:', error);
-    }
+    await SecureStore.deleteItemAsync(KEYCHAIN_SERVICE);
+    await SecureStore.deleteItemAsync(KEYCHAIN_USER_SERVICE);
+    set({ ...INITIAL_AUTH_STATE });
   },
 
   initializeAuth: async () => {

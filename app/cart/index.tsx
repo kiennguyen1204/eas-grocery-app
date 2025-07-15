@@ -18,12 +18,7 @@ import {
 } from '@/components';
 
 // Constants
-import {
-  ERROR_MESSAGES,
-  MESSAGES,
-  ROUTES,
-  SUCCESS_MESSAGES,
-} from '@/constants';
+import { ERROR_MESSAGES, MESSAGES, SUCCESS_MESSAGES } from '@/constants';
 
 // Hooks
 import { useGetCart, useRemoveFromCart, useUpdateCartQuantity } from '@/hooks';
@@ -31,7 +26,7 @@ import { useGetCart, useRemoveFromCart, useUpdateCartQuantity } from '@/hooks';
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
 
-export default function CartScreen() {
+const CartScreen = () => {
   const { data: cartItems = [], isLoading: isLoadingCart } = useGetCart();
   const { mutate: removeFromCart, isPending: isRemoving } = useRemoveFromCart();
   const { mutate: updateCartQuantity, isPending: isUpdating } =
@@ -46,8 +41,7 @@ export default function CartScreen() {
         });
       },
       onError: (error: Error) => {
-        const errorMessage =
-          error.message || ERROR_MESSAGES.REMOVE_FROM_CART_FAILED;
+        const errorMessage = error.message || ERROR_MESSAGES.CART_FAIL;
         Toast.show({
           type: 'error',
           text1: errorMessage,
@@ -63,9 +57,14 @@ export default function CartScreen() {
     updateCartQuantity(
       { cartItemId, quantity },
       {
-        onError: error => {
-          const errorMessage =
-            error.message || ERROR_MESSAGES.UPDATE_CART_QUANTITY_FAILED;
+        onSuccess: () => {
+          Toast.show({
+            type: 'success',
+            text1: SUCCESS_MESSAGES.UPDATE_CART_QUANTITY,
+          });
+        },
+        onError: (error: Error) => {
+          const errorMessage = error.message || ERROR_MESSAGES.CART_FAIL;
           Toast.show({
             type: 'error',
             text1: errorMessage,
@@ -84,11 +83,9 @@ export default function CartScreen() {
               type: 'success',
               text1: SUCCESS_MESSAGES.CHECKOUT_SUCCESS,
             });
-            router.push(ROUTES.HOME as never);
           },
           onError: (error: Error) => {
-            const errorMessage =
-              error.message || ERROR_MESSAGES.CHECKOUT_FAILED;
+            const errorMessage = error.message || ERROR_MESSAGES.CART_FAIL;
             Toast.show({
               type: 'error',
               text1: errorMessage,
@@ -149,6 +146,7 @@ export default function CartScreen() {
             onRemove={() => handleRemoveItem(id)}
             onIncrease={() => handleUpdateQuantity(id, (quantity ?? 0) + 1)}
             onDecrease={() => handleUpdateQuantity(id, (quantity ?? 0) - 1)}
+            isUpdating={isUpdating}
           />
         </View>
       );
@@ -183,7 +181,7 @@ export default function CartScreen() {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -234,3 +232,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default CartScreen;

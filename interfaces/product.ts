@@ -1,8 +1,8 @@
 export interface TProduct {
   id: string;
   name: string;
-  oldPrice?: number;
-  newPrice: number;
+  price: number;
+  discountPrice?: number;
   discount?: number;
   images: string[];
   description: string;

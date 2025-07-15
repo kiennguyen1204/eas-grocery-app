@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import Toast from 'react-native-toast-message';
 
 import { Image } from 'expo-image';
@@ -24,6 +24,7 @@ import {
   ERROR_MESSAGES,
   MESSAGES,
   NOTIFICATION_ACTION_KEYS,
+  NOTIFICATION_MESSAGES,
   ROUTES,
   SCREEN_WIDTH,
 } from '@/constants';
@@ -64,8 +65,8 @@ const ProductDetail = () => {
     name,
     images,
     description,
-    newPrice,
-    oldPrice,
+    discountPrice,
+    price,
     storeName,
     condition,
     priceType,
@@ -84,6 +85,10 @@ const ProductDetail = () => {
     );
   };
 
+  /**
+   * Handles horizontal scroll of product images
+   * Updates current image index based on scroll position
+   */
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
     const index = Math.round(scrollPosition / SCREEN_WIDTH);
@@ -94,44 +99,78 @@ const ProductDetail = () => {
     router.back();
   };
 
-  const handleAddToCart = () => {
-    if (data) {
-      const isProductInCart = cartItems.some(item => item.title === name);
-      if (isProductInCart) {
-        Toast.show({
-          type: 'info',
-          text1: MESSAGES.ALREADY_IN_CART,
-        });
-      } else {
-        addToCart(
-          {
-            title: name,
-            image: images?.[0] || '',
-            newPrice,
-            oldPrice,
-            price: newPrice || oldPrice || 0,
-            quantity: 1,
-          },
-          {
-            onSuccess: async product => {
-              await checkAndRequestNotificationPermission();
-              scheduleNotification(
-                'Add product successfully',
-                `Click to see product details: ${product.title}`,
-                NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
-                { url: `products/${product.id}` },
-              );
-              router.push(ROUTES.CART);
-            },
-            onError: error => {
-              Toast.show({
-                type: 'error',
-                text1: ERROR_MESSAGES.ADD_TO_CART_FAILED,
-              });
-            },
-          },
-        );
-      }
+  /**
+   * Handles successful addition of product to cart
+   * - Requests notification permission
+   * - Schedules a notification with product details
+   * - Navigates to cart screen
+   */
+  const handleAddToCartSuccess = useCallback(() => {
+    checkAndRequestNotificationPermission().then(() => {
+      scheduleNotification(
+        NOTIFICATION_MESSAGES.ADD_PRODUCT_SUCCESS,
+        NOTIFICATION_MESSAGES.ADD_PRODUCT_DETAILS(name || ''),
+        NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
+        { url: `products/${id}` },
+      );
+      router.push(ROUTES.CART);
+    });
+  }, [id, name]);
+
+  /**
+   * Handles error when adding product to cart
+   * Shows error toast notification
+   */
+  const handleAddToCartError = () => {
+    Toast.show({
+      type: 'error',
+      text1: ERROR_MESSAGES.CART_FAIL,
+    });
+  };
+
+  /**
+   * Shows info toast when product is already in cart
+   */
+  const showProductInCartToast = () => {
+    Toast.show({
+      type: 'info',
+      text1: MESSAGES.ALREADY_IN_CART,
+    });
+  };
+
+  /**
+   * Adds product to cart with current product data
+   * Creates product object and calls mutation with success/error handlers
+   */
+  const addProductToCart = async () => {
+    const product = {
+      title: name,
+      image: images?.[0] || '',
+      discountPrice,
+      price: discountPrice || price || 0,
+      quantity: 1,
+    };
+    addToCart(product, {
+      onSuccess: handleAddToCartSuccess,
+      onError: handleAddToCartError,
+    });
+  };
+
+  /**
+   * Main handler for add to cart button
+   * - Checks if product data exists
+   * - Verifies if product is already in cart
+   * - Shows appropriate message or adds product
+   */
+  const handleAddToCart = async () => {
+    if (!data) return;
+
+    const isProductInCart = cartItems.some(item => item.title === name);
+
+    if (isProductInCart) {
+      showProductInCartToast();
+    } else {
+      await addProductToCart();
     }
   };
 
@@ -170,9 +209,9 @@ const ProductDetail = () => {
             </View>
           </View>
           <View style={styles.indicatorContainer}>
-            {images?.map((_, index) => (
+            {images?.map((image, index) => (
               <View
-                key={index}
+                key={`${image}-${index}`}
                 style={[styles.dot, currentIndex === index && styles.activeDot]}
               />
             ))}
@@ -187,16 +226,16 @@ const ProductDetail = () => {
           </Text>
           <View style={styles.priceGroup}>
             <Text style={styles.newPrice}>
-              ${roundToDecimal(newPrice ?? 0)}
+              ${roundToDecimal(discountPrice ?? price ?? 0)}
             </Text>
-            {oldPrice ? (
+            {discountPrice ? (
               <View style={styles.discountGroup}>
                 <Text style={styles.oldPrice}>
-                  ${roundToDecimal(oldPrice ?? 0)}
+                  ${roundToDecimal(price ?? 0)}
                 </Text>
                 <Text style={styles.discountText}>
-                  {newPrice
-                    ? `${Math.round((1 - newPrice / oldPrice) * 100)}% off`
+                  {discountPrice && price
+                    ? `${Math.round((1 - discountPrice / price) * 100)}% off`
                     : '0% off'}
                 </Text>
               </View>

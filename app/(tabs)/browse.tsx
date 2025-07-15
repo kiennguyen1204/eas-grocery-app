@@ -1,3 +1,7 @@
+import {
+  PerformanceMeasureView,
+  useStartProfiler,
+} from '@shopify/react-native-performance';
 import { router } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
@@ -13,12 +17,8 @@ import { PRODUCT_CATEGORY, ROUTES, SORT_BY_PRICE } from '@/constants';
 
 // Themes
 import { baseColors } from '@/themes';
-import {
-  PerformanceMeasureView,
-  useStartProfiler,
-} from '@shopify/react-native-performance';
 
-export default function BrowseScreen() {
+const BrowseScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const totalQuantity = 0;
   const [filter, setFilter] = useState({
@@ -55,9 +55,12 @@ export default function BrowseScreen() {
     setFilter(prev => ({ ...prev, order: option }));
   }, []);
 
-  const handleSelectCategory = useCallback((categoryName: string) => {
-    setFilter(prev => ({ ...prev, categoryName }));
-  }, []);
+  const handleSelectCategory = useCallback(
+    (categoryName: string) => {
+      setFilter(prev => ({ ...prev, categoryName }));
+    },
+    [setFilter],
+  );
 
   const handleEndReached = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -74,7 +77,7 @@ export default function BrowseScreen() {
   }, [startNavigationTTITimer]);
 
   return (
-    <PerformanceMeasureView interactive={!isLoading} screenName="BrowseScreen">
+    <PerformanceMeasureView interactive={!isLoading} screenName={ROUTES.BROWSE}>
       <View style={styles.wrapper}>
         <Header
           title="Browse"
@@ -107,7 +110,7 @@ export default function BrowseScreen() {
       </View>
     </PerformanceMeasureView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -119,3 +122,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default BrowseScreen;

@@ -9,8 +9,8 @@ jest.mock('@/services/http-request', () => ({
 const mockProduct = {
   id: 'p1',
   name: 'Sample Product',
-  newPrice: 200,
-  oldPrice: 250,
+  discountPrice: 200,
+  price: 250,
   image: 'sample.jpg',
 };
 
@@ -28,7 +28,7 @@ describe('useGetProducts', () => {
 
     await waitFor(() => {
       const productsHook = result.current as ReturnType<typeof useGetProducts>;
-      expect(productsHook.data?.pages[0]).toEqual([mockProduct]);
+      expect(productsHook.data).toEqual([mockProduct]);
     });
 
     expect(get).toHaveBeenCalledWith(
@@ -70,7 +70,7 @@ describe('useGetProducts', () => {
 
     await waitFor(() => {
       const updatedHook = result.current as ReturnType<typeof useGetProducts>;
-      expect(updatedHook.data?.pages.length).toBeGreaterThanOrEqual(1);
+      expect(updatedHook.data?.length).toBeGreaterThanOrEqual(1);
     });
   });
 });
