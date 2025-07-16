@@ -30,7 +30,7 @@ export const useGetProducts = (params: GetProductParams = {}) => {
       const queryParams = new URLSearchParams({
         ...(categoryName ? { categoryName } : {}),
         ...(query || searchProducts ? { q: query || searchProducts } : {}),
-        ...(order ? { _sort: 'newPrice', _order: order } : {}),
+        ...(order ? { _sort: 'discountPrice', _order: order } : {}),
         ...(limit ? { _limit: limit.toString() } : {}),
         _page: (pageParam as number).toString(),
       }).toString();
