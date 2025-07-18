@@ -13,42 +13,29 @@ import { post } from '@/services';
 import { useAuthStore } from '@/stores';
 
 export const useAuthSignIn = () => {
-  const [setAuthenticated, setAccessToken, setAuth] = useAuthStore(state => [
-    state.setAuthenticated,
-    state.setAccessToken,
-    state.setAuth,
-  ]);
+  const setAuth = useAuthStore(state => state.setAuth);
 
   return useMutation<AuthResponse, string, SignInPayload>({
     mutationFn: async (payload: SignInPayload) => {
       return await post(ENDPOINTS.LOGIN, payload);
     },
     onSuccess: async (res: AuthResponse) => {
-      const { accessToken, user } = res || {};
-      setAuthenticated(true);
-      await setAccessToken(accessToken, user?.id);
-      setAuth(user);
+      const { accessToken, user } = res;
+      await setAuth(user, accessToken, user.id);
     },
   });
 };
 
 export const useAuthSignUp = () => {
-  const [setAuthenticated, setAccessToken, setUser] = useAuthStore(state => [
-    state.setAuthenticated,
-    state.setAccessToken,
-    state.setAuth,
-  ]);
+  const setAuth = useAuthStore(state => state.setAuth);
 
   return useMutation<AuthResponse, string, SignUpPayload>({
     mutationFn: async (payload: SignUpPayload) =>
       post(ENDPOINTS.REGISTER, payload),
 
-    onSuccess: async res => {
-      const { user, accessToken } = res;
-
-      setUser(user);
-      await setAccessToken(accessToken, user?.id);
-      setAuthenticated(true);
+    onSuccess: async (res: AuthResponse) => {
+      const { accessToken, user } = res;
+      await setAuth(user, accessToken, user.id);
     },
   });
 };

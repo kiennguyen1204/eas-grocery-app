@@ -5,19 +5,17 @@ import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 
 import {
+  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Pressable,
   ScrollView as RNScrollView,
+  ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
 
-import {
-  FlatList,
-  GestureHandlerRootView,
-  ScrollView,
-} from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Constants
 import {
@@ -47,6 +45,7 @@ import {
 
 // Utils
 import {
+  calculateDiscountPercentage,
   checkAndRequestNotificationPermission,
   roundToDecimal,
   scheduleNotification,
@@ -234,8 +233,8 @@ const ProductDetail = () => {
                   ${roundToDecimal(price ?? 0)}
                 </Text>
                 <Text style={styles.discountText}>
-                  {discountPrice && price
-                    ? `${Math.round((1 - discountPrice / price) * 100)}% off`
+                  {calculateDiscountPercentage(price, discountPrice) > 0
+                    ? `${calculateDiscountPercentage(price, discountPrice)}% off`
                     : '0% off'}
                 </Text>
               </View>

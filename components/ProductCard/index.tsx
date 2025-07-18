@@ -2,6 +2,9 @@ import { memo } from 'react';
 
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
+// Constants
+import { ACCESSIBILITY_CONFIG } from '@/constants';
+
 // Interfaces
 import { TProduct } from '@/interfaces';
 
@@ -32,12 +35,37 @@ const ProductCard = ({
       <TouchableOpacity
         testID="product-card"
         style={styles.cardContent}
-        onPress={() => onPress(id)}>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+        onPress={() => onPress(id)}
+        accessible={true}
+        accessibilityRole="button"
+        accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.PRODUCT_CARD(
+          name,
+          storeName,
+          roundToDecimal(discountPrice || 0),
+        )}
+        accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.PRODUCT_CARD}>
+        <Image
+          source={{ uri: imageUrl }}
+          style={styles.image}
+          accessible={true}
+          accessibilityRole="image"
+          accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.PRODUCT_IMAGE(name)}
+        />
         <View style={styles.infoContainer}>
-          <Text style={styles.name}>{name}</Text>
+          <Text
+            style={styles.name}
+            accessible={true}
+            accessibilityRole="header">
+            {name}
+          </Text>
           <View style={styles.storeContainer}>
-            <Text style={styles.storeName} numberOfLines={1}>
+            <Text
+              style={styles.storeName}
+              numberOfLines={1}
+              accessible={true}
+              accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.PRODUCT_STORE(
+                storeName,
+              )}>
               {storeName}
             </Text>
             <View style={styles.priceContainer}>
@@ -45,7 +73,11 @@ const ProductCard = ({
                 <Text
                   style={styles.discountPrice}
                   numberOfLines={1}
-                  ellipsizeMode="tail">
+                  ellipsizeMode="tail"
+                  accessible={true}
+                  accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.PRODUCT_PRICE(
+                    roundToDecimal(discountPrice),
+                  )}>
                   ${roundToDecimal(discountPrice)}
                 </Text>
               )}

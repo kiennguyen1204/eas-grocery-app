@@ -10,6 +10,9 @@ import {
 // Components
 import { Text } from '@/components';
 
+// Constants
+import { ACCESSIBILITY_CONFIG } from '@/constants';
+
 // Styles
 import { inputVariants, placeHolderTextColors, styles } from './styles';
 
@@ -74,22 +77,66 @@ const Input = forwardRef(
           secureTextEntry={secureTextEntry}
           onChangeText={onChangeText}
           onSubmitEditing={onSubmitEditing}
+          accessible={true}
+          accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.TEXT_INPUT(
+            label || placeholder,
+          )}
+          accessibilityHint={
+            secureTextEntry
+              ? ACCESSIBILITY_CONFIG.HINTS.SECURE_TEXT_ENTRY
+              : ACCESSIBILITY_CONFIG.HINTS.TEXT_INPUT(label)
+          }
+          accessibilityState={{
+            disabled: disabled,
+          }}
+          accessibilityRole="none"
           {...props}
         />
-        {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
+        {leftIcon && (
+          <View
+            style={styles.leftIcon}
+            accessible={true}
+            accessibilityRole="image"
+            accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.INPUT_ICON}>
+            {leftIcon}
+          </View>
+        )}
         {rightIcon &&
           (onIconPressed ? (
             <TouchableOpacity
               testID="icon"
               style={styles.rightIcon}
-              onPress={onIconPressed}>
+              onPress={onIconPressed}
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={
+                secureTextEntry
+                  ? ACCESSIBILITY_CONFIG.LABELS.TOGGLE_PASSWORD
+                  : ACCESSIBILITY_CONFIG.LABELS.ACTION_BUTTON
+              }
+              accessibilityHint={
+                secureTextEntry
+                  ? ACCESSIBILITY_CONFIG.HINTS.TOGGLE_PASSWORD_SHOW
+                  : ACCESSIBILITY_CONFIG.HINTS.ACTION_BUTTON
+              }>
               {rightIcon}
             </TouchableOpacity>
           ) : (
-            <View style={styles.rightIcon}>{rightIcon}</View>
+            <View
+              style={styles.rightIcon}
+              accessible={true}
+              accessibilityRole="image"
+              accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.INPUT_ICON}>
+              {rightIcon}
+            </View>
           ))}
         {errorMessage && (
-          <Text size="base" style={styles.errorMessage}>
+          <Text
+            size="base"
+            style={styles.errorMessage}
+            accessible={true}
+            accessibilityRole="alert"
+            accessibilityLiveRegion="polite">
             {errorMessage}
           </Text>
         )}

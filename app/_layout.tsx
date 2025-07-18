@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { loadAsync } from 'expo-font';
-import { Slot } from 'expo-router';
+import { Stack } from 'expo-router';
 import { hideAsync, preventAutoHideAsync } from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ import 'react-native-reanimated';
 import Toast from 'react-native-toast-message';
 
 // Constants
-import { STALE_TIME } from '@/constants';
+import { ROUTES, STALE_TIME } from '@/constants';
 
 // Stores
 import { useAuthStore } from '@/stores';
@@ -38,6 +38,7 @@ export default function RootLayout() {
   const [showStorybook, setShowStorybook] = useState(false);
   const [authReady, setAuthReady] = useState(false);
 
+  const isAuthenticated = useAuthStore(state => state.isAuthenticated);
   const initializeAuth = useAuthStore(state => state.initializeAuth);
 
   useEffect(() => {
@@ -51,22 +52,18 @@ export default function RootLayout() {
 
   useEffect(() => {
     async function prepare() {
-      try {
-        await loadAsync({
-          Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
-          'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
-          'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
-          'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
-        });
-        await initializeAuth();
-        setAuthReady(true);
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppIsReady(true);
-      }
-    }
+      await loadAsync({
+        Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
+        'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
+        'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+        'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
+      });
 
+      // Initialize auth state from SecureStore
+      await initializeAuth();
+      setAuthReady(true);
+      setAppIsReady(true);
+    }
     prepare();
   }, [initializeAuth]);
 
@@ -102,10 +99,35 @@ export default function RootLayout() {
     <QueryClientProvider client={queryClient}>
       {__DEV__ ? (
         <PerformanceProfiler onReportPrepared={onReportPrepared}>
-          <Slot />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Protected guard={!isAuthenticated}>
+              <Stack.Screen
+                name={ROUTES.ONBOARDING}
+                options={{ headerShown: false }}
+              />
+            </Stack.Protected>
+
+            <Stack.Protected guard={!!isAuthenticated}>
+              <Stack.Screen
+                name={ROUTES.HOME}
+                options={{ headerShown: false }}
+              />
+            </Stack.Protected>
+          </Stack>
         </PerformanceProfiler>
       ) : (
-        <Slot />
+        <Stack>
+          <Stack.Protected guard={!isAuthenticated}>
+            <Stack.Screen
+              name={ROUTES.ONBOARDING}
+              options={{ headerShown: false }}
+            />
+          </Stack.Protected>
+
+          <Stack.Protected guard={!!isAuthenticated}>
+            <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
+          </Stack.Protected>
+        </Stack>
       )}
       <StatusBar style="auto" />
       <Toast />

@@ -1,3 +1,4 @@
+export * from './accessibility';
 export * from './api';
 export * from './category';
 export * from './dimensions';
@@ -7,6 +8,7 @@ export * from './keychain';
 export * from './messages';
 export * from './notification';
 export * from './pagination';
+export * from './platform';
 export * from './regex';
 export * from './routes';
 export * from './slides';

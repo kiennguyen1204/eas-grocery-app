@@ -78,13 +78,23 @@ const Button = ({
         { opacity: pressed || disabled ? 0.6 : 1 },
       ]}
       onPress={onPress}
-      disabled={disabled || isLoading}>
+      disabled={disabled || isLoading}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel={title}
+      accessibilityHint={title ? `Tap to ${title.toLowerCase()}` : undefined}
+      accessibilityState={{
+        disabled: disabled || isLoading,
+        busy: isLoading,
+      }}>
       {icon}
       {isLoading ? (
         <ActivityIndicator
           testID="activity-indicator"
           style={styles.loadingIndicator}
           color={variantStyle.textColor}
+          accessible={true}
+          accessibilityLabel="Loading"
         />
       ) : (
         title && <Text style={textStyles}>{title}</Text>

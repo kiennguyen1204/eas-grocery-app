@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // Constants
-import { SCREEN_WIDTH } from '@/constants';
+import { ACCESSIBILITY_CONFIG, SCREEN_WIDTH } from '@/constants';
 
 import { Text } from '@/components';
 
@@ -38,13 +38,26 @@ const CategoryList = ({ data, onPress }: CategoryListProps) => {
     return (
       <TouchableOpacity
         style={[styles.itemContainer, { width: itemScreenWidth }]}
-        onPress={handlePress}>
+        onPress={handlePress}
+        accessible={true}
+        accessibilityRole="button"
+        accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_ITEM(title)}
+        accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CATEGORY_ITEM(title)}>
         <ImageBackground
           source={{ uri: imageUrl }}
           style={styles.image}
-          resizeMode="cover">
+          resizeMode="cover"
+          accessible={true}
+          accessibilityRole="image"
+          accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_IMAGE(
+            title,
+          )}>
           <View style={styles.overlay} />
-          <Text size="xs" style={styles.text}>
+          <Text
+            size="xs"
+            style={styles.text}
+            accessible={true}
+            accessibilityRole="text">
             {title}
           </Text>
         </ImageBackground>
@@ -62,6 +75,9 @@ const CategoryList = ({ data, onPress }: CategoryListProps) => {
       numColumns={4}
       contentContainerStyle={styles.container}
       columnWrapperStyle={styles.columnWrapper}
+      accessible={true}
+      accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_LIST}
+      accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CATEGORY_LIST}
     />
   );
 };
