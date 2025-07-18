@@ -10,6 +10,9 @@ import {
 // Components
 import { Text } from '@/components';
 
+// Constants
+import { ACCESSIBILITY_CONFIG } from '@/constants';
+
 // Interfaces
 import { ICategory } from '@/interfaces';
 
@@ -57,7 +60,11 @@ const Dropdown = ({
     return (
       <TouchableOpacity
         style={styles.dropdownItem}
-        onPress={handleSelect(value)}>
+        onPress={handleSelect(value)}
+        accessible={true}
+        accessibilityRole="menuitem"
+        accessibilityLabel={title}
+        accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.DROPDOWN_OPTION(title)}>
         <Text
           color={baseColors.whitePure}
           size="xs"
@@ -73,8 +80,30 @@ const Dropdown = ({
       <TouchableOpacity
         style={styles.dropdownButton}
         onPress={handlePress(true)}
-        disabled={isDisabled}>
-        {rightIcon && <View>{rightIcon}</View>}
+        disabled={isDisabled}
+        accessible={true}
+        accessibilityRole="button"
+        accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.DROPDOWN_BUTTON(
+          defaultValue,
+          selectedValue === '' ? defaultValue : selectedValue,
+        )}
+        accessibilityHint={
+          isDisabled
+            ? ACCESSIBILITY_CONFIG.HINTS.DROPDOWN_DISABLED
+            : ACCESSIBILITY_CONFIG.HINTS.DROPDOWN_BUTTON
+        }
+        accessibilityState={{
+          disabled: isDisabled,
+          expanded: isDropdownOpen,
+        }}>
+        {rightIcon && (
+          <View
+            accessible={true}
+            accessibilityRole="image"
+            accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.DROPDOWN_ICON}>
+            {rightIcon}
+          </View>
+        )}
         <Text
           color={baseColors.whitePure}
           size="xs"
@@ -84,13 +113,31 @@ const Dropdown = ({
       </TouchableOpacity>
 
       {/* Dropdown Modal */}
-      <Modal visible={isDropdownOpen} transparent animationType="fade">
-        <TouchableOpacity style={styles.overlay} onPress={handlePress(false)}>
-          <View style={styles.dropdownList}>
+      <Modal
+        visible={isDropdownOpen}
+        transparent
+        animationType="fade"
+        accessible={true}
+        accessibilityViewIsModal={true}>
+        <TouchableOpacity
+          style={styles.overlay}
+          onPress={handlePress(false)}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CLOSE_DROPDOWN}
+          accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CLOSE_DROPDOWN}>
+          <View
+            style={styles.dropdownList}
+            accessible={true}
+            accessibilityRole="menu"
+            accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.DROPDOWN_MENU(
+              defaultValue,
+            )}>
             <FlatList
               data={options}
               keyExtractor={keyExtractor}
               renderItem={renderItem}
+              accessible={false}
             />
           </View>
         </TouchableOpacity>

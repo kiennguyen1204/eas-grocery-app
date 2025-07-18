@@ -36,7 +36,7 @@ import { baseColors, fontsFamily, fontWeights } from '@/themes';
 import { ROUTES } from '@/constants';
 
 // Hooks
-import { useGetCart, useGetProducts } from '@/hooks';
+import { useGetCart, useGetProducts, useHandleJwtExpired } from '@/hooks';
 
 const HomeScreen = () => {
   const {
@@ -46,6 +46,8 @@ const HomeScreen = () => {
     isLoading,
   } = useGetProducts({ limit: 10 });
   const startNavigationTTITimer = useStartProfiler();
+
+  useHandleJwtExpired(productsError?.message);
 
   const { data: cartData } = useGetCart();
 
@@ -76,19 +78,40 @@ const HomeScreen = () => {
 
   return (
     <PerformanceMeasureView interactive={!isLoading} screenName="HomeScreen">
-      <View style={styles.wrapper}>
+      <View
+        style={styles.wrapper}
+        accessible={true}
+        accessibilityLabel="Home screen">
         <View style={styles.headerContainer}>
           <View style={styles.header}>
-            <Text color={baseColors.whitePure} size="xl" fontFamily="bold">
+            <Text
+              color={baseColors.whitePure}
+              size="xl"
+              fontFamily="bold"
+              accessible
+              accessibilityRole="header">
               Groceries
             </Text>
             <View style={styles.icon}>
-              <HeartIcon />
+              <TouchableOpacity
+                accessible
+                accessibilityRole="button"
+                accessibilityLabel="Favorites"
+                accessibilityHint="Tap to view your favorite items">
+                <HeartIcon />
+              </TouchableOpacity>
               <TouchableOpacity
                 style={styles.navLink}
                 testID="cart-button"
-                onPress={handleNavigateCartScreen}>
-                <View style={styles.totalQuantity}>
+                onPress={handleNavigateCartScreen}
+                accessible
+                accessibilityRole="button"
+                accessibilityLabel={`Shopping cart with ${totalQuantity} items`}
+                accessibilityHint="Tap to view your shopping cart">
+                <View
+                  style={styles.totalQuantity}
+                  accessible
+                  accessibilityLabel={`${totalQuantity} items in cart`}>
                   <Text
                     size="xs"
                     color={baseColors.whitePure}
@@ -104,16 +127,25 @@ const HomeScreen = () => {
           <Input
             leftIcon={<SearchIcon color={baseColors.greenLight} />}
             placeholder="Search Product"
+            accessibilityLabel="Search products"
+            accessibilityHint="Enter product name to search"
           />
         </View>
-        <ScrollView>
-          <View style={styles.banner}>
+        <ScrollView accessible accessibilityLabel="Home content">
+          <View
+            style={styles.banner}
+            accessible
+            accessibilityLabel="Featured banners">
             <Banner />
           </View>
           <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
           <View style={styles.product}>
             <View style={styles.productHeading}>
-              <Text color={baseColors.grayMedium} style={styles.productTitle}>
+              <Text
+                color={baseColors.grayMedium}
+                style={styles.productTitle}
+                accessible
+                accessibilityRole="header">
                 New Product
               </Text>
               <Button
@@ -124,9 +156,19 @@ const HomeScreen = () => {
               />
             </View>
 
-            {productsError && <Text>Error when load new products</Text>}
+            {productsError && (
+              <Text
+                accessible
+                accessibilityRole="alert"
+                accessibilityLiveRegion="polite">
+                Error when load new products
+              </Text>
+            )}
             {isFetchingProducts ? (
-              <ActivityIndicator />
+              <ActivityIndicator
+                accessible
+                accessibilityLabel="Loading new products"
+              />
             ) : (
               <ProductList
                 products={products || []}
@@ -136,7 +178,12 @@ const HomeScreen = () => {
           </View>
 
           <View style={styles.storesHeading}>
-            <Text style={styles.storesTitle}>Store to follow</Text>
+            <Text
+              style={styles.storesTitle}
+              accessible
+              accessibilityRole="header">
+              Store to follow
+            </Text>
             <Button
               title="View All"
               size="small"
@@ -144,7 +191,10 @@ const HomeScreen = () => {
               style={styles.btnViewAll}
             />
           </View>
-          <View style={styles.storeList}>
+          <View
+            style={styles.storeList}
+            accessible
+            accessibilityLabel="Stores to follow">
             <StoreList stores={STORE_CARDS} />
           </View>
         </ScrollView>

@@ -21,3 +21,24 @@ export const formatAmountNumber = (value: string): string => {
 export const roundToDecimal = (value: number, decimals: number = 2): string => {
   return value.toFixed(decimals);
 };
+
+/**
+ * Calculate discount percentage between original and discounted price
+ * @param originalPrice - The original price
+ * @param discountedPrice - The discounted price
+ * @returns The discount percentage as a number (0-100)
+ */
+export const calculateDiscountPercentage = (
+  originalPrice?: number,
+  discountedPrice?: number,
+): number => {
+  if (!originalPrice || !discountedPrice || originalPrice <= 0) {
+    return 0;
+  }
+
+  if (discountedPrice >= originalPrice) {
+    return 0;
+  }
+
+  return Math.round((1 - discountedPrice / originalPrice) * 100);
+};

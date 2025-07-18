@@ -8,6 +8,9 @@ import {
 // Components
 import { Text } from '@/components';
 
+// Constants
+import { ACCESSIBILITY_CONFIG } from '@/constants';
+
 // Interfaces
 import { IBanner } from '@/interfaces';
 
@@ -27,16 +30,40 @@ const Banner = () => {
       <ImageBackground
         source={{ uri: imageUrl }}
         style={styles.banner}
-        imageStyle={styles.imageStyle}>
-        <Text style={styles.text}>{title}</Text>
-        <TouchableOpacity style={styles.button}>
+        imageStyle={styles.imageStyle}
+        accessible={true}
+        accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.BANNER_ITEM(title)}
+        accessibilityRole="image">
+        <Text style={styles.text} accessible={true} accessibilityRole="header">
+          {title}
+        </Text>
+        <TouchableOpacity
+          style={styles.button}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel={buttonText}
+          accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.BANNER_BUTTON(
+            buttonText,
+          )}>
           <Text style={styles.buttonText}>{buttonText}</Text>
         </TouchableOpacity>
       </ImageBackground>
     ) : (
-      <View style={[styles.banner, styles.noImage]}>
-        <Text style={styles.text}>{title}</Text>
-        <TouchableOpacity style={styles.button}>
+      <View
+        style={[styles.banner, styles.noImage]}
+        accessible={true}
+        accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.BANNER_ITEM(title)}>
+        <Text style={styles.text} accessible={true} accessibilityRole="header">
+          {title}
+        </Text>
+        <TouchableOpacity
+          style={styles.button}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel={buttonText}
+          accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.BANNER_BUTTON(
+            buttonText,
+          )}>
           <Text style={styles.buttonText}>{buttonText}</Text>
         </TouchableOpacity>
       </View>
@@ -54,6 +81,9 @@ const Banner = () => {
       snapToInterval={310}
       snapToAlignment="start"
       decelerationRate="fast"
+      accessible={true}
+      accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.BANNER_CAROUSEL}
+      accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.BANNER_CAROUSEL}
     />
   );
 };

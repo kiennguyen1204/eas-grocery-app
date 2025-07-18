@@ -14,6 +14,9 @@ import {
   Text,
 } from '@/components';
 
+// Constants
+import { ACCESSIBILITY_CONFIG } from '@/constants';
+
 // Interface
 import { ICategory } from '@/interfaces';
 
@@ -59,18 +62,39 @@ const HeaderComponent = ({
   return (
     <View style={[styles.wrapper, { height: isBrowse ? 226 : 170 }]}>
       <View style={styles.subHeader}>
-        <Text style={styles.heading} color={baseColors.whitePure} size="xl">
+        <Text
+          style={styles.heading}
+          color={baseColors.whitePure}
+          size="xl"
+          accessible={true}
+          accessibilityRole="header">
           {title}
         </Text>
         <View style={styles.groupNav}>
-          <TouchableOpacity style={styles.navLink}>
+          <TouchableOpacity
+            style={styles.navLink}
+            accessible={true}
+            accessibilityRole="button"
+            accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.FAVORITES_BUTTON}
+            accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.FAVORITES_BUTTON}>
             <HeartOutlineIcon />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.navLink}
             testID="cart-button"
-            onPress={handleNavigation}>
-            <View style={styles.totalQuantity}>
+            onPress={handleNavigation}
+            accessible={true}
+            accessibilityRole="button"
+            accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CART_ITEMS_COUNT(
+              totalQuantity,
+            )}
+            accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CART_BUTTON}>
+            <View
+              style={styles.totalQuantity}
+              accessible={true}
+              accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CART_ITEMS_COUNT(
+                totalQuantity,
+              )}>
               <Text
                 size="xs"
                 color={baseColors.whitePure}

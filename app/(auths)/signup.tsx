@@ -1,16 +1,22 @@
 import { baseColors } from '@/themes/colors';
 import {
   Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
-  View,
 } from 'react-native';
 
 // Components
 import { SignUpForm } from '@/components';
 
 // Constants
-import { ERROR_MESSAGES, ROUTES, SUCCESS_MESSAGES } from '@/constants';
+import {
+  ERROR_MESSAGES,
+  KEYBOARD_BEHAVIOR,
+  ROUTES,
+  SUCCESS_MESSAGES,
+} from '@/constants';
 
 // Interfaces
 import { ISignUpFormData, SignUpPayload } from '@/interfaces';
@@ -50,9 +56,15 @@ const SignupScreen = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
-        <SignUpForm onSubmit={handleSubmit} isLoading={isPending} />
-      </View>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={KEYBOARD_BEHAVIOR}>
+        <ScrollView
+          contentContainerStyle={styles.flexGrow}
+          keyboardShouldPersistTaps="handled">
+          <SignUpForm onSubmit={handleSubmit} isLoading={isPending} />
+        </ScrollView>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 };
@@ -63,5 +75,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: baseColors.greenDark,
+  },
+  flexGrow: {
+    flexGrow: 1,
   },
 });

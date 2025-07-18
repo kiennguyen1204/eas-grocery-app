@@ -1,9 +1,10 @@
 import { router } from 'expo-router';
 import {
   Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   TouchableWithoutFeedback,
-  View,
 } from 'react-native';
 import Toast from 'react-native-toast-message';
 
@@ -55,10 +56,21 @@ const LoginScreen = () => {
 
   return (
     <PerformanceMeasureView interactive screenName="HomeScreen">
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View style={styles.container}>
-          <LoginForm onSubmit={handleSubmit} isLoading={isPending} />
-        </View>
+      <TouchableWithoutFeedback
+        onPress={Keyboard.dismiss}
+        accessible={false}
+        accessibilityLabel="Dismiss keyboard">
+        <KeyboardAvoidingView
+          style={styles.container}
+          accessible={true}
+          accessibilityLabel="Login screen">
+          <ScrollView
+            contentContainerStyle={styles.flexGrow}
+            accessible={true}
+            accessibilityLabel="Login form container">
+            <LoginForm onSubmit={handleSubmit} isLoading={isPending} />
+          </ScrollView>
+        </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </PerformanceMeasureView>
   );
@@ -70,6 +82,9 @@ const styles = StyleSheet.create({
     backgroundColor: baseColors.greenDark,
     justifyContent: 'center',
     paddingHorizontal: 24,
+  },
+  flexGrow: {
+    flexGrow: 1,
   },
 });
 

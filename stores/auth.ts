@@ -16,8 +16,11 @@ interface AuthState {
 
 interface AuthStore extends AuthState {
   setAuthenticated: (isAuthenticated: boolean) => void;
-  setAuth: (user: Omit<TUser, 'password'>) => Promise<void>;
-  setAccessToken: (accessToken: string, userId: string) => Promise<void>;
+  setAuth: (
+    user: Omit<TUser, 'password'>,
+    accessToken: string,
+    userId: string,
+  ) => Promise<void>;
   clearAuth: () => Promise<void>;
   initializeAuth: () => Promise<void>;
 }
@@ -29,7 +32,7 @@ const INITIAL_AUTH_STATE: AuthState = {
   userId: '',
 };
 
-// Initialize store with data from SecureStore
+// Initialize state from SecureStore
 const initializeState = async (): Promise<Partial<AuthState>> => {
   const savedAuthData = await SecureStore.getItemAsync(KEYCHAIN_SERVICE);
   const savedUserData = await SecureStore.getItemAsync(KEYCHAIN_USER_SERVICE);
@@ -47,22 +50,19 @@ const initializeState = async (): Promise<Partial<AuthState>> => {
 
 // Create the store
 export const useAuthStore = createWithEqualityFn<AuthStore>(set => ({
-  // Initialize with default state, will be updated by initializeAuth
   ...INITIAL_AUTH_STATE,
 
   setAuthenticated: isAuthenticated => {
     set({ isAuthenticated });
   },
 
-  setAccessToken: async (accessToken: string, userId: string) => {
-    const data = JSON.stringify({ accessToken, userId });
-    await SecureStore.setItemAsync(KEYCHAIN_SERVICE, data);
-    set({ accessToken, userId, isAuthenticated: true });
-  },
-
-  setAuth: async user => {
+  setAuth: async (user, accessToken, userId) => {
+    await SecureStore.setItemAsync(
+      KEYCHAIN_SERVICE,
+      JSON.stringify({ accessToken, userId }),
+    );
     await SecureStore.setItemAsync(KEYCHAIN_USER_SERVICE, JSON.stringify(user));
-    set({ user });
+    set({ user, accessToken, userId, isAuthenticated: true });
   },
 
   clearAuth: async () => {
