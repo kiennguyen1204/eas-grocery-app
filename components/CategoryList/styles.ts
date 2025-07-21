@@ -8,6 +8,10 @@ export const styles = StyleSheet.create({
   columnWrapper: {
     justifyContent: 'space-between',
   },
+  itemWrapper: {
+    flex: 1,
+    paddingHorizontal: 0.5,
+  },
   itemContainer: {
     aspectRatio: 1,
     overflow: 'hidden',

@@ -1,17 +1,13 @@
+import { FlashList } from '@shopify/flash-list';
 import { memo, useCallback } from 'react';
 import isEqual from 'react-fast-compare';
-import {
-  ActivityIndicator,
-  FlatList,
-  ListRenderItemInfo,
-  View,
-} from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 // Components
 import { ProductCard, Text } from '@/components';
 
 //  Constants
-import { MESSAGES, PAGINATION_LIMIT, RENDER_PER_BATCH } from '@/constants';
+import { MESSAGES } from '@/constants';
 
 // Interfaces
 import { TProduct } from '@/interfaces';
@@ -47,31 +43,37 @@ const ProductList = ({
   const renderItem = useCallback(
     ({
       item: { id, images, name, discountPrice, storeName, price },
-    }: ListRenderItemInfo<TProduct>) => {
+    }: {
+      item: TProduct;
+    }) => {
       return (
-        <ProductCard
-          id={id}
-          imageUrl={images[0]}
-          name={name}
-          discountPrice={discountPrice}
-          storeName={storeName}
-          price={price}
-          onPress={handlePress}
-        />
+        <View
+          style={isGridView ? styles.gridItemWrapper : styles.listItemWrapper}>
+          <ProductCard
+            id={id}
+            imageUrl={images[0]}
+            name={name}
+            discountPrice={discountPrice}
+            storeName={storeName}
+            price={price}
+            onPress={handlePress}
+          />
+        </View>
       );
     },
-    [isGridView],
+    [handlePress, isGridView],
   );
 
   return (
-    <FlatList
+    <FlashList
+      key={`${isGridView ? 'grid' : 'list'}-${products.length}`}
       data={products}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString() || ''}
       numColumns={isGridView ? 2 : 1}
-      columnWrapperStyle={isGridView ? styles.columnWrapper : undefined}
       horizontal={!isGridView}
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={isGridView ? styles.gridContainer : undefined}
       onEndReached={fetchNextPage}
       onEndReachedThreshold={0.5}
       ListFooterComponent={
@@ -83,12 +85,9 @@ const ProductList = ({
         </View>
       }
       {...props}
-      initialNumToRender={PAGINATION_LIMIT}
-      maxToRenderPerBatch={RENDER_PER_BATCH}
-      removeClippedSubviews
-      windowSize={5}
       onRefresh={onRefresh}
       refreshing={isRefreshing}
+      estimatedItemSize={isGridView ? 200 : 150}
     />
   );
 };

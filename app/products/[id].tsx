@@ -4,8 +4,8 @@ import Toast from 'react-native-toast-message';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 
+import { FlashList } from '@shopify/flash-list';
 import {
-  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Pressable,
@@ -54,7 +54,7 @@ import {
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const flatListRef = useRef<FlatList>(null);
+  const flatListRef = useRef<FlashList<string>>(null);
   const { mutate: addToCart, isPending: isAdding } = useAddToCart();
   const { data: cartItems = [] } = useGetCart();
 
@@ -179,7 +179,7 @@ const ProductDetail = () => {
         {error && <Text>Error when load product</Text>}
         <View style={styles.imageContainer}>
           <View style={styles.overlay} />
-          <FlatList
+          <FlashList
             ref={flatListRef}
             data={images}
             keyExtractor={item => item}
@@ -190,6 +190,7 @@ const ProductDetail = () => {
             scrollEventThrottle={16}
             renderItem={renderItem}
             snapToInterval={SCREEN_WIDTH}
+            estimatedItemSize={SCREEN_WIDTH}
           />
           <View style={styles.topBar}>
             <Pressable style={styles.iconButton} onPress={handleBack}>
