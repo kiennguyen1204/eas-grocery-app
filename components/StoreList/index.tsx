@@ -1,6 +1,6 @@
+import { FlashList } from '@shopify/flash-list';
 import { memo } from 'react';
 import isEqual from 'react-fast-compare';
-import { FlatList } from 'react-native';
 
 // Components
 import { StoreCard } from '@/components';
@@ -32,12 +32,13 @@ const StoreList = ({ stores }: StoreListProps) => {
   );
 
   return (
-    <FlatList
+    <FlashList
       horizontal
       data={stores}
       renderItem={renderItem}
       keyExtractor={item => item.id}
       showsHorizontalScrollIndicator={false}
+      estimatedItemSize={120}
     />
   );
 };

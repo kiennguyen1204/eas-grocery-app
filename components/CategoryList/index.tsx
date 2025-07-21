@@ -1,11 +1,7 @@
+import { FlashList } from '@shopify/flash-list';
 import { memo } from 'react';
 import isEqual from 'react-fast-compare';
-import {
-  FlatList,
-  ImageBackground,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
 // Constants
 import { ACCESSIBILITY_CONFIG, SCREEN_WIDTH } from '@/constants';
@@ -36,48 +32,48 @@ const CategoryList = ({ data, onPress }: CategoryListProps) => {
   }) => {
     const handlePress = () => onPress(id);
     return (
-      <TouchableOpacity
-        style={[styles.itemContainer, { width: itemScreenWidth }]}
-        onPress={handlePress}
-        accessible={true}
-        accessibilityRole="button"
-        accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_ITEM(title)}
-        accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CATEGORY_ITEM(title)}>
-        <ImageBackground
-          source={{ uri: imageUrl }}
-          style={styles.image}
-          resizeMode="cover"
+      <View style={styles.itemWrapper}>
+        <TouchableOpacity
+          style={[styles.itemContainer, { width: itemScreenWidth }]}
+          onPress={handlePress}
           accessible={true}
-          accessibilityRole="image"
-          accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_IMAGE(
-            title,
-          )}>
-          <View style={styles.overlay} />
-          <Text
-            size="xs"
-            style={styles.text}
+          accessibilityRole="button"
+          accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_ITEM(title)}
+          accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CATEGORY_ITEM(title)}>
+          <ImageBackground
+            source={{ uri: imageUrl }}
+            style={styles.image}
+            resizeMode="cover"
             accessible={true}
-            accessibilityRole="text">
-            {title}
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
+            accessibilityRole="image"
+            accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_IMAGE(
+              title,
+            )}>
+            <View style={styles.overlay} />
+            <Text
+              size="xs"
+              style={styles.text}
+              accessible={true}
+              accessibilityRole="text">
+              {title}
+            </Text>
+          </ImageBackground>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   return (
-    <FlatList
-      nestedScrollEnabled={true}
+    <FlashList
       scrollEnabled={false}
       data={data}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString()}
       numColumns={4}
-      contentContainerStyle={styles.container}
-      columnWrapperStyle={styles.columnWrapper}
       accessible={true}
       accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.CATEGORY_LIST}
       accessibilityHint={ACCESSIBILITY_CONFIG.HINTS.CATEGORY_LIST}
+      estimatedItemSize={itemScreenWidth}
     />
   );
 };

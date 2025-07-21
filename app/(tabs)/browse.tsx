@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
   productListWrapper: {
     marginTop: 16,
     flex: 1,
+    paddingHorizontal: 16,
   },
 });
 

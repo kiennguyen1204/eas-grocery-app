@@ -5,6 +5,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 10,
   },
+  bannerWrapper: {
+    marginRight: 10,
+  },
   banner: {
     width: 300,
     height: 165,

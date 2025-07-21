@@ -33,7 +33,7 @@ import { useGetProducts } from '@/hooks';
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
 import { PerformanceMeasureView } from '@shopify/react-native-performance';
 
-export default function ProductsByCategory() {
+const ProductsByCategory = () => {
   const { id } = useLocalSearchParams();
   const [filter, setFilter] = useState({
     order: '',
@@ -111,7 +111,9 @@ export default function ProductsByCategory() {
           </View>
         </View>
         {isLoading && !isRefetching ? (
-          <ActivityIndicator />
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator />
+          </View>
         ) : (
           <View style={styles.list}>
             {error && <Text>Error when load products</Text>}
@@ -129,7 +131,7 @@ export default function ProductsByCategory() {
       </View>
     </PerformanceMeasureView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -154,6 +156,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   list: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
+  loadingContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -171,3 +178,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 });
+export default ProductsByCategory;

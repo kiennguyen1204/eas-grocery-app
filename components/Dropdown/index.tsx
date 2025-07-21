@@ -1,6 +1,6 @@
+import { FlashList } from '@shopify/flash-list';
 import { memo, ReactNode, useState } from 'react';
 import {
-  FlatList,
   GestureResponderEvent,
   Modal,
   TouchableOpacity,
@@ -133,11 +133,12 @@ const Dropdown = ({
             accessibilityLabel={ACCESSIBILITY_CONFIG.LABELS.DROPDOWN_MENU(
               defaultValue,
             )}>
-            <FlatList
+            <FlashList
               data={options}
               keyExtractor={keyExtractor}
               renderItem={renderItem}
               accessible={false}
+              estimatedItemSize={50}
             />
           </View>
         </TouchableOpacity>
