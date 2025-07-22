@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 // Constants
@@ -89,4 +87,4 @@ const ProductCard = ({
   );
 };
 
-export default memo(ProductCard);
+export default ProductCard;

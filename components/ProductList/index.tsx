@@ -1,6 +1,4 @@
 import { FlashList } from '@shopify/flash-list';
-import { memo, useCallback } from 'react';
-import isEqual from 'react-fast-compare';
 import { ActivityIndicator, View } from 'react-native';
 
 // Components
@@ -90,4 +88,4 @@ const ProductList = ({
   );
 };
 
-export default memo(ProductList, isEqual);
+export default ProductList;

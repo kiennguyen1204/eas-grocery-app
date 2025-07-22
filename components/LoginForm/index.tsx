@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import React, { memo, useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { View } from 'react-native';
 
@@ -66,9 +66,9 @@ const LoginForm = ({ onSubmit, isLoading }: LoginFormProps) => {
     },
   });
 
-  const handleTogglePassword = useCallback(() => {
+  const handleTogglePassword = () => {
     setPasswordVisible(!passwordVisible);
-  }, [passwordVisible]);
+  };
 
   const handleOnChange = (fieldName: keyof SignInPayload) => {
     clearErrors(fieldName);
@@ -175,4 +175,4 @@ const LoginForm = ({ onSubmit, isLoading }: LoginFormProps) => {
   );
 };
 
-export default memo(LoginForm);
+export default LoginForm;

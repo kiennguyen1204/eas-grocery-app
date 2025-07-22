@@ -1,4 +1,4 @@
-import { memo, PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 import {
   ActivityIndicator,
   GestureResponderEvent,
@@ -103,4 +103,4 @@ const Button = ({
   );
 };
 
-export default memo(Button);
+export default Button;

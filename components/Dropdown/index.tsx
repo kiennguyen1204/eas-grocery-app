@@ -1,5 +1,5 @@
 import { FlashList } from '@shopify/flash-list';
-import { memo, ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   GestureResponderEvent,
   Modal,
@@ -147,4 +147,4 @@ const Dropdown = ({
   );
 };
 
-export default memo(Dropdown);
+export default Dropdown;

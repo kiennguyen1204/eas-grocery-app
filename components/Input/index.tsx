@@ -1,4 +1,4 @@
-import { forwardRef, memo, Ref } from 'react';
+import { forwardRef, Ref } from 'react';
 import {
   TextInput,
   TextInputProps,
@@ -147,4 +147,4 @@ const Input = forwardRef(
 
 Input.displayName = 'Input';
 
-export default memo(Input);
+export default Input;

@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { Link } from 'expo-router';
@@ -87,9 +87,9 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
     },
   };
 
-  const handleTogglePassword = useCallback(() => {
+  const handleTogglePassword = () => {
     setPasswordVisible(!passwordVisible);
-  }, [passwordVisible]);
+  };
 
   const handleOnChange = (fieldName: keyof ISignUpFormData) => {
     clearErrors(fieldName);
@@ -272,4 +272,4 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
   );
 };
 
-export default memo(SignUpForm);
+export default SignUpForm;

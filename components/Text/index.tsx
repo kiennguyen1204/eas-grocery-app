@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { ColorValue, Text, TextProps } from 'react-native';
 
 // Themes
@@ -36,4 +35,4 @@ const TextCustom = ({
 
 TextCustom.displayName = 'Text';
 
-export default memo(TextCustom);
+export default TextCustom;

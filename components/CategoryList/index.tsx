@@ -1,6 +1,4 @@
 import { FlashList } from '@shopify/flash-list';
-import { memo } from 'react';
-import isEqual from 'react-fast-compare';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
 // Constants
@@ -79,4 +77,4 @@ const CategoryList = ({ data, onPress }: CategoryListProps) => {
   );
 };
 
-export default memo(CategoryList, isEqual);
+export default CategoryList;
