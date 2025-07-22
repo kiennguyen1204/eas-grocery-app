@@ -8,15 +8,15 @@ import {
 } from 'react-native';
 
 // Components
+import Dropdown from '@/components/Dropdown';
 import {
   CategoryIcon,
   ChevronLeftIcon,
-  Dropdown,
   MapIcon,
-  ProductList,
   SortIcon,
-  Text,
-} from '@/components';
+} from '@/components/icons';
+import ProductList from '@/components/ProductList';
+import Text from '@/components/Text';
 
 // Constants
 import {
@@ -31,7 +31,6 @@ import { useGetProducts } from '@/hooks';
 
 // Themes
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
-import { PerformanceMeasureView } from '@shopify/react-native-performance';
 
 const ProductsByCategory = () => {
   const { id } = useLocalSearchParams();
@@ -77,59 +76,57 @@ const ProductsByCategory = () => {
   }, []);
 
   return (
-    <PerformanceMeasureView interactive={!isLoading} screenName="BrowseScreen">
-      <View style={styles.wrapper}>
-        <View style={styles.header}>
-          <View style={styles.titleGroup}>
-            <Text style={styles.textHeading} size="xl">
-              {CATEGORIES[Number(id)]}
-            </Text>
-            <TouchableOpacity onPress={handlePressBackIcon}>
-              <ChevronLeftIcon />
-            </TouchableOpacity>
-          </View>
+    <View style={styles.wrapper}>
+      <View style={styles.header}>
+        <View style={styles.titleGroup}>
           <Text style={styles.textHeading} size="xl">
             {CATEGORIES[Number(id)]}
           </Text>
-          <View style={styles.groupDropdown}>
-            <Dropdown
-              defaultValue="Sort by price"
-              options={SORT_BY_PRICE}
-              onSelect={handleSelectSort}
-              rightIcon={<SortIcon />}
-            />
-            <Dropdown
-              defaultValue="location"
-              isDisabled
-              rightIcon={<MapIcon />}
-            />
-            <Dropdown
-              options={PRODUCT_CATEGORY}
-              defaultValue="Category"
-              rightIcon={<CategoryIcon />}
-            />
-          </View>
+          <TouchableOpacity onPress={handlePressBackIcon}>
+            <ChevronLeftIcon />
+          </TouchableOpacity>
         </View>
-        {isLoading && !isRefetching ? (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator />
-          </View>
-        ) : (
-          <View style={styles.list}>
-            {error && <Text>Error when load products</Text>}
-            <ProductList
-              products={products || []}
-              onPress={handlePressProduct}
-              hasNextPage={isFetchingNextPage}
-              isGridView
-              isRefreshing={isRefetching}
-              onRefresh={handleRefresh}
-              fetchNextPage={handleEndReached}
-            />
-          </View>
-        )}
+        <Text style={styles.textHeading} size="xl">
+          {CATEGORIES[Number(id)]}
+        </Text>
+        <View style={styles.groupDropdown}>
+          <Dropdown
+            defaultValue="Sort by price"
+            options={SORT_BY_PRICE}
+            onSelect={handleSelectSort}
+            rightIcon={<SortIcon />}
+          />
+          <Dropdown
+            defaultValue="location"
+            isDisabled
+            rightIcon={<MapIcon />}
+          />
+          <Dropdown
+            options={PRODUCT_CATEGORY}
+            defaultValue="Category"
+            rightIcon={<CategoryIcon />}
+          />
+        </View>
       </View>
-    </PerformanceMeasureView>
+      {isLoading && !isRefetching ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <View style={styles.list}>
+          {error && <Text>Error when load products</Text>}
+          <ProductList
+            products={products || []}
+            onPress={handlePressProduct}
+            hasNextPage={isFetchingNextPage}
+            isGridView
+            isRefreshing={isRefetching}
+            onRefresh={handleRefresh}
+            fetchNextPage={handleEndReached}
+          />
+        </View>
+      )}
+    </View>
   );
 };
 

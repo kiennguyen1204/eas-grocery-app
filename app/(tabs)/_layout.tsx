@@ -9,7 +9,7 @@ import {
   SearchIcon,
   StoreIcon,
   UserIcon,
-} from '@/components';
+} from '@/components/icons';
 
 // Themes
 import { baseColors } from '@/themes';

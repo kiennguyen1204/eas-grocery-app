@@ -11,7 +11,11 @@ import { ERROR_MESSAGES, REGEX } from '@/constants';
 import { ISignUpFormData } from '@/interfaces';
 
 // Components
-import { Button, Hidden, Input, Show, Text } from '@/components';
+import Button from '../Button';
+import Hidden from '../icons/Hidden';
+import Show from '../icons/Show';
+import Input from '../Input';
+import Text from '../Text';
 
 // Themes
 import { baseColors } from '@/themes';

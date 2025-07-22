@@ -1,6 +1,6 @@
 import { ENDPOINTS } from '@/constants';
 import { TUser, UserPayload } from '@/interfaces';
-import { get, patch } from '@/services';
+import { get, patch } from '@/services/http-request';
 import { useAuthStore } from '@/stores';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 

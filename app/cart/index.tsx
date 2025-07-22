@@ -9,13 +9,13 @@ import {
 import Toast from 'react-native-toast-message';
 
 // Components
-import {
-  Button,
-  CartItem,
-  ChevronLeftIcon,
-  Text,
-  TotalCart,
-} from '@/components';
+import Button from '@/components/Button';
+import CartItem from '@/components/CartItem';
+import Text from '@/components/Text';
+import TotalCart from '@/components/TotalCart';
+
+// Icons
+import { ChevronLeftIcon } from '@/components/icons';
 
 // Constants
 import { ERROR_MESSAGES, MESSAGES, SUCCESS_MESSAGES } from '@/constants';

@@ -7,7 +7,7 @@ import { ENDPOINTS } from '@/constants';
 import { AuthResponse, SignInPayload, SignUpPayload } from '@/interfaces';
 
 // Services
-import { post } from '@/services';
+import { post } from '@/services/http-request';
 
 // Stores
 import { useAuthStore } from '@/stores';

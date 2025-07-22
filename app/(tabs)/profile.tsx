@@ -3,7 +3,8 @@ import { router } from 'expo-router';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 // Components
-import { CartIcon, HeartIcon, Text } from '@/components';
+import { CartIcon, HeartIcon } from '@/components/icons';
+import Text from '@/components/Text';
 
 // Constants
 import { ERROR_MESSAGES, ROUTES } from '@/constants';

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // Components
-import { SignUpForm } from '@/components';
+import SignUpForm from '@/components/SignUpForm';
 
 // Constants
 import {

@@ -9,7 +9,7 @@ import {
 import Toast from 'react-native-toast-message';
 
 // Components
-import { LoginForm } from '@/components';
+import LoginForm from '@/components/LoginForm';
 
 // Constants
 import { ERROR_MESSAGES, ROUTES, SUCCESS_MESSAGES } from '@/constants';
@@ -18,22 +18,13 @@ import { ERROR_MESSAGES, ROUTES, SUCCESS_MESSAGES } from '@/constants';
 import { SignInPayload } from '@/interfaces';
 
 // Services
-import { useAuthSignIn } from '@/services';
+import { useAuthSignIn } from '@/services/auth';
 
 // Themes
 import { baseColors } from '@/themes';
-import {
-  PerformanceMeasureView,
-  useStartProfiler,
-} from '@shopify/react-native-performance';
-import { useEffect } from 'react';
 
 const LoginScreen = () => {
   const { mutate: login, isPending } = useAuthSignIn();
-  const startNavigationTTITimer = useStartProfiler();
-  useEffect(() => {
-    startNavigationTTITimer({});
-  }, [startNavigationTTITimer]);
 
   const handleSubmit = (values: SignInPayload) => {
     login(values, {
@@ -55,24 +46,22 @@ const LoginScreen = () => {
   };
 
   return (
-    <PerformanceMeasureView interactive screenName="HomeScreen">
-      <TouchableWithoutFeedback
-        onPress={Keyboard.dismiss}
-        accessible={false}
-        accessibilityLabel="Dismiss keyboard">
-        <KeyboardAvoidingView
-          style={styles.container}
+    <TouchableWithoutFeedback
+      onPress={Keyboard.dismiss}
+      accessible={false}
+      accessibilityLabel="Dismiss keyboard">
+      <KeyboardAvoidingView
+        style={styles.container}
+        accessible={true}
+        accessibilityLabel="Login screen">
+        <ScrollView
+          contentContainerStyle={styles.flexGrow}
           accessible={true}
-          accessibilityLabel="Login screen">
-          <ScrollView
-            contentContainerStyle={styles.flexGrow}
-            accessible={true}
-            accessibilityLabel="Login form container">
-            <LoginForm onSubmit={handleSubmit} isLoading={isPending} />
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </TouchableWithoutFeedback>
-    </PerformanceMeasureView>
+          accessibilityLabel="Login form container">
+          <LoginForm onSubmit={handleSubmit} isLoading={isPending} />
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 };
 

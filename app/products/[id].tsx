@@ -4,8 +4,8 @@ import Toast from 'react-native-toast-message';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 
-import { FlashList } from '@shopify/flash-list';
 import {
+  FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
   Pressable,
@@ -34,14 +34,14 @@ import { useAddToCart, useGetCart, useGetProductDetail } from '@/hooks';
 import { baseColors, fontsFamily, fontWeights } from '@/themes';
 
 // Components
+import Button from '@/components/Button';
 import {
-  Button,
   ChevronLeftIcon,
   HeartOutlineIcon,
   MoreIcon,
   ShareIcon,
-  Text,
-} from '@/components';
+} from '@/components/icons';
+import Text from '@/components/Text';
 
 // Utils
 import {
@@ -54,7 +54,7 @@ import {
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const flatListRef = useRef<FlashList<string>>(null);
+  const flatListRef = useRef<FlatList<string>>(null);
   const { mutate: addToCart, isPending: isAdding } = useAddToCart();
   const { data: cartItems = [] } = useGetCart();
 
@@ -179,9 +179,9 @@ const ProductDetail = () => {
         {error && <Text>Error when load product</Text>}
         <View style={styles.imageContainer}>
           <View style={styles.overlay} />
-          <FlashList
+          <FlatList
             ref={flatListRef}
-            data={images}
+            data={images || []}
             keyExtractor={item => item}
             horizontal
             pagingEnabled
@@ -190,7 +190,7 @@ const ProductDetail = () => {
             scrollEventThrottle={16}
             renderItem={renderItem}
             snapToInterval={SCREEN_WIDTH}
-            estimatedItemSize={SCREEN_WIDTH}
+            style={styles.flashList}
           />
           <View style={styles.topBar}>
             <Pressable style={styles.iconButton} onPress={handleBack}>
@@ -313,6 +313,11 @@ const styles = StyleSheet.create({
   imageContainer: {
     position: 'relative',
     width: '100%',
+    height: 250,
+  },
+  flashList: {
+    flex: 1,
+    width: SCREEN_WIDTH,
     height: 250,
   },
   image: {

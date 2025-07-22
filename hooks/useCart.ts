@@ -1,5 +1,5 @@
 import { ENDPOINTS } from '@/constants';
-import { del, get, patch, post } from '@/services';
+import { del, get, patch, post } from '@/services/http-request';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 export interface CartItem {

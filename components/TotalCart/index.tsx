@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
 // Components
-import { Text } from '@/components';
+import Text from '../Text';
 
 // Themes
 import { baseColors } from '@/themes';

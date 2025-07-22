@@ -29,10 +29,6 @@ preventAutoHideAsync();
 const storybookEnabled = process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true';
 const StorybookUIRoot = require('../.storybook').default;
 
-const PerformanceProfiler = __DEV__
-  ? require('@shopify/react-native-performance').PerformanceProfiler
-  : null;
-
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [showStorybook, setShowStorybook] = useState(false);
@@ -73,12 +69,6 @@ export default function RootLayout() {
     }
   }, [appIsReady, authReady]);
 
-  const onReportPrepared = useCallback((report: string) => {
-    if (__DEV__) {
-      console.log(report);
-    }
-  }, []);
-
   useEffect(() => {
     if (appIsReady && authReady) {
       registerForPushNotifications();
@@ -98,23 +88,18 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       {__DEV__ ? (
-        <PerformanceProfiler onReportPrepared={onReportPrepared}>
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Protected guard={!isAuthenticated}>
-              <Stack.Screen
-                name={ROUTES.ONBOARDING}
-                options={{ headerShown: false }}
-              />
-            </Stack.Protected>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Protected guard={!isAuthenticated}>
+            <Stack.Screen
+              name={ROUTES.ONBOARDING}
+              options={{ headerShown: false }}
+            />
+          </Stack.Protected>
 
-            <Stack.Protected guard={!!isAuthenticated}>
-              <Stack.Screen
-                name={ROUTES.HOME}
-                options={{ headerShown: false }}
-              />
-            </Stack.Protected>
-          </Stack>
-        </PerformanceProfiler>
+          <Stack.Protected guard={!!isAuthenticated}>
+            <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
+          </Stack.Protected>
+        </Stack>
       ) : (
         <Stack>
           <Stack.Protected guard={!isAuthenticated}>

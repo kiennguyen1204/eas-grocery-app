@@ -5,7 +5,10 @@ import { useCallback, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 // Components
-import { Button, ChevronLeftIcon, Input, Text } from '@/components';
+import Button from '@/components/Button';
+import { ChevronLeftIcon } from '@/components/icons';
+import Input from '@/components/Input';
+import Text from '@/components/Text';
 
 // Constants
 import { ERROR_MESSAGES, ROUTES, SUCCESS_MESSAGES } from '@/constants';

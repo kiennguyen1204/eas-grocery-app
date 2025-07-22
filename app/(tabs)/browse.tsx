@@ -1,13 +1,11 @@
-import {
-  PerformanceMeasureView,
-  useStartProfiler,
-} from '@shopify/react-native-performance';
 import { router } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 // Components
-import { Header, ProductList, Text } from '@/components';
+import Header from '@/components/Header';
+import ProductList from '@/components/ProductList';
+import Text from '@/components/Text';
 
 // Hooks
 import { useGetProducts } from '@/hooks';
@@ -25,7 +23,6 @@ const BrowseScreen = () => {
     order: '',
     categoryName: '',
   });
-  const startNavigationTTITimer = useStartProfiler();
 
   const {
     data: products,
@@ -72,43 +69,37 @@ const BrowseScreen = () => {
     refetch();
   }, [refetch]);
 
-  useEffect(() => {
-    startNavigationTTITimer({});
-  }, [startNavigationTTITimer]);
-
   return (
-    <PerformanceMeasureView interactive={!isLoading} screenName={ROUTES.BROWSE}>
-      <View style={styles.wrapper}>
-        <Header
-          title="Browse"
-          isBrowse
-          isSearch
-          onChangeText={text => setSearchQuery(text)}
-          optionSort={SORT_BY_PRICE}
-          optionCategory={PRODUCT_CATEGORY}
-          totalQuantity={totalQuantity}
-          onSelect={handleSelectSort}
-          onCategorySelect={handleSelectCategory}
-          onNavigate={handleNavigateCartScreen}
-        />
-        <View style={styles.productListWrapper}>
-          {productsError && <Text>Error when load new products</Text>}
-          {isLoading ? (
-            <ActivityIndicator />
-          ) : (
-            <ProductList
-              isGridView
-              products={products || []}
-              onPress={handlePressProduct}
-              hasNextPage={hasNextPage}
-              isRefreshing={isRefetching}
-              onRefresh={handleRefresh}
-              fetchNextPage={handleEndReached}
-            />
-          )}
-        </View>
+    <View style={styles.wrapper}>
+      <Header
+        title="Browse"
+        isBrowse
+        isSearch
+        onChangeText={text => setSearchQuery(text)}
+        optionSort={SORT_BY_PRICE}
+        optionCategory={PRODUCT_CATEGORY}
+        totalQuantity={totalQuantity}
+        onSelect={handleSelectSort}
+        onCategorySelect={handleSelectCategory}
+        onNavigate={handleNavigateCartScreen}
+      />
+      <View style={styles.productListWrapper}>
+        {productsError && <Text>Error when load new products</Text>}
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <ProductList
+            isGridView
+            products={products || []}
+            onPress={handlePressProduct}
+            hasNextPage={hasNextPage}
+            isRefreshing={isRefetching}
+            onRefresh={handleRefresh}
+            fetchNextPage={handleEndReached}
+          />
+        )}
       </View>
-    </PerformanceMeasureView>
+    </View>
   );
 };
 

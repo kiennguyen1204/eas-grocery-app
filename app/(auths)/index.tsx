@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 
 // Components
-import { Button, Text } from '@/components';
+import Button from '@/components/Button';
+import Text from '@/components/Text';
 
 // Constants
 import { ROUTES, SCREEN_WIDTH, SLIDES_ONBOARDING } from '@/constants';

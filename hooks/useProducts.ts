@@ -7,7 +7,7 @@ import { ENDPOINTS } from '@/constants';
 import { TProduct } from '@/interfaces';
 
 // Services
-import { get } from '@/services';
+import { get } from '@/services/http-request';
 
 type GetProductParams = {
   data?: TProduct[];

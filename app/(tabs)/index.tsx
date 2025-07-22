@@ -1,8 +1,4 @@
-import {
-  PerformanceMeasureView,
-  useStartProfiler,
-} from '@shopify/react-native-performance';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 import { router } from 'expo-router';
 import {
@@ -13,18 +9,14 @@ import {
   View,
 } from 'react-native';
 
-import {
-  Banner,
-  Button,
-  CartIcon,
-  CategoryList,
-  HeartIcon,
-  Input,
-  ProductList,
-  SearchIcon,
-  StoreList,
-  Text,
-} from '@/components';
+import Banner from '@/components/Banner';
+import Button from '@/components/Button';
+import CategoryList from '@/components/CategoryList';
+import { CartIcon, HeartIcon, SearchIcon } from '@/components/icons';
+import Input from '@/components/Input';
+import ProductList from '@/components/ProductList';
+import StoreList from '@/components/StoreList';
+import Text from '@/components/Text';
 
 // Mocks
 import { CATEGORIES, STORE_CARDS } from '@/mocks';
@@ -45,7 +37,6 @@ const HomeScreen = () => {
     error: productsError,
     isLoading,
   } = useGetProducts({ limit: 10 });
-  const startNavigationTTITimer = useStartProfiler();
 
   useHandleJwtExpired(productsError?.message);
 
@@ -72,134 +63,128 @@ const HomeScreen = () => {
     router.push(ROUTES.CART as never);
   };
 
-  useEffect(() => {
-    startNavigationTTITimer({});
-  }, [startNavigationTTITimer]);
-
   return (
-    <PerformanceMeasureView interactive={!isLoading} screenName="HomeScreen">
-      <View
-        style={styles.wrapper}
-        accessible={true}
-        accessibilityLabel="Home screen">
-        <View style={styles.headerContainer}>
-          <View style={styles.header}>
-            <Text
-              color={baseColors.whitePure}
-              size="xl"
-              fontFamily="bold"
-              accessible
-              accessibilityRole="header">
-              Groceries
-            </Text>
-            <View style={styles.icon}>
-              <TouchableOpacity
-                accessible
-                accessibilityRole="button"
-                accessibilityLabel="Favorites"
-                accessibilityHint="Tap to view your favorite items">
-                <HeartIcon />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.navLink}
-                testID="cart-button"
-                onPress={handleNavigateCartScreen}
-                accessible
-                accessibilityRole="button"
-                accessibilityLabel={`Shopping cart with ${totalQuantity} items`}
-                accessibilityHint="Tap to view your shopping cart">
-                <View
-                  style={styles.totalQuantity}
-                  accessible
-                  accessibilityLabel={`${totalQuantity} items in cart`}>
-                  <Text
-                    size="xs"
-                    color={baseColors.whitePure}
-                    style={styles.textQuantity}>
-                    {totalQuantity}
-                  </Text>
-                </View>
-                <CartIcon />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <Input
-            leftIcon={<SearchIcon color={baseColors.greenLight} />}
-            placeholder="Search Product"
-            accessibilityLabel="Search products"
-            accessibilityHint="Enter product name to search"
-          />
-        </View>
-        <ScrollView accessible accessibilityLabel="Home content">
-          <View
-            style={styles.banner}
+    <View
+      style={styles.wrapper}
+      accessible={true}
+      accessibilityLabel="Home screen">
+      <View style={styles.headerContainer}>
+        <View style={styles.header}>
+          <Text
+            color={baseColors.whitePure}
+            size="xl"
+            fontFamily="bold"
             accessible
-            accessibilityLabel="Featured banners">
-            <Banner />
+            accessibilityRole="header">
+            Groceries
+          </Text>
+          <View style={styles.icon}>
+            <TouchableOpacity
+              accessible
+              accessibilityRole="button"
+              accessibilityLabel="Favorites"
+              accessibilityHint="Tap to view your favorite items">
+              <HeartIcon />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.navLink}
+              testID="cart-button"
+              onPress={handleNavigateCartScreen}
+              accessible
+              accessibilityRole="button"
+              accessibilityLabel={`Shopping cart with ${totalQuantity} items`}
+              accessibilityHint="Tap to view your shopping cart">
+              <View
+                style={styles.totalQuantity}
+                accessible
+                accessibilityLabel={`${totalQuantity} items in cart`}>
+                <Text
+                  size="xs"
+                  color={baseColors.whitePure}
+                  style={styles.textQuantity}>
+                  {totalQuantity}
+                </Text>
+              </View>
+              <CartIcon />
+            </TouchableOpacity>
           </View>
-          <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
-          <View style={styles.product}>
-            <View style={styles.productHeading}>
-              <Text
-                color={baseColors.grayMedium}
-                style={styles.productTitle}
-                accessible
-                accessibilityRole="header">
-                New Product
-              </Text>
-              <Button
-                title="See All"
-                size="small"
-                style={styles.button}
-                onPress={handlePressSeeAll}
-              />
-            </View>
+        </View>
 
-            {productsError && (
-              <Text
-                accessible
-                accessibilityRole="alert"
-                accessibilityLiveRegion="polite">
-                Error when load new products
-              </Text>
-            )}
-            {isFetchingProducts ? (
-              <ActivityIndicator
-                accessible
-                accessibilityLabel="Loading new products"
-              />
-            ) : (
-              <ProductList
-                products={products || []}
-                onPress={handlePressProduct}
-              />
-            )}
-          </View>
-
-          <View style={styles.storesHeading}>
+        <Input
+          leftIcon={<SearchIcon color={baseColors.greenLight} />}
+          placeholder="Search Product"
+          accessibilityLabel="Search products"
+          accessibilityHint="Enter product name to search"
+        />
+      </View>
+      <ScrollView accessible accessibilityLabel="Home content">
+        <View
+          style={styles.banner}
+          accessible
+          accessibilityLabel="Featured banners">
+          <Banner />
+        </View>
+        <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
+        <View style={styles.product}>
+          <View style={styles.productHeading}>
             <Text
-              style={styles.storesTitle}
+              color={baseColors.grayMedium}
+              style={styles.productTitle}
               accessible
               accessibilityRole="header">
-              Store to follow
+              New Product
             </Text>
             <Button
-              title="View All"
+              title="See All"
               size="small"
-              variant="secondary"
-              style={styles.btnViewAll}
+              style={styles.button}
+              onPress={handlePressSeeAll}
             />
           </View>
-          <View
-            style={styles.storeList}
+
+          {productsError && (
+            <Text
+              accessible
+              accessibilityRole="alert"
+              accessibilityLiveRegion="polite">
+              Error when load new products
+            </Text>
+          )}
+          {isFetchingProducts ? (
+            <ActivityIndicator
+              accessible
+              accessibilityLabel="Loading new products"
+            />
+          ) : (
+            <ProductList
+              products={products || []}
+              onPress={handlePressProduct}
+            />
+          )}
+        </View>
+
+        <View style={styles.storesHeading}>
+          <Text
+            style={styles.storesTitle}
             accessible
-            accessibilityLabel="Stores to follow">
-            <StoreList stores={STORE_CARDS} />
-          </View>
-        </ScrollView>
-      </View>
-    </PerformanceMeasureView>
+            accessibilityRole="header">
+            Store to follow
+          </Text>
+          <Button
+            title="View All"
+            size="small"
+            variant="secondary"
+            style={styles.btnViewAll}
+          />
+        </View>
+        <View
+          style={styles.storeList}
+          accessible
+          accessibilityLabel="Stores to follow">
+          <StoreList stores={STORE_CARDS} />
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 

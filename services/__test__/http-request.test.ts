@@ -1,5 +1,5 @@
 import { PROCESS_ENV } from '@/constants';
-import { del, get, patch, post, put } from '@/services';
+import { del, get, patch, post, put } from '@/services/http-request';
 import { getErrorMessageFromApi } from '@/utils';
 
 jest.mock('@/utils', () => ({
