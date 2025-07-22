@@ -1,10 +1,12 @@
+export * from './icons';
+export { default as Text } from './Text';
+
 export { default as Banner } from './Banner';
 export { default as Button } from './Button';
 export { default as CartItem } from './CartItem';
 export { default as CategoryList } from './CategoryList';
 export { default as Dropdown } from './Dropdown';
 export { default as Header } from './Header';
-export * from './icons';
 export { default as Input } from './Input';
 export { default as LoginForm } from './LoginForm';
 export { default as ProductCard } from './ProductCard';
@@ -12,5 +14,4 @@ export { default as ProductList } from './ProductList';
 export { default as SignUpForm } from './SignUpForm';
 export { default as StoreCard } from './StoreCard';
 export { default as StoreList } from './StoreList';
-export { default as Text } from './Text';
 export { default as TotalCart } from './TotalCart';

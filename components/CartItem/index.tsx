@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 
 // Themes
@@ -169,4 +168,4 @@ const CartItem = ({
   );
 };
 
-export default memo(CartItem);
+export default CartItem;

@@ -6,5 +6,9 @@ module.exports = defineConfig([
   expoConfig,
   {
     ignores: ['dist/*'],
+    plugins: ['prettier', 'react-compiler'],
+    rules: {
+      'react-compiler/react-compiler': 'warn',
+    },
   },
 ]);

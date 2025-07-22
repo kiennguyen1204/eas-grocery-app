@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 // Components
@@ -139,4 +138,4 @@ const HeaderComponent = ({
   );
 };
 
-export default memo(HeaderComponent);
+export default HeaderComponent;
