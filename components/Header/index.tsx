@@ -2,17 +2,15 @@ import { memo } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 // Components
-import {
-  CartIcon,
-  CategoryIcon,
-  Dropdown,
-  HeartOutlineIcon,
-  Input,
-  MapIcon,
-  SearchIcon,
-  SortIcon,
-  Text,
-} from '@/components';
+import Dropdown from '../Dropdown';
+import CartIcon from '../icons/Cart';
+import CategoryIcon from '../icons/Category';
+import HeartOutlineIcon from '../icons/HeartOutline';
+import MapIcon from '../icons/Map';
+import SearchIcon from '../icons/Search';
+import SortIcon from '../icons/Sort';
+import Input from '../Input';
+import Text from '../Text';
 
 // Constants
 import { ACCESSIBILITY_CONFIG } from '@/constants';

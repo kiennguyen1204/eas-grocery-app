@@ -1,9 +1,7 @@
 import { FlashList } from '@shopify/flash-list';
-import { memo } from 'react';
-import isEqual from 'react-fast-compare';
 
 // Components
-import { StoreCard } from '@/components';
+import StoreCard from '../StoreCard';
 
 type Store = {
   id: string;
@@ -43,4 +41,4 @@ const StoreList = ({ stores }: StoreListProps) => {
   );
 };
 
-export default memo(StoreList, isEqual);
+export default StoreList;

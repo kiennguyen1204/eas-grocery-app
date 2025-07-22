@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { Link } from 'expo-router';

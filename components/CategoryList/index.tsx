@@ -6,7 +6,8 @@ import { ImageBackground, TouchableOpacity, View } from 'react-native';
 // Constants
 import { ACCESSIBILITY_CONFIG, SCREEN_WIDTH } from '@/constants';
 
-import { Text } from '@/components';
+// Components
+import Text from '../Text';
 
 // Styles
 import { styles } from './styles';

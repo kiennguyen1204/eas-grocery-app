@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // Components
-import { Text } from '@/components';
+import Text from '../Text';
 
 // Constants
 import { ACCESSIBILITY_CONFIG } from '@/constants';

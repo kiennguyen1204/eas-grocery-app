@@ -7,8 +7,8 @@ import { baseColors } from '@/themes';
 import { ACCESSIBILITY_CONFIG } from '@/constants';
 
 // Components
-import { Button, Text } from '@/components';
-import { memo } from 'react';
+import Button from '../Button';
+import Text from '../Text';
 
 // Styles
 import { styles } from './styles';
@@ -65,4 +65,4 @@ const StoreCard = ({ imageUrl, storeName, logoLetter, id }: StoreCardProps) => {
   );
 };
 
-export default memo(StoreCard);
+export default StoreCard;

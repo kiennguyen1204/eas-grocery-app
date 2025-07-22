@@ -2,7 +2,7 @@ import { FlashList } from '@shopify/flash-list';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 
 // Components
-import { Text } from '@/components';
+import Text from '../Text';
 
 // Constants
 import { ACCESSIBILITY_CONFIG } from '@/constants';

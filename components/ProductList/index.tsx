@@ -4,7 +4,8 @@ import isEqual from 'react-fast-compare';
 import { ActivityIndicator, View } from 'react-native';
 
 // Components
-import { ProductCard, Text } from '@/components';
+import ProductCard from '../ProductCard';
+import Text from '../Text';
 
 //  Constants
 import { MESSAGES } from '@/constants';
@@ -38,31 +39,28 @@ const ProductList = ({
   onRefresh,
   ...props
 }: ProductListProps) => {
-  const handlePress = useCallback((id: string) => onPress(id), [onPress]);
+  const handlePress = (id: string) => onPress(id);
 
-  const renderItem = useCallback(
-    ({
-      item: { id, images, name, discountPrice, storeName, price },
-    }: {
-      item: TProduct;
-    }) => {
-      return (
-        <View
-          style={isGridView ? styles.gridItemWrapper : styles.listItemWrapper}>
-          <ProductCard
-            id={id}
-            imageUrl={images[0]}
-            name={name}
-            discountPrice={discountPrice}
-            storeName={storeName}
-            price={price}
-            onPress={handlePress}
-          />
-        </View>
-      );
-    },
-    [handlePress, isGridView],
-  );
+  const renderItem = ({
+    item: { id, images, name, discountPrice, storeName, price },
+  }: {
+    item: TProduct;
+  }) => {
+    return (
+      <View
+        style={isGridView ? styles.gridItemWrapper : styles.listItemWrapper}>
+        <ProductCard
+          id={id}
+          imageUrl={images[0]}
+          name={name}
+          discountPrice={discountPrice}
+          storeName={storeName}
+          price={price}
+          onPress={handlePress}
+        />
+      </View>
+    );
+  };
 
   return (
     <FlashList

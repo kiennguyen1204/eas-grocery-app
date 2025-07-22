@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, Ref } from 'react';
+import { forwardRef, memo, Ref } from 'react';
 import {
   TextInput,
   TextInputProps,
@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // Components
-import { Text } from '@/components';
+import Text from '../Text';
 
 // Constants
 import { ACCESSIBILITY_CONFIG } from '@/constants';

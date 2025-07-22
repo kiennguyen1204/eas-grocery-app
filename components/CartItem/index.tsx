@@ -8,7 +8,7 @@ import { baseColors } from '@/themes';
 import { ACCESSIBILITY_CONFIG } from '@/constants';
 
 // Components
-import { Text } from '@/components';
+import Text from '../Text';
 
 // Utils
 import { calculateDiscountPercentage } from '@/utils';
