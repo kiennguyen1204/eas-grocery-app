@@ -2,9 +2,10 @@
 
 exports[`Button should render correctly 1`] = `
 <View
+  accessibilityRole="button"
   accessibilityState={
     {
-      "busy": undefined,
+      "busy": false,
       "checked": undefined,
       "disabled": false,
       "expanded": undefined,

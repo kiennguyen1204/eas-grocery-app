@@ -1,5 +1,6 @@
 import { baseColors } from '@/themes';
 import type { Meta, StoryObj } from '@storybook/react';
+import { View } from 'react-native';
 import Text from '.';
 
 const meta: Meta<typeof Text> = {
@@ -18,37 +19,37 @@ export const Default: Story = {
 
 export const Sizes: Story = {
   render: () => (
-    <>
+    <View>
       <Text size="xs">Extra Small Text (xs)</Text>
       <Text size="base">Base Text (base)</Text>
       <Text size="sm">Small Text (sm)</Text>
       <Text size="md">Medium Text (md)</Text>
       <Text size="lg">Large Text (lg)</Text>
       <Text size="xl">Extra Large Text (xl)</Text>
-    </>
+    </View>
   ),
 };
 
 export const FontFamilies: Story = {
   render: () => (
-    <>
+    <View>
       <Text fontFamily="regular">Regular Font Family</Text>
       <Text fontFamily="medium">Medium Font Family</Text>
       <Text fontFamily="bold">Bold Font Family</Text>
       <Text fontFamily="semiBold">Semi Bold Font Family</Text>
-    </>
+    </View>
   ),
 };
 
 export const Colors: Story = {
   render: () => (
-    <>
+    <View>
       <Text color={baseColors.grayDark}>Gray Dark Text</Text>
       <Text color={baseColors.greenLight}>Green Light Text</Text>
       <Text color={baseColors.redPrimary}>Red Primary Text</Text>
       <Text color={baseColors.whitePure}>White Pure Text</Text>
       <Text color="#ff6b6b">Custom Color Text</Text>
-    </>
+    </View>
   ),
 };
 

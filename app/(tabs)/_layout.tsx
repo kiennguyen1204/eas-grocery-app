@@ -1,5 +1,4 @@
-import * as Notifications from 'expo-notifications';
-import { router, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { useEffect } from 'react';
 
 // Components
@@ -21,27 +20,11 @@ import {
   setupNotificationHandler,
 } from '@/utils';
 
-// Constants
-import { NOTIFICATION_ACTION_KEYS } from '@/constants';
-
 export default function TabLayout() {
   useEffect(() => {
     registerForPushNotificationsAsync();
     setupNotificationHandler();
     setupFirebaseNotificationListeners();
-
-    const subscription = Notifications.addNotificationResponseReceivedListener(
-      response => {
-        const { actionType, actionData } =
-          response.notification.request.content.data;
-        if (actionType === NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING) {
-          const url = actionData.url;
-          router.push(url);
-        }
-      },
-    );
-
-    return () => subscription.remove();
   }, []);
 
   return (

@@ -106,11 +106,20 @@ const ProductDetail = () => {
    */
   const handleAddToCartSuccess = useCallback(() => {
     checkAndRequestNotificationPermission().then(() => {
+      // Create proper notification data for product
+      const notificationData = {
+        type: 'product',
+        productId: id,
+        actionType: NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
+        url: `/products/${id}`,
+        timestamp: Date.now(),
+      };
+
       scheduleNotification(
         NOTIFICATION_MESSAGES.ADD_PRODUCT_SUCCESS,
         NOTIFICATION_MESSAGES.ADD_PRODUCT_DETAILS(name || ''),
-        NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
-        { url: `products/${id}` },
+        notificationData, // proper data structure
+        { seconds: 1 }, // proper trigger
       );
       router.push(ROUTES.CART);
     });

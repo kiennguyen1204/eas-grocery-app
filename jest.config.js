@@ -14,6 +14,10 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^test-utils$': '<rootDir>/test-utils.tsx',
+    '@react-native-firebase/messaging':
+      '<rootDir>/__mocks__/react-native-firebase-messaging.js',
+    '@react-native-firebase/app':
+      '<rootDir>/__mocks__/react-native-firebase-app.js',
   },
   collectCoverage: true,
   collectCoverageFrom: [

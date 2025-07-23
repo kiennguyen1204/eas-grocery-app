@@ -13,7 +13,11 @@ import { ROUTES, STALE_TIME } from '@/constants';
 
 // Stores
 import { useAuthStore } from '@/stores';
-import { registerForPushNotifications } from '@/utils';
+import {
+  registerForPushNotifications,
+  setupNotificationHandler,
+  setupNotificationListeners,
+} from '@/utils';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -71,8 +75,21 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (appIsReady && authReady) {
+      // Setup notification handler
+      setupNotificationHandler();
+
+      // Setup notification listeners for navigation
+      const subscription = setupNotificationListeners();
+
+      // Register for push notifications
       registerForPushNotifications();
+
       onLayoutRootView();
+
+      // Cleanup subscription on unmount
+      return () => {
+        subscription?.remove();
+      };
     }
   }, [appIsReady, authReady, onLayoutRootView]);
 

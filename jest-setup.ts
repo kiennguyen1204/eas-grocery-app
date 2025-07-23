@@ -1,24 +1,22 @@
 import '@testing-library/react-native/extend-expect';
 
-jest.mock('@react-native-firebase/messaging', () => ({
-  getMessaging: jest.fn().mockReturnValue({
-    onMessage: jest.fn(),
-    onNotificationOpenedApp: jest.fn(),
-    getInitialNotification: jest.fn(),
-    requestPermission: jest.fn().mockResolvedValue(true),
-    hasPermission: jest.fn().mockResolvedValue(true),
-    getToken: jest.fn().mockResolvedValue('mocked-firebase-token'),
-    deleteToken: jest.fn().mockResolvedValue(null),
-  }),
-}));
-
-jest.mock('@react-native-firebase/app', () => ({
-  getApp: jest.fn().mockReturnValue({
-    name: 'mocked-app-name',
-    options: {},
-    delete: jest.fn().mockResolvedValue(undefined),
-    utils: jest.fn().mockReturnValue({}),
-  }),
+// Mock Firebase for web SDK (new approach)
+jest.mock('./firebase.config', () => ({
+  __esModule: true,
+  app: {
+    name: '[DEFAULT]',
+    options: {
+      projectId: 'mocked-project-id',
+      apiKey: 'mocked-api-key',
+    },
+  },
+  default: {
+    name: '[DEFAULT]',
+    options: {
+      projectId: 'mocked-project-id',
+      apiKey: 'mocked-api-key',
+    },
+  },
 }));
 
 jest.mock('react-native-reanimated', () => {
@@ -61,4 +59,9 @@ jest.mock('expo-notifications', () => ({
   setNotificationHandler: jest.fn(),
   scheduleNotificationAsync: jest.fn(),
   // Add any other exports you use
+}));
+
+// Mock React Native Alert
+jest.mock('react-native/Libraries/Alert/Alert', () => ({
+  alert: jest.fn(),
 }));

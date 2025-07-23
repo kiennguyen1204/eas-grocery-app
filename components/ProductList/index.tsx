@@ -62,7 +62,7 @@ const ProductList = ({
 
   return (
     <FlashList
-      key={`${isGridView ? 'grid' : 'list'}-${products.length}`}
+      key={isGridView ? 'grid' : 'list'}
       data={products}
       renderItem={renderItem}
       keyExtractor={item => item.id.toString() || ''}
