@@ -104,33 +104,18 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {__DEV__ ? (
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Protected guard={!isAuthenticated}>
-            <Stack.Screen
-              name={ROUTES.ONBOARDING}
-              options={{ headerShown: false }}
-            />
-          </Stack.Protected>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Protected guard={!isAuthenticated}>
+          <Stack.Screen
+            name={ROUTES.ONBOARDING}
+            options={{ headerShown: false }}
+          />
+        </Stack.Protected>
 
-          <Stack.Protected guard={!!isAuthenticated}>
-            <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
-          </Stack.Protected>
-        </Stack>
-      ) : (
-        <Stack>
-          <Stack.Protected guard={!isAuthenticated}>
-            <Stack.Screen
-              name={ROUTES.ONBOARDING}
-              options={{ headerShown: false }}
-            />
-          </Stack.Protected>
-
-          <Stack.Protected guard={!!isAuthenticated}>
-            <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
-          </Stack.Protected>
-        </Stack>
-      )}
+        <Stack.Protected guard={!!isAuthenticated}>
+          <Stack.Screen name={ROUTES.HOME} options={{ headerShown: false }} />
+        </Stack.Protected>
+      </Stack>
       <StatusBar style="auto" />
       <Toast />
     </QueryClientProvider>

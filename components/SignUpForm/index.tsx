@@ -268,7 +268,7 @@ const SignUpForm = ({ onSubmit, isLoading }: SignUpFormProps) => {
 
       <View style={styles.signUpContainer}>
         <Text style={styles.signUpAccount}>Have an account? </Text>
-        <Link href="/login" style={styles.signUpLink}>
+        <Link href="/(auths)/login" style={styles.signUpLink}>
           Sign in
         </Link>
       </View>

@@ -1,7 +1,7 @@
-import { FlashList } from '@shopify/flash-list';
 import { useRouter } from 'expo-router';
 import { useRef, useState } from 'react';
 import {
+  FlatList,
   Image,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -24,7 +24,7 @@ import { SlideItem } from '@/types';
 
 const Onboarding = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const slideListRef = useRef<FlashList<SlideItem>>(null);
+  const slideListRef = useRef<FlatList<SlideItem>>(null);
   const router = useRouter();
 
   const goToNextSlide = () => {
@@ -74,7 +74,7 @@ const Onboarding = () => {
 
   return (
     <View style={styles.mainContainer}>
-      <FlashList
+      <FlatList
         ref={slideListRef}
         data={SLIDES_ONBOARDING}
         keyExtractor={item => item.id}
@@ -84,7 +84,7 @@ const Onboarding = () => {
         onMomentumScrollEnd={onScrollEnd}
         style={styles.slideList}
         renderItem={renderSlide}
-        estimatedItemSize={SCREEN_WIDTH}
+        // estimatedItemSize={SCREEN_WIDTH}
       />
 
       <View style={styles.bottomBar}>
