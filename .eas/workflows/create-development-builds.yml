@@ -1,0 +1,30 @@
+name: Create Development and Preview Builds
+
+on:
+  push:
+    branches: ['development', 'staging']
+
+jobs:
+  build_android_preview:
+    type: build
+    params:
+      platform: android
+      profile: preview
+
+  build_ios_preview:
+    type: build
+    params:
+      platform: ios
+      profile: preview
+
+  build_android_development:
+    type: build
+    params:
+      platform: android
+      profile: development
+
+  build_ios_development:
+    type: build
+    params:
+      platform: ios
+      profile: development

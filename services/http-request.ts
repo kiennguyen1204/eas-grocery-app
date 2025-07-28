@@ -1,5 +1,5 @@
 // Constants
-import { PROCESS_ENV } from '@/constants';
+import Constants from 'expo-constants';
 
 // Utils
 import { getErrorMessageFromApi } from '@/utils';
@@ -9,7 +9,9 @@ const fetchApi = async <T>(
   endpoint: string,
   options: RequestInit,
 ): Promise<T> => {
-  const url = `${PROCESS_ENV.EXPO_PUBLIC_API_URL}${endpoint}`;
+  const baseUrl =
+    Constants.expoConfig?.extra?.apiUrl || process.env.EXPO_PUBLIC_API_URL;
+  const url = `${baseUrl}${endpoint}`;
 
   try {
     const response = await fetch(url, options);
