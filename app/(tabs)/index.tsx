@@ -132,7 +132,7 @@ const HomeScreen = () => {
               style={styles.productTitle}
               accessible
               accessibilityRole="header">
-              New Product
+              New Product - Updated with EAS!
             </Text>
             <Button
               title="See All"

@@ -1,0 +1,12 @@
+name: Submit to App Stores
+
+# This workflow needs to be run manually with build IDs
+# Run with: npx eas-cli@latest workflow:run submit-to-stores.yml --build-id=<your-build-id>
+
+jobs:
+  # Submit build to stores (requires build_id parameter)
+  submit_to_stores:
+    type: submit
+    params:
+      build_id: ${{ inputs.build_id }}
+      profile: production
