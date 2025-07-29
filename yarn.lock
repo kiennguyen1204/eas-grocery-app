@@ -1637,7 +1637,7 @@
     postcss "~8.4.32"
     resolve-from "^5.0.0"
 
-"@expo/metro-runtime@5.0.4":
+"@expo/metro-runtime@5.0.4", "@expo/metro-runtime@~5.0.4":
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/@expo/metro-runtime/-/metro-runtime-5.0.4.tgz#0ea7a7ecf27e3f159289705ef5160328b9fdde42"
   integrity sha512-r694MeO+7Vi8IwOsDIDzH/Q5RPMt1kUDYbiTJwnO15nIqiDwlE8HU55UlRhffKZy6s5FmxQsZ8HA+T8DqUW8cQ==
@@ -6010,7 +6010,7 @@ expo-device@~7.1.4:
   dependencies:
     ua-parser-js "^0.7.33"
 
-expo-eas-client@~0.14.4:
+expo-eas-client@~0.14.3, expo-eas-client@~0.14.4:
   version "0.14.4"
   resolved "https://registry.yarnpkg.com/expo-eas-client/-/expo-eas-client-0.14.4.tgz#33a111d565a58bb425565616086f9abb686f903e"
   integrity sha512-TSL1BbBFIuXchJmPgbPnB7cGpOOuSGJcQ/L7gij/+zPjExwvKm5ckA5dlSulwoFhH8zQt4vb7bfISPSAWQVWBw==
@@ -6043,6 +6043,13 @@ expo-image@~2.3.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/expo-image/-/expo-image-2.3.2.tgz#7c6e4854ee8ed6a5809f36f0c37a6f979730552c"
   integrity sha512-TOp7UR1mzeCxzs3c/6MV2Wy7jBfJpKq8aVC06gkLfxHsCVMeGqCXc+6GMrGIVrjG938LEub4dwnrE0OuSE2Qwg==
+
+expo-insights@~0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/expo-insights/-/expo-insights-0.9.3.tgz#992613ebd51008bfaac995b7ec759a9216793edc"
+  integrity sha512-ictylDUdERHPXUM4suEYLJGGvlSOB7btDSA0FtlZeVWWOcyTWQlSF5t1Wj3lCCljzjMm/pIj8k9hp8CXCl0gsg==
+  dependencies:
+    expo-eas-client "~0.14.3"
 
 expo-json-utils@~0.15.0:
   version "0.15.0"
